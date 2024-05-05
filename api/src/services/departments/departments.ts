@@ -8,7 +8,7 @@ import type {
 
 import { db } from 'src/lib/db'
 
-import { groups } from '../groups/groups'
+import { groupsConnection } from '../groups/groups'
 import { ConnectionResolver } from '../types'
 
 export const departments: ConnectionResolver<Omit<TDepartment, 'groups'>> = (
@@ -37,6 +37,6 @@ export const department: Omit<QueryResolvers['department'], 'groups'> = async ({
 
 export const Department = {
   groups: async (arg, { root }) => {
-    return await groups({ ...arg, departmentId: root.id })
+    return await groupsConnection(arg, { departmentId: root.id })
   },
 }

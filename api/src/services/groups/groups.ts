@@ -1,4 +1,5 @@
 import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection'
+import type { Prisma } from '@prisma/client'
 import type {
   QueryResolvers,
   QuerygroupArgs,
@@ -11,14 +12,21 @@ import { db } from 'src/lib/db'
 
 import { ConnectionResolver } from '../types'
 
+export function groupsConnection(
+  args: QuerygroupsArgs,
+  baseArgs?: Prisma.GroupWhereInput
+) {
+  return findManyCursorConnection(
+    (args) => db.group.findMany({ ...args, where: { ...baseArgs } }),
+    () => db.group.count({ where: { ...baseArgs } }),
+    args
+  )
+}
+
 export const groups: ConnectionResolver<Omit<TGroup, 'department'>> = (
   args: QuerygroupsArgs
 ) => {
-  return findManyCursorConnection(
-    (args) => db.group.findMany(args),
-    () => db.group.count(),
-    args
-  )
+  return groupsConnection(args)
 }
 
 export const group: Omit<QueryResolvers['group'], 'department'> = async ({

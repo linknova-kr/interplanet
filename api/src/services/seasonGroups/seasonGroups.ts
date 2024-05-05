@@ -1,4 +1,5 @@
 import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection'
+import type { Prisma } from '@prisma/client'
 import {
   SeasonseasonGroupsArgs,
   SeasonGroup as TSeasonGroup,
@@ -8,14 +9,21 @@ import { db } from 'src/lib/db'
 
 import { ConnectionResolver } from '../types'
 
+export function seasonGroupConnection(
+  args: SeasonseasonGroupsArgs,
+  baseArgs?: Prisma.SeasonGroupWhereInput
+) {
+  return findManyCursorConnection(
+    (args) => db.seasonGroup.findMany({ ...args, where: { ...baseArgs } }),
+    () => db.seasonGroup.count({ where: { ...baseArgs } }),
+    args
+  )
+}
+
 export const seasonGroups: ConnectionResolver<
   Omit<TSeasonGroup, 'season' | 'group' | 'iJoined'>
 > = (args: SeasonseasonGroupsArgs) => {
-  return findManyCursorConnection(
-    (args) => db.seasonGroup.findMany(args),
-    () => db.seasonGroup.count(),
-    args
-  )
+  return seasonGroupConnection(args)
 }
 
 export const SeasonGroup = {

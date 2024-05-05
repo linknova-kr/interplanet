@@ -2,7 +2,7 @@ import type { QueryResolvers } from 'types/graphql'
 
 import { db } from 'src/lib/db'
 
-import { seasonGroups } from '../seasonGroups/seasonGroups'
+import { seasonGroupConnection } from '../seasonGroups/seasonGroups'
 
 export const activeSeason: Omit<
   QueryResolvers['activeSeason'],
@@ -22,6 +22,6 @@ export const activeSeason: Omit<
 
 export const Season = {
   seasonGroups: (args, { root }) => {
-    return seasonGroups({ ...args, seasonId: root.id })
+    return seasonGroupConnection(args, { seasonId: root.id })
   },
 }
