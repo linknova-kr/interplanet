@@ -5,7 +5,7 @@ export const schema = gql`
     name: String!
     slug: String!
     createdAt: DateTime!
-    departmentId: String!
+    departmentId: ID!
   }
 
   type GroupEdge {

@@ -36,10 +36,28 @@ model Department {
 }
 
 model Group {
-  id           String     @id @default(cuid())
-  department   Department @relation(fields: [departmentId], references: [id])
+  id           String        @id @default(cuid())
+  department   Department    @relation(fields: [departmentId], references: [id])
   name         String
-  slug         String     @unique
-  createdAt    DateTime   @default(now())
+  slug         String        @unique
+  createdAt    DateTime      @default(now())
   departmentId String
+  seasonGroup  SeasonGroup[]
+}
+
+model Season {
+  id          String        @id @default(cuid())
+  name        String
+  startsAt    DateTime
+  endsAt      DateTime
+  seasonGroup SeasonGroup[]
+}
+
+model SeasonGroup {
+  id        String   @id @default(cuid())
+  season    Season   @relation(fields: [seasonId], references: [id])
+  group     Group    @relation(fields: [groupId], references: [id])
+  seasonId  String
+  groupId   String
+  createdAt DateTime @default(now())
 }
