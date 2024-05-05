@@ -1712,6 +1712,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.7.2":
+  version: 7.24.5
+  resolution: "@babel/runtime@npm:7.24.5"
+  dependencies:
+    regenerator-runtime: "npm:^0.14.0"
+  checksum: 10c0/05730e43e8ba6550eae9fd4fb5e7d9d3cb91140379425abcb2a1ff9cebad518a280d82c4c4b0f57ada26a863106ac54a748d90c775790c0e2cd0ddd85ccdf346
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.18.10, @babel/template@npm:^7.20.7, @babel/template@npm:^7.22.15, @babel/template@npm:^7.24.0, @babel/template@npm:^7.3.3":
   version: 7.24.0
   resolution: "@babel/template@npm:7.24.0"
@@ -1807,6 +1816,17 @@ __metadata:
   dependencies:
     "@jridgewell/trace-mapping": "npm:0.3.9"
   checksum: 10c0/05c5368c13b662ee4c122c7bfbe5dc0b613416672a829f3e78bc49a357a197e0218d6e74e7c66cfcd04e15a179acab080bd3c69658c9fbefd0e1ccd950a07fc6
+  languageName: node
+  linkType: hard
+
+"@devoxa/prisma-relay-cursor-connection@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "@devoxa/prisma-relay-cursor-connection@npm:3.1.1"
+  dependencies:
+    graphql-fields: "npm:2.0.3"
+  peerDependencies:
+    "@prisma/client": ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0
+  checksum: 10c0/f9b8e29cf082a8259a92a7707eef26bc60d3ae90044106b806c209e644abc80e0a5b07fd4cc17bd549bde9cafdaab70bc3ec18a53019a42e7f606738b3e8af15
   languageName: node
   linkType: hard
 
@@ -5687,6 +5707,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-relay@npm:^16.0.6":
+  version: 16.0.6
+  resolution: "@types/react-relay@npm:16.0.6"
+  dependencies:
+    "@types/react": "npm:*"
+    "@types/relay-runtime": "npm:*"
+  checksum: 10c0/91a7b2e3e95610dc5ba4a994e847dd250cb6b95c5757a15662d36ab601abaddef970dd09f104333c43416b5ef0901101b55d0507fd999af60873ed849c4e9d76
+  languageName: node
+  linkType: hard
+
 "@types/react@npm:*, @types/react@npm:^18.2.55":
   version: 18.2.79
   resolution: "@types/react@npm:18.2.79"
@@ -5694,6 +5724,20 @@ __metadata:
     "@types/prop-types": "npm:*"
     csstype: "npm:^3.0.2"
   checksum: 10c0/c8a8a005d8830a48cc1ef93c3510c4935a2a03e5557dbecaa8f1038450cbfcb18eb206fa7fba7077d54b8da21faeb25577e897a333392770a7797f625b62c78a
+  languageName: node
+  linkType: hard
+
+"@types/relay-compiler@npm:^14.0.3":
+  version: 14.0.3
+  resolution: "@types/relay-compiler@npm:14.0.3"
+  checksum: 10c0/0e57807d7457d96601f039c231a08e7879c003b8a63f55f3a53303f14419a91b850cffe42c3e7b8079cea23af52302d37464dc902f5939a7048e6bfc7f2b65d0
+  languageName: node
+  linkType: hard
+
+"@types/relay-runtime@npm:*":
+  version: 14.1.23
+  resolution: "@types/relay-runtime@npm:14.1.23"
+  checksum: 10c0/cc19503b42a1064f7e323c06be5de517691a0a7dd7f059c8cc1974c8f39751fe98ff309fe29aca87098dba14a2cae6d197025653c72edce1875e7163f76e3033
   languageName: node
   linkType: hard
 
@@ -6838,6 +6882,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "api@workspace:api"
   dependencies:
+    "@devoxa/prisma-relay-cursor-connection": "npm:^3.1.1"
     "@redwoodjs/api": "npm:7.4.3"
     "@redwoodjs/auth-dbauth-api": "npm:7.4.3"
     "@redwoodjs/graphql-server": "npm:7.4.3"
@@ -7415,6 +7460,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"babel-plugin-macros@npm:^2.0.0":
+  version: 2.8.0
+  resolution: "babel-plugin-macros@npm:2.8.0"
+  dependencies:
+    "@babel/runtime": "npm:^7.7.2"
+    cosmiconfig: "npm:^6.0.0"
+    resolve: "npm:^1.12.0"
+  checksum: 10c0/9a101e2844a800e65662b2a8d0758bdbbe500ae02d68ef6f3466ead7eaa1350e3872b97014b20bf6f3a1a46b3c9613dfac7578af6f6ae6d4eccbd68ad7b6f228
+  languageName: node
+  linkType: hard
+
 "babel-plugin-module-resolver@npm:5.0.0":
   version: 5.0.0
   resolution: "babel-plugin-module-resolver@npm:5.0.0"
@@ -7461,6 +7517,17 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.4.0 || ^8.0.0-0 <8.0.0
   checksum: 10c0/bc541037cf7620bc84ddb75a1c0ce3288f90e7d2799c070a53f8a495c8c8ae0316447becb06f958dd25dcce2a2fce855d318ecfa48036a1ddb218d55aa38a744
+  languageName: node
+  linkType: hard
+
+"babel-plugin-relay@npm:^16.2.0":
+  version: 16.2.0
+  resolution: "babel-plugin-relay@npm:16.2.0"
+  dependencies:
+    babel-plugin-macros: "npm:^2.0.0"
+    cosmiconfig: "npm:^5.0.5"
+    graphql: "npm:15.3.0"
+  checksum: 10c0/4b19921e9d418e1609ad839a4f1bbe590084f0052f4d94f910894d4fad4755133d38077cfaa294933463119027d02d4635d43ac9d4a85e97f845239f913c7d8d
   languageName: node
   linkType: hard
 
@@ -8057,6 +8124,31 @@ __metadata:
     get-intrinsic: "npm:^1.2.4"
     set-function-length: "npm:^1.2.1"
   checksum: 10c0/a3ded2e423b8e2a265983dba81c27e125b48eefb2655e7dfab6be597088da3d47c47976c24bc51b8fd9af1061f8f87b4ab78a314f3c77784b2ae2ba535ad8b8d
+  languageName: node
+  linkType: hard
+
+"caller-callsite@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "caller-callsite@npm:2.0.0"
+  dependencies:
+    callsites: "npm:^2.0.0"
+  checksum: 10c0/a00ca91280e10ee2321de21dda6c168e427df7a63aeaca027ea45e3e466ac5e1a5054199f6547ba1d5a513d3b6b5933457266daaa47f8857fb532a343ee6b5e1
+  languageName: node
+  linkType: hard
+
+"caller-path@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "caller-path@npm:2.0.0"
+  dependencies:
+    caller-callsite: "npm:^2.0.0"
+  checksum: 10c0/029b5b2c557d831216305c3218e9ff30fa668be31d58dd08088f74c8eabc8362c303e0908b3a93abb25ba10e3a5bfc9cff5eb7fab6ab9cf820e3b160ccb67581
+  languageName: node
+  linkType: hard
+
+"callsites@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "callsites@npm:2.0.0"
+  checksum: 10c0/13bff4fee946e6020b37e76284e95e24aa239c9e34ac4f3451e4c5330fca6f2f962e1d1ab69e4da7940e1fce135107a2b2b98c01d62ea33144350fc89dc5494e
   languageName: node
   linkType: hard
 
@@ -8948,6 +9040,31 @@ __metadata:
     parse-json: "npm:^5.0.0"
     path-type: "npm:^4.0.0"
   checksum: 10c0/cea301202bb68373f9c8ccc77a6002aab1032f327dd1458e5932ee1a2f48919c881074d702cece91f18275673817872a0d3d00eb46f30a33c8f2009dbbac0e5c
+  languageName: node
+  linkType: hard
+
+"cosmiconfig@npm:^5.0.5":
+  version: 5.2.1
+  resolution: "cosmiconfig@npm:5.2.1"
+  dependencies:
+    import-fresh: "npm:^2.0.0"
+    is-directory: "npm:^0.3.1"
+    js-yaml: "npm:^3.13.1"
+    parse-json: "npm:^4.0.0"
+  checksum: 10c0/ae9ba309cdbb42d0c9d63dad5c1dfa1c56bb8f818cb8633eea14fd2dbdc9f33393b77658ba96fdabda497bc943afed8c3371d1222afe613c518ba676fa624645
+  languageName: node
+  linkType: hard
+
+"cosmiconfig@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "cosmiconfig@npm:6.0.0"
+  dependencies:
+    "@types/parse-json": "npm:^4.0.0"
+    import-fresh: "npm:^3.1.0"
+    parse-json: "npm:^5.0.0"
+    path-type: "npm:^4.0.0"
+    yaml: "npm:^1.7.2"
+  checksum: 10c0/666ed8732d0bf7d7fe6f8516c8ee6041e0622032e8fa26201577b883d2767ad105d03f38b34b93d1f02f26b22a89e7bab4443b9d2e7f931f48d0e944ffa038b5
   languageName: node
   linkType: hard
 
@@ -11308,7 +11425,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fbjs@npm:^3.0.0":
+"fbjs@npm:^3.0.0, fbjs@npm:^3.0.2":
   version: 3.0.5
   resolution: "fbjs@npm:3.0.5"
   dependencies:
@@ -12065,6 +12182,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"graphql-fields@npm:2.0.3":
+  version: 2.0.3
+  resolution: "graphql-fields@npm:2.0.3"
+  checksum: 10c0/943c6ac8dba1320c1b81873e9e847aaec073d952de988f0d77047aafe7bef60c743ebc5974cf04fe27477e33d9c067a5bd45d95c784d64c37a1e743fd3a23b0d
+  languageName: node
+  linkType: hard
+
 "graphql-request@npm:^6.0.0":
   version: 6.1.0
   resolution: "graphql-request@npm:6.1.0"
@@ -12135,6 +12259,13 @@ __metadata:
   peerDependencies:
     graphql: ^15.2.0 || ^16.0.0
   checksum: 10c0/28558ae67f95d43a27dc0c3dbbcd4348e76f8c3a77f4ecf6a0123000dcae7c40b3df52fc50d88b232c342d2845635551137b43d0e7659ebcc40e937e92ce89e3
+  languageName: node
+  linkType: hard
+
+"graphql@npm:15.3.0":
+  version: 15.3.0
+  resolution: "graphql@npm:15.3.0"
+  checksum: 10c0/b75622aad9aa5436154d5c6b7a082cf3266654d779fb4f7ba3919f1b96626bf89426307e682cb9b88a0427c13cfd0d10ac0e12315719703e431297184fdd67aa
   languageName: node
   linkType: hard
 
@@ -12657,7 +12788,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"import-fresh@npm:^3.2.1":
+"import-fresh@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "import-fresh@npm:2.0.0"
+  dependencies:
+    caller-path: "npm:^2.0.0"
+    resolve-from: "npm:^3.0.0"
+  checksum: 10c0/116c55ee5215a7839062285b60df85dbedde084c02111dc58c1b9d03ff7876627059f4beb16cdc090a3db21fea9022003402aa782139dc8d6302589038030504
+  languageName: node
+  linkType: hard
+
+"import-fresh@npm:^3.1.0, import-fresh@npm:^3.2.1":
   version: 3.3.0
   resolution: "import-fresh@npm:3.3.0"
   dependencies:
@@ -12971,6 +13112,13 @@ __metadata:
     is-accessor-descriptor: "npm:^1.0.1"
     is-data-descriptor: "npm:^1.0.1"
   checksum: 10c0/b4ee667ea787d3a0be4e58536087fd0587de2b0b6672fbfe288f5b8d831ac4b79fd987f31d6c2d4e5543a42c97a87428bc5215ce292a1a47070147793878226f
+  languageName: node
+  linkType: hard
+
+"is-directory@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "is-directory@npm:0.3.1"
+  checksum: 10c0/1c39c7d1753b04e9483b89fb88908b8137ab4743b6f481947e97ccf93ecb384a814c8d3f0b95b082b149c5aa19c3e9e4464e2791d95174bce95998c26bb1974b
   languageName: node
   linkType: hard
 
@@ -14132,7 +14280,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json-parse-better-errors@npm:^1.0.2":
+"json-parse-better-errors@npm:^1.0.1, json-parse-better-errors@npm:^1.0.2":
   version: 1.0.2
   resolution: "json-parse-better-errors@npm:1.0.2"
   checksum: 10c0/2f1287a7c833e397c9ddd361a78638e828fc523038bb3441fd4fc144cfd2c6cd4963ffb9e207e648cf7b692600f1e1e524e965c32df5152120910e4903a47dcb
@@ -16166,6 +16314,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"parse-json@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "parse-json@npm:4.0.0"
+  dependencies:
+    error-ex: "npm:^1.3.1"
+    json-parse-better-errors: "npm:^1.0.1"
+  checksum: 10c0/8d80790b772ccb1bcea4e09e2697555e519d83d04a77c2b4237389b813f82898943a93ffff7d0d2406203bdd0c30dcf95b1661e3a53f83d0e417f053957bef32
+  languageName: node
+  linkType: hard
+
 "parse-json@npm:^5.0.0, parse-json@npm:^5.2.0":
   version: 5.2.0
   resolution: "parse-json@npm:5.2.0"
@@ -17409,6 +17567,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-relay@npm:^16.2.0":
+  version: 16.2.0
+  resolution: "react-relay@npm:16.2.0"
+  dependencies:
+    "@babel/runtime": "npm:^7.0.0"
+    fbjs: "npm:^3.0.2"
+    invariant: "npm:^2.2.4"
+    nullthrows: "npm:^1.1.1"
+    relay-runtime: "npm:16.2.0"
+  peerDependencies:
+    react: ^16.9.0 || ^17 || ^18
+  checksum: 10c0/d68f2626d71ab1486644b7bfdf73d0bcac6e06e37e5b3f57eac273ebb7c560d9d936ca54aa9f18677b10f54fe541d060d9a0d93cc96cef0a9cd11ea6ed409ff0
+  languageName: node
+  linkType: hard
+
 "react@npm:18.2.0":
   version: 18.2.0
   resolution: "react@npm:18.2.0"
@@ -17673,6 +17846,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"relay-compiler@npm:^16.2.0":
+  version: 16.2.0
+  resolution: "relay-compiler@npm:16.2.0"
+  bin:
+    relay-compiler: cli.js
+  checksum: 10c0/8d7a681dc0e8113f347fd38d6834893dd2e24f502dc480f0239c50122eac0029dbe2b947d3f8d655804df70a87a8a676df090508ee378b50a6b8d9ff75727d33
+  languageName: node
+  linkType: hard
+
 "relay-runtime@npm:12.0.0":
   version: 12.0.0
   resolution: "relay-runtime@npm:12.0.0"
@@ -17681,6 +17863,17 @@ __metadata:
     fbjs: "npm:^3.0.0"
     invariant: "npm:^2.2.4"
   checksum: 10c0/f5d29b5c2f3c8a3438d43dcbc3022bd454c4ecbd4f0b10616df08bedc62d8aaa84f155f23e374053cf9f4a8238b93804e37a5b37ed9dc7ad01436d62d1b01d53
+  languageName: node
+  linkType: hard
+
+"relay-runtime@npm:16.2.0, relay-runtime@npm:^16.2.0":
+  version: 16.2.0
+  resolution: "relay-runtime@npm:16.2.0"
+  dependencies:
+    "@babel/runtime": "npm:^7.0.0"
+    fbjs: "npm:^3.0.2"
+    invariant: "npm:^2.2.4"
+  checksum: 10c0/770dc36203a3d0a7c285ac446ac601cfa8a87da2af8ee9a9cc3c5533c506655e457b276bc40c6e0f274556dce258b2407a5d17e6582bbc9902af5f1dd9081c3a
   languageName: node
   linkType: hard
 
@@ -17790,6 +17983,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"resolve-from@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "resolve-from@npm:3.0.0"
+  checksum: 10c0/24affcf8e81f4c62f0dcabc774afe0e19c1f38e34e43daac0ddb409d79435fc3037f612b0cc129178b8c220442c3babd673e88e870d27215c99454566e770ebc
+  languageName: node
+  linkType: hard
+
 "resolve-from@npm:^4.0.0":
   version: 4.0.0
   resolution: "resolve-from@npm:4.0.0"
@@ -17824,7 +18024,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve@npm:^1.11.1, resolve@npm:^1.14.2, resolve@npm:^1.20.0, resolve@npm:^1.22.1, resolve@npm:^1.22.4":
+"resolve@npm:^1.11.1, resolve@npm:^1.12.0, resolve@npm:^1.14.2, resolve@npm:^1.20.0, resolve@npm:^1.22.1, resolve@npm:^1.22.4":
   version: 1.22.8
   resolution: "resolve@npm:1.22.8"
   dependencies:
@@ -17850,7 +18050,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve@patch:resolve@npm%3A^1.11.1#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.14.2#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.20.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.1#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.4#optional!builtin<compat/resolve>":
+"resolve@patch:resolve@npm%3A^1.11.1#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.12.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.14.2#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.20.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.1#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.4#optional!builtin<compat/resolve>":
   version: 1.22.8
   resolution: "resolve@patch:resolve@npm%3A1.22.8#optional!builtin<compat/resolve>::version=1.22.8&hash=c3c19d"
   dependencies:
@@ -20301,6 +20501,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"vite-plugin-relay@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "vite-plugin-relay@npm:2.1.0"
+  dependencies:
+    "@babel/core": "npm:^7.23.5"
+  peerDependencies:
+    babel-plugin-relay: ">=14.1.0"
+    vite: ">=2.0.0"
+  checksum: 10c0/33022bb9c3387d87dc6e022a4b3a138e9e74b234deb262a48ac3dbd9b9903e9968b54a33ba4ecd8b78abaf1e28335f6471b26376915814b6028a5dfd8f5af0ad
+  languageName: node
+  linkType: hard
+
 "vite@npm:4.5.2":
   version: 4.5.2
   resolution: "vite@npm:4.5.2"
@@ -20493,8 +20705,15 @@ __metadata:
     "@redwoodjs/web": "npm:7.4.3"
     "@types/react": "npm:^18.2.55"
     "@types/react-dom": "npm:^18.2.19"
+    "@types/react-relay": "npm:^16.0.6"
+    "@types/relay-compiler": "npm:^14.0.3"
+    babel-plugin-relay: "npm:^16.2.0"
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
+    react-relay: "npm:^16.2.0"
+    relay-compiler: "npm:^16.2.0"
+    relay-runtime: "npm:^16.2.0"
+    vite-plugin-relay: "npm:^2.1.0"
   languageName: unknown
   linkType: soft
 
@@ -21127,7 +21346,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yaml@npm:^1.10.0":
+"yaml@npm:^1.10.0, yaml@npm:^1.7.2":
   version: 1.10.2
   resolution: "yaml@npm:1.10.2"
   checksum: 10c0/5c28b9eb7adc46544f28d9a8d20c5b3cb1215a886609a2fd41f51628d8aaa5878ccd628b755dbcd29f6bb4921bd04ffbc6dcc370689bb96e594e2f9813d2605f
