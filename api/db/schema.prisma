@@ -32,4 +32,14 @@ model Department {
   name      String
   slug      String   @unique
   createdAt DateTime @default(now())
+  Group     Group[]
+}
+
+model Group {
+  id           String     @id @default(cuid())
+  department   Department @relation(fields: [departmentId], references: [id])
+  name         String
+  slug         String     @unique
+  createdAt    DateTime   @default(now())
+  departmentId String
 }

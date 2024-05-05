@@ -4,6 +4,12 @@ export const schema = gql`
     name: String!
     slug: String!
     createdAt: DateTime!
+    groups(
+      first: Int
+      last: Int
+      before: String
+      after: String
+    ): GroupConnection!
   }
 
   type DepartmentEdge {

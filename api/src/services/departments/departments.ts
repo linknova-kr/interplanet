@@ -1,9 +1,19 @@
 import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection'
-import type { QueryResolvers } from 'types/graphql'
+import type {
+  QueryResolvers,
+  QuerydepartmentArgs,
+  QuerydepartmentsArgs,
+  Department as TDepartment,
+} from 'types/graphql'
 
 import { db } from 'src/lib/db'
 
-export const departments: QueryResolvers['departments'] = (args) => {
+import { groups } from '../groups/groups'
+import { ConnectionResolver } from '../types'
+
+export const departments: ConnectionResolver<Omit<TDepartment, 'groups'>> = (
+  args: QuerydepartmentsArgs
+) => {
   return findManyCursorConnection(
     (args) => db.department.findMany(args),
     () => db.department.count(),
@@ -11,7 +21,9 @@ export const departments: QueryResolvers['departments'] = (args) => {
   )
 }
 
-export const department: QueryResolvers['department'] = async ({ slug }) => {
+export const department: Omit<QueryResolvers['department'], 'groups'> = async ({
+  slug,
+}: QuerydepartmentArgs) => {
   const department = await db.department.findUnique({
     where: { slug },
   })
@@ -21,4 +33,10 @@ export const department: QueryResolvers['department'] = async ({ slug }) => {
   }
 
   return department
+}
+
+export const Department = {
+  groups: async (arg, { root }) => {
+    return await groups({ ...arg, departmentId: root.id })
+  },
 }
