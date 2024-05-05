@@ -20,4 +20,8 @@ export const schema = gql`
   type NotFoundError implements Error {
     message: String!
   }
+
+  type AlreadyExistsError implements Error {
+    message: String!
+  }
 `

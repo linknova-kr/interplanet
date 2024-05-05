@@ -6,6 +6,7 @@ export const schema = gql`
     seasonId: ID!
     groupId: ID!
     createdAt: DateTime!
+    iJoined: Boolean!
   }
 
   type SeasonGroupEdge {

@@ -15,18 +15,19 @@ generator client {
 }
 
 model User {
-  id                  Int       @id @default(autoincrement())
-  identifier          String    @unique
+  id                  Int               @id @default(autoincrement())
+  identifier          String            @unique
   realName            String
   nickname            String
   phoneNumber         String
   birthday            DateTime
-  email               String    @default("")
+  email               String            @default("")
   interests           String[]
   hashedPassword      String
   salt                String
   resetToken          String?
   resetTokenExpiresAt DateTime?
+  userSeasonGroup     UserSeasonGroup[]
 }
 
 model Department {
@@ -34,7 +35,7 @@ model Department {
   name      String
   slug      String   @unique
   createdAt DateTime @default(now())
-  Group     Group[]
+  group     Group[]
 }
 
 model Group {
@@ -56,10 +57,20 @@ model Season {
 }
 
 model SeasonGroup {
-  id        String   @id @default(cuid())
-  season    Season   @relation(fields: [seasonId], references: [id])
-  group     Group    @relation(fields: [groupId], references: [id])
-  seasonId  String
-  groupId   String
-  createdAt DateTime @default(now())
+  id              String            @id @default(cuid())
+  season          Season            @relation(fields: [seasonId], references: [id])
+  group           Group             @relation(fields: [groupId], references: [id])
+  seasonId        String
+  groupId         String
+  createdAt       DateTime          @default(now())
+  userSeasonGroup UserSeasonGroup[]
+}
+
+model UserSeasonGroup {
+  id            String      @id @default(cuid())
+  user          User        @relation(fields: [userId], references: [id])
+  seasonGroup   SeasonGroup @relation(fields: [seasonGroupId], references: [id])
+  userId        Int
+  seasonGroupId String
+  createdAt     DateTime    @default(now())
 }

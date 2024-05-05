@@ -9,7 +9,7 @@ import { db } from 'src/lib/db'
 import { ConnectionResolver } from '../types'
 
 export const seasonGroups: ConnectionResolver<
-  Omit<TSeasonGroup, 'season' | 'group'>
+  Omit<TSeasonGroup, 'season' | 'group' | 'iJoined'>
 > = (args: SeasonseasonGroupsArgs) => {
   return findManyCursorConnection(
     (args) => db.seasonGroup.findMany(args),
@@ -24,5 +24,19 @@ export const SeasonGroup = {
   },
   group: (_obj, { root }) => {
     return db.seasonGroup.findUnique({ where: { id: root?.id } }).group()
+  },
+  iJoined: async (_obj, { root }) => {
+    const userId = context.currentUser.id
+    if (!userId) return false
+    const id = root.id
+
+    const userSeasonGroup = await db.userSeasonGroup.findFirst({
+      where: {
+        userId,
+        seasonGroupId: id,
+      },
+    })
+
+    return Boolean(userSeasonGroup)
   },
 }
