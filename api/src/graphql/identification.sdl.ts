@@ -12,4 +12,12 @@ export const schema = gql`
     hasNextPage: Boolean!
     hasPreviousPage: Boolean!
   }
+
+  interface Error {
+    message: String!
+  }
+
+  type NotFoundError implements Error {
+    message: String!
+  }
 `
