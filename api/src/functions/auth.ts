@@ -107,6 +107,8 @@ export const handler = async (
     nickname: string
     phoneNumber: string
     birthday: Date
+    email: string
+    interests: string[]
   }
 
   const signupOptions: DbAuthHandlerOptions<
@@ -141,6 +143,8 @@ export const handler = async (
           nickname: _userAttributes.nickname,
           phoneNumber: _userAttributes.phoneNumber,
           birthday: _userAttributes.birthday,
+          email: _userAttributes.email,
+          interests: _userAttributes.interests,
           hashedPassword: hashedPassword,
           salt: salt,
           // name: userAttributes.name

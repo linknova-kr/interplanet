@@ -5,7 +5,7 @@
 // https://www.prisma.io/docs/orm/prisma-migrate
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -21,6 +21,8 @@ model User {
   nickname            String
   phoneNumber         String
   birthday            DateTime
+  email               String    @default("")
+  interests           String[]
   hashedPassword      String
   salt                String
   resetToken          String?
