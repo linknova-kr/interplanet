@@ -34,7 +34,7 @@ export const SeasonGroup = {
     return db.seasonGroup.findUnique({ where: { id: root?.id } }).group()
   },
   iJoined: async (_obj, { root }) => {
-    const userId = context.currentUser.id
+    const userId = context.currentUser?.id
     if (!userId) return false
     const id = root.id
 

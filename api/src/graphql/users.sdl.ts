@@ -1,6 +1,6 @@
 export const schema = gql`
-  type User {
-    id: Int!
+  type User implements Node {
+    id: ID!
     identifier: String!
     realName: String!
     nickname: String!

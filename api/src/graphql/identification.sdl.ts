@@ -24,4 +24,8 @@ export const schema = gql`
   type AlreadyExistsError implements Error {
     message: String!
   }
+
+  type DeleteSuccess {
+    success: Boolean!
+  }
 `

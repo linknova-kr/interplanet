@@ -15,19 +15,21 @@ generator client {
 }
 
 model User {
-  id                  Int               @id @default(autoincrement())
-  identifier          String            @unique
+  id                  Int                @id @default(autoincrement())
+  identifier          String             @unique
   realName            String
   nickname            String
   phoneNumber         String
   birthday            DateTime
-  email               String            @default("")
+  email               String             @default("")
   interests           String[]
   hashedPassword      String
   salt                String
   resetToken          String?
   resetTokenExpiresAt DateTime?
   userSeasonGroup     UserSeasonGroup[]
+  groupProgram        GroupProgram[]
+  userGroupProgram    UserGroupProgram[]
 }
 
 model Department {
@@ -39,13 +41,14 @@ model Department {
 }
 
 model Group {
-  id           String        @id @default(cuid())
-  department   Department    @relation(fields: [departmentId], references: [id])
+  id           String         @id @default(cuid())
+  department   Department     @relation(fields: [departmentId], references: [id])
   name         String
-  slug         String        @unique
-  createdAt    DateTime      @default(now())
+  slug         String         @unique
+  createdAt    DateTime       @default(now())
   departmentId String
   seasonGroup  SeasonGroup[]
+  GroupProgram GroupProgram[]
 }
 
 model Season {
@@ -73,4 +76,46 @@ model UserSeasonGroup {
   userId        Int
   seasonGroupId String
   createdAt     DateTime    @default(now())
+}
+
+enum GroupProgramType {
+  BOOK_FREE
+  BOOK_DESIGNATED
+  ENGLISH
+  FOUNDER
+}
+
+model GroupProgram {
+  id               String             @id @default(cuid())
+  title            String
+  type             GroupProgramType
+  group            Group              @relation(fields: [groupId], references: [id])
+  groupId          String
+  hostUser         User               @relation(fields: [hostUserId], references: [id])
+  hostUserId       Int
+  address          String             @default("")
+  description      String             @default("")
+  startsAt         DateTime
+  endsAt           DateTime
+  userGroupProgram UserGroupProgram[]
+}
+
+enum UserGroupProgramStatus {
+  NOT_ATTENDED
+  ATTENDED
+  ATTENDED_LATE
+  CANCELLED
+}
+
+model UserGroupProgram {
+  id             String                 @id @default(cuid())
+  user           User                   @relation(fields: [userId], references: [id])
+  groupProgram   GroupProgram           @relation(fields: [groupProgramId], references: [id])
+  userId         Int
+  type           String                 @default("")
+  groupProgramId String
+  message        String                 @default("")
+  createdAt      DateTime               @default(now())
+  cancelledAt    DateTime?
+  status         UserGroupProgramStatus
 }
