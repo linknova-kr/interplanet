@@ -1,31 +1,18 @@
-import { useLazyLoadQuery } from 'react-relay'
-import { graphql } from 'relay-runtime'
-
-import { DepartmentChipsQuery } from '../__generated__/DepartmentChipsQuery.graphql'
-
-const QUERY = graphql`
-  query DepartmentChipsQuery {
-    departments {
-      edges {
-        node {
-          id
-          name
-        }
-      }
-    }
-  }
-`
+import { HomePageDepartmentsQuery$data } from '../__generated__/HomePageDepartmentsQuery.graphql'
 
 interface Props {
+  departments: HomePageDepartmentsQuery$data['departments']
   onClick: (departmentId: string | null) => void
+  showAll: boolean
 }
 
-const DepartmentChips = ({ onClick }: Props) => {
-  const data = useLazyLoadQuery<DepartmentChipsQuery>(QUERY, {})
+const DepartmentChips = ({ onClick, showAll, departments }: Props) => {
   return (
     <>
-      <button onClick={() => onClick(null)}>참여 가능한 모임</button>
-      {data.departments.edges.map(({ node }) => {
+      {showAll && (
+        <button onClick={() => onClick(null)}>참여 가능한 모임</button>
+      )}
+      {departments.edges.map(({ node }) => {
         return (
           <button onClick={() => onClick(node.id)} key={node.id}>
             {node.name}

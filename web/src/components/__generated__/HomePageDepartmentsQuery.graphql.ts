@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3b2852453b94b42dac79a8a70183cf3f>>
+ * @generated SignedSource<<e660b4ca1cf551e6eab9e32ecdbd3d3b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,8 +9,8 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Query } from 'relay-runtime';
-export type DepartmentChipsQuery$variables = Record<PropertyKey, never>;
-export type DepartmentChipsQuery$data = {
+export type HomePageDepartmentsQuery$variables = Record<PropertyKey, never>;
+export type HomePageDepartmentsQuery$data = {
   readonly departments: {
     readonly edges: ReadonlyArray<{
       readonly node: {
@@ -20,9 +20,9 @@ export type DepartmentChipsQuery$data = {
     }>;
   };
 };
-export type DepartmentChipsQuery = {
-  response: DepartmentChipsQuery$data;
-  variables: DepartmentChipsQuery$variables;
+export type HomePageDepartmentsQuery = {
+  response: HomePageDepartmentsQuery$data;
+  variables: HomePageDepartmentsQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -80,7 +80,7 @@ return {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "DepartmentChipsQuery",
+    "name": "HomePageDepartmentsQuery",
     "selections": (v0/*: any*/),
     "type": "Query",
     "abstractKey": null
@@ -89,20 +89,20 @@ return {
   "operation": {
     "argumentDefinitions": [],
     "kind": "Operation",
-    "name": "DepartmentChipsQuery",
+    "name": "HomePageDepartmentsQuery",
     "selections": (v0/*: any*/)
   },
   "params": {
-    "cacheID": "bdd4354141e33dd11eb00bfe508d28f2",
+    "cacheID": "d298ca15a575cd02d03f113447133b88",
     "id": null,
     "metadata": {},
-    "name": "DepartmentChipsQuery",
+    "name": "HomePageDepartmentsQuery",
     "operationKind": "query",
-    "text": "query DepartmentChipsQuery {\n  departments {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n"
+    "text": "query HomePageDepartmentsQuery {\n  departments {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "4899c1d425cb1cf5eb06cf696e059e0e";
+(node as any).hash = "9a25960b4802eff4282dcb38a77cd2c4";
 
 export default node;

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { Dispatch, SetStateAction, useMemo, useState } from 'react'
 
 import { graphql, useLazyLoadQuery } from 'react-relay'
 
@@ -46,12 +46,16 @@ const QUERY = graphql`
 
 interface Props {
   departmentId: string | null
+  startAtCriteria: GroupProgramStartAtCriteria
+  setStartAtCriteria: Dispatch<SetStateAction<GroupProgramStartAtCriteria>>
 }
 
-const GroupPrograms = ({ departmentId }: Props) => {
+const GroupPrograms = ({
+  departmentId,
+  startAtCriteria,
+  setStartAtCriteria,
+}: Props) => {
   const [sort, setSort] = useState<GroupProgramSort>('STARTS_AT_ASC')
-  const [startAtCriteria, setStartAtCriteria] =
-    useState<GroupProgramStartAtCriteria>('FUTURE')
   const iJoined = useMemo(() => {
     if (departmentId === null) {
       return false
