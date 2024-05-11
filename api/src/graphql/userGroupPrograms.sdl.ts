@@ -8,6 +8,7 @@ export const schema = gql`
       input: CreateUserGroupProgramInput!
     ): CreateUserGroupProgramResult! @requireAuth
     updateUserGroupProgram(
+      where: UpdateUserGroupProgramWhere!
       input: UpdateUserGroupProgramInput!
     ): UpdateUserGroupProgramResult! @requireAuth
     cancelUserGroupProgram(
@@ -55,9 +56,13 @@ export const schema = gql`
     | NotFoundError
     | AlreadyExistsError
 
-  input UpdateUserGroupProgramInput {
+  input UpdateUserGroupProgramWhere {
     id: ID!
-    groupProgramId: ID!
+  }
+
+  input UpdateUserGroupProgramInput {
+    message: String!
+    type: String!
   }
 
   union UpdateUserGroupProgramResult = UserGroupProgram | NotFoundError

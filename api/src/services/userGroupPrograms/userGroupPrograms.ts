@@ -33,7 +33,7 @@ export const userGroupPrograms = (args: GroupProgramuserGroupProgramsArgs) => {
 export const createUserGroupProgram: MutationResolvers['createUserGroupProgram'] =
   async ({ input }: MutationcreateUserGroupProgramArgs) => {
     const userId = context.currentUser.id
-    const { groupProgramId, message } = input
+    const { groupProgramId, message, type } = input
     const groupProgram = await db.groupProgram.findUnique({
       where: { id: groupProgramId },
     })
@@ -52,6 +52,7 @@ export const createUserGroupProgram: MutationResolvers['createUserGroupProgram']
         groupProgramId,
         message,
         status: 'NOT_ATTENDED',
+        type,
       } as Prisma.UserGroupProgramUncheckedCreateInput,
     })
   }
@@ -73,13 +74,14 @@ async function getById(id: string, userId: number) {
 }
 
 export const updateUserGroupProgram: MutationResolvers['updateUserGroupProgram'] =
-  async ({ input }: MutationupdateUserGroupProgramArgs) => {
+  async ({ input, where }: MutationupdateUserGroupProgramArgs) => {
     const userId = context.currentUser.id
-    const { id, groupProgramId } = input
+    const { id } = where
+    const { message, type } = input
     await getById(id, userId)
     return db.userGroupProgram.update({
       where: { id },
-      data: { groupProgramId },
+      data: { message, type },
     })
   }
 

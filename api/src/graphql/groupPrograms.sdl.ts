@@ -8,6 +8,7 @@ export const schema = gql`
     startsAt: DateTime!
     endsAt: DateTime!
     address: String!
+    addressSimple: String!
     description: String!
     userGroupPrograms(
       first: Int

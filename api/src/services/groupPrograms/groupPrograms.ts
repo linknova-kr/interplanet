@@ -57,7 +57,6 @@ export const groupPrograms: ConnectionResolver<
       }
     }
   }
-  console.log('WHERE!!', where)
   const orderBy =
     sort === 'STARTS_AT_ASC'
       ? { startsAt: Prisma.SortOrder.asc }

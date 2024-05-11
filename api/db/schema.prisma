@@ -94,6 +94,7 @@ model GroupProgram {
   hostUser         User               @relation(fields: [hostUserId], references: [id])
   hostUserId       Int
   address          String             @default("")
+  addressSimple    String             @default("")
   description      String             @default("")
   startsAt         DateTime
   endsAt           DateTime
