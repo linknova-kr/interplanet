@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e660b4ca1cf551e6eab9e32ecdbd3d3b>>
+ * @generated SignedSource<<0456e8bd990e150de9e52c27249689f9>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,8 +9,8 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Query } from 'relay-runtime';
-export type HomePageDepartmentsQuery$variables = Record<PropertyKey, never>;
-export type HomePageDepartmentsQuery$data = {
+export type HomePageGroupProgramsDepartmentsQuery$variables = Record<PropertyKey, never>;
+export type HomePageGroupProgramsDepartmentsQuery$data = {
   readonly departments: {
     readonly edges: ReadonlyArray<{
       readonly node: {
@@ -20,9 +20,9 @@ export type HomePageDepartmentsQuery$data = {
     }>;
   };
 };
-export type HomePageDepartmentsQuery = {
-  response: HomePageDepartmentsQuery$data;
-  variables: HomePageDepartmentsQuery$variables;
+export type HomePageGroupProgramsDepartmentsQuery = {
+  response: HomePageGroupProgramsDepartmentsQuery$data;
+  variables: HomePageGroupProgramsDepartmentsQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -80,7 +80,7 @@ return {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "HomePageDepartmentsQuery",
+    "name": "HomePageGroupProgramsDepartmentsQuery",
     "selections": (v0/*: any*/),
     "type": "Query",
     "abstractKey": null
@@ -89,20 +89,20 @@ return {
   "operation": {
     "argumentDefinitions": [],
     "kind": "Operation",
-    "name": "HomePageDepartmentsQuery",
+    "name": "HomePageGroupProgramsDepartmentsQuery",
     "selections": (v0/*: any*/)
   },
   "params": {
-    "cacheID": "d298ca15a575cd02d03f113447133b88",
+    "cacheID": "2674e396b9277e357f8ccef8e6de27f4",
     "id": null,
     "metadata": {},
-    "name": "HomePageDepartmentsQuery",
+    "name": "HomePageGroupProgramsDepartmentsQuery",
     "operationKind": "query",
-    "text": "query HomePageDepartmentsQuery {\n  departments {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n"
+    "text": "query HomePageGroupProgramsDepartmentsQuery {\n  departments {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "9a25960b4802eff4282dcb38a77cd2c4";
+(node as any).hash = "49e8269bcc6ded9a6e0dc8bc9da4ee70";
 
 export default node;

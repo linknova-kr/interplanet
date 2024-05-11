@@ -8,6 +8,7 @@ import { Metadata } from '@redwoodjs/web'
 import { UserGroupProgramCreatePageQuery } from 'src/components/__generated__/UserGroupProgramCreatePageQuery.graphql'
 import CreateUserGroupProgram from 'src/components/CreateUserGroupProgram/CreateUserGroupProgram'
 import GroupProgramHeader from 'src/components/GroupProgramHeader/GroupProgramHeader'
+import PageTitle from 'src/components/PageTitle/PageTitle'
 
 const QUERY = graphql`
   query UserGroupProgramCreatePageQuery($id: ID!) {
@@ -42,6 +43,7 @@ const UserGroupProgramCreatePage = ({ id }: Props) => {
         title="UserGroupProgramCreate"
         description="UserGroupProgramCreate page"
       />
+      <PageTitle title="본모임 신청" />
       <GroupProgramHeader groupProgram={data.groupProgram} />
       <CreateUserGroupProgram groupProgram={data.groupProgram} />
     </>

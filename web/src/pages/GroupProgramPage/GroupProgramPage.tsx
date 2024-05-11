@@ -7,6 +7,7 @@ import { Metadata } from '@redwoodjs/web'
 import { GroupProgramPageQuery } from 'src/components/__generated__/GroupProgramPageQuery.graphql'
 import GroupProgramDetail from 'src/components/GroupProgramDetail/GroupProgramDetail'
 import GroupProgramPageButton from 'src/components/GroupProgramPageButton/GroupProgramPageButton'
+import PageTitle from 'src/components/PageTitle/PageTitle'
 import ActionLayout from 'src/layouts/ActionLayout/ActionLayout'
 
 const QUERY = graphql`
@@ -54,6 +55,7 @@ const GroupProgramPage = ({ id }: Props) => {
   return (
     <>
       <Metadata title="GroupProgram" description="GroupProgram page" />
+      <PageTitle title="본모임 신청" />
       <ActionLayout
         actions={<GroupProgramPageButton groupProgram={data.groupProgram} />}
       >

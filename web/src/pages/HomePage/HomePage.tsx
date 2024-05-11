@@ -1,57 +1,29 @@
-import { useEffect, useState } from 'react'
-
-import { graphql, useLazyLoadQuery } from 'react-relay'
-import { GroupProgramStartAtCriteria } from 'types/graphql'
+import { useState } from 'react'
 
 import { Metadata } from '@redwoodjs/web'
 
-import { HomePageDepartmentsQuery } from 'src/components/__generated__/HomePageDepartmentsQuery.graphql'
-import DepartmentChips from 'src/components/DepartmentChips/DepartmentChips'
-import GroupPrograms from 'src/components/GroupPrograms/GroupPrograms'
+import HomePageGroupPrograms from 'src/components/HomePageGroupPrograms/HomePageGroupPrograms'
+import PageTabs from 'src/components/PageTabs/PageTabs'
+import PageTitle from 'src/components/PageTitle/PageTitle'
 
-const QUERY = graphql`
-  query HomePageDepartmentsQuery {
-    departments {
-      edges {
-        node {
-          id
-          name
-        }
-      }
-    }
-  }
-`
+enum HomePageTab {
+  GROUP_PROGRAM = 'GROUP_PROGRAM',
+  // 별모임
+  // 번개
+}
 
 const HomePage = () => {
-  const data = useLazyLoadQuery<HomePageDepartmentsQuery>(QUERY, {})
-
-  const [departmentId, setDepartmentId] = useState<string | null>(null)
-  const [startAtCriteria, setStartAtCriteria] =
-    useState<GroupProgramStartAtCriteria>('FUTURE')
-
-  const [showAll, setShowAll] = useState<boolean>(false)
-
-  useEffect(() => {
-    setShowAll(startAtCriteria === 'FUTURE')
-    if (startAtCriteria === 'PAST' && departmentId == null) {
-      setDepartmentId(data.departments.edges[0].node.id)
-    }
-  }, [startAtCriteria, data.departments.edges, departmentId])
-
+  const [tab, setTab] = useState(HomePageTab.GROUP_PROGRAM)
   return (
     <>
       <Metadata title="Home" description="Home page" />
-      <DepartmentChips
-        departments={data.departments}
-        departmentId={departmentId}
-        setDepartmentId={(p) => setDepartmentId(p)}
-        showAll={showAll}
+      <PageTitle title="모임" />
+      <PageTabs
+        tabs={[{ value: HomePageTab.GROUP_PROGRAM, label: '본모임' }]}
+        selectedTab={tab}
+        onSelect={(tab: HomePageTab) => setTab(tab)}
       />
-      <GroupPrograms
-        departmentId={departmentId}
-        startAtCriteria={startAtCriteria}
-        setStartAtCriteria={setStartAtCriteria}
-      />
+      {tab === HomePageTab.GROUP_PROGRAM && <HomePageGroupPrograms />}
     </>
   )
 }

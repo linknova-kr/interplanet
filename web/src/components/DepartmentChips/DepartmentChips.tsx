@@ -1,10 +1,10 @@
 import { Button } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 
-import { HomePageDepartmentsQuery$data } from '../__generated__/HomePageDepartmentsQuery.graphql'
+import { HomePageGroupProgramsDepartmentsQuery$data } from '../__generated__/HomePageGroupProgramsDepartmentsQuery.graphql'
 
 interface Props {
-  departments: HomePageDepartmentsQuery$data['departments']
+  departments: HomePageGroupProgramsDepartmentsQuery$data['departments']
   departmentId: string | null
   setDepartmentId: (departmentId: string | null) => void
   showAll: boolean
