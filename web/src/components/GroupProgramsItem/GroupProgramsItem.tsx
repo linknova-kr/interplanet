@@ -15,6 +15,7 @@ const Row = styled.div`
 
 const Container = styled(Link)`
   width: 100%;
+  margin-left: 30px;
   margin-bottom: 5px;
   height: 100px;
   display: flex;
@@ -44,7 +45,7 @@ const GroupProgramsItem = ({ groupProgram }: Props) => {
         </Heading>
         <Row>
           <p>{formatDate(node.startsAt)}</p>
-          <p>{node.address}</p>
+          <p>{node.addressSimple}</p>
         </Row>
       </div>
     </Container>

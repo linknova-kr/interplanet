@@ -1,6 +1,6 @@
 import { render } from '@redwoodjs/testing/web'
 
-import CreateUserGroupProgram from './CreateUserGroupProgram'
+import UserGroupProgramFormModal from './UserGroupProgramFormModal'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
@@ -8,7 +8,7 @@ import CreateUserGroupProgram from './CreateUserGroupProgram'
 describe('CreateUserGroupProgram', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<CreateUserGroupProgram />)
+      render(<UserGroupProgramFormModal />)
     }).not.toThrow()
   })
 })

@@ -17,17 +17,23 @@ const QUERY = graphql`
         id
         startsAt
         endsAt
+        type
         my {
           id
+          type
+          message
         }
+        address
         description
         userGroupPrograms(first: 30)
           @connection(key: "GroupProgram_userGroupPrograms") {
           edges {
             node {
               id
+              type
               user {
                 id
+                realName
                 nickname
               }
               message

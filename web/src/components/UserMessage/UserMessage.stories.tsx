@@ -12,15 +12,15 @@
 
 import type { Meta, StoryObj } from '@storybook/react'
 
-import CreateUserGroupProgram from './CreateUserGroupProgram'
+import UserMessage from './UserMessage'
 
-const meta: Meta<typeof CreateUserGroupProgram> = {
-  component: CreateUserGroupProgram,
+const meta: Meta<typeof UserMessage> = {
+  component: UserMessage,
   tags: ['autodocs'],
 }
 
 export default meta
 
-type Story = StoryObj<typeof CreateUserGroupProgram>
+type Story = StoryObj<typeof UserMessage>
 
 export const Primary: Story = {}

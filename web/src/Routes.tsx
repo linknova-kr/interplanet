@@ -27,7 +27,6 @@ const Routes = () => {
         </Set>
         <Set wrap={DefaultLayout}>
           <Route path="/group-programs/{id}" page={GroupProgramPage} name="groupProgram" />
-          <Route path="/group-programs/{id}/new-user-group-program" page={UserGroupProgramCreatePage} name="userGroupProgramCreate" />
         </Set>
       </PrivateSet>
       <Route notfound page={NotFoundPage} />

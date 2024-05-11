@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b554edfd58bb51930986fc1ed8ba0547>>
+ * @generated SignedSource<<e1cc216df19f47bc91893501416bb72d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type GroupProgramHeaderFragment$data = {
-  readonly address: string;
+  readonly addressSimple: string;
   readonly group: {
     readonly department: {
       readonly name: string;
@@ -58,7 +58,7 @@ const node: ReaderFragment = {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
-      "name": "address",
+      "name": "addressSimple",
       "storageKey": null
     },
     {
@@ -95,6 +95,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "821d2e3ebf31c656aa8ad33486d2eb5f";
+(node as any).hash = "1ad41610ad29343eaf3b2a1e35b2d652";
 
 export default node;

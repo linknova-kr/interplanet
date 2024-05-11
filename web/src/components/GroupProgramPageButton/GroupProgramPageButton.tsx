@@ -1,13 +1,12 @@
-import { Button } from '@chakra-ui/react'
-import styled from '@emotion/styled'
+import { Button, Drawer, DrawerOverlay, useDisclosure } from '@chakra-ui/react'
 import { useMutation } from 'react-relay'
 import { ConnectionHandler, graphql } from 'relay-runtime'
 
-import { Link, routes } from '@redwoodjs/router'
-import { Toaster, toast } from '@redwoodjs/web/toast'
+import { toast, Toaster } from '@redwoodjs/web/toast'
 
 import { GroupProgramPageButtonCancelMutation } from '../__generated__/GroupProgramPageButtonCancelMutation.graphql'
 import { GroupProgramPageQuery$data } from '../__generated__/GroupProgramPageQuery.graphql'
+import UserGroupProgramFormModal from '../UserGroupProgramFormModal/UserGroupProgramFormModal'
 
 interface Props {
   groupProgram: GroupProgramPageQuery$data['groupProgram']
@@ -36,6 +35,7 @@ const CANCEL = graphql`
 
 const GroupProgramPageButton = ({ groupProgram }: Props) => {
   const [cancel] = useMutation<GroupProgramPageButtonCancelMutation>(CANCEL)
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const onCancel = () => {
     cancel({
@@ -60,20 +60,21 @@ const GroupProgramPageButton = ({ groupProgram }: Props) => {
   return (
     <>
       <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
+      <Drawer isOpen={isOpen} onClose={onClose} placement="bottom">
+        <DrawerOverlay />
+        <UserGroupProgramFormModal
+          groupProgram={groupProgram}
+          onDone={onClose}
+          edit={groupProgram.my}
+        />
+      </Drawer>
       {groupProgram.my ? (
         <>
           <Button onClick={onCancel}>취소하기</Button>
-          <Button>
-            수정하기
-            {/* todo */}
-          </Button>
+          <Button onClick={() => onOpen()}>수정하기</Button>
         </>
       ) : (
-        <Button>
-          <Link to={routes.userGroupProgramCreate({ id: groupProgram.id })}>
-            참가신청
-          </Link>
-        </Button>
+        <Button onClick={() => onOpen()}>참가신청</Button>
       )}
     </>
   )

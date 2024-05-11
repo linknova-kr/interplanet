@@ -7004,7 +7004,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:*":
+"@types/lodash@npm:*, @types/lodash@npm:^4":
   version: 4.17.1
   resolution: "@types/lodash@npm:4.17.1"
   checksum: 10c0/af2ad8a3c8d7deb170a7ec6e18afc5ae8980576e5f7fe798d8a95a1df7222c15bdf967a25a35879f575a3b64743de00145710ee461a0051e055e94e4fe253f45
@@ -22368,6 +22368,7 @@ __metadata:
     "@redwoodjs/router": "npm:7.4.3"
     "@redwoodjs/vite": "npm:7.4.3"
     "@redwoodjs/web": "npm:7.4.3"
+    "@types/lodash": "npm:^4"
     "@types/react": "npm:^18.2.55"
     "@types/react-dom": "npm:^18.2.19"
     "@types/react-relay": "npm:^16.0.6"
@@ -22375,6 +22376,7 @@ __metadata:
     babel-plugin-relay: "npm:^16.2.0"
     dayjs: "npm:^1.11.11"
     framer-motion: "npm:^9"
+    lodash: "npm:^4.17.21"
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
     react-relay: "npm:^16.2.0"

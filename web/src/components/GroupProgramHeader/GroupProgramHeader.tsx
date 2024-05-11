@@ -15,7 +15,7 @@ const GroupProgramHeaderFragment = graphql`
     id
     title
     startsAt
-    address
+    addressSimple
     group {
       department {
         name
@@ -64,7 +64,7 @@ const GroupProgramHeader = ({ groupProgram }: Props) => {
         <Row>
           <Badge>{fragment.group.department.name}</Badge>
           <span>{formatDate(fragment.startsAt)}</span>
-          <span>{fragment.address}</span>
+          <span>{fragment.addressSimple}</span>
         </Row>
         <Heading as="h4" size="sm">
           {fragment.title}

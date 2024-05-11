@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e52e924a388ac17e0e5d145db873d3e6>>
+ * @generated SignedSource<<9684edea2197b97c371c33c75bdb84d4>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -21,7 +21,7 @@ export type GroupProgramsQuery$data = {
   readonly groupPrograms: {
     readonly edges: ReadonlyArray<{
       readonly node: {
-        readonly address: string;
+        readonly addressSimple: string;
         readonly endsAt: any;
         readonly group: {
           readonly department: {
@@ -139,7 +139,7 @@ v8 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "address",
+  "name": "addressSimple",
   "storageKey": null
 };
 return {
@@ -288,16 +288,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "2acd37349d36509572a4f3661d3c6e9c",
+    "cacheID": "e77be09c010cc2af38a923b4236d5113",
     "id": null,
     "metadata": {},
     "name": "GroupProgramsQuery",
     "operationKind": "query",
-    "text": "query GroupProgramsQuery(\n  $departmentId: ID\n  $iJoined: Boolean\n  $sort: GroupProgramSort\n  $startAtCriteria: GroupProgramStartAtCriteria\n) {\n  groupPrograms(departmentId: $departmentId, sort: $sort, startAtCriteria: $startAtCriteria, iJoined: $iJoined) {\n    edges {\n      node {\n        id\n        title\n        startsAt\n        endsAt\n        my {\n          id\n        }\n        group {\n          department {\n            name\n            id\n          }\n          id\n        }\n        address\n      }\n    }\n  }\n}\n"
+    "text": "query GroupProgramsQuery(\n  $departmentId: ID\n  $iJoined: Boolean\n  $sort: GroupProgramSort\n  $startAtCriteria: GroupProgramStartAtCriteria\n) {\n  groupPrograms(departmentId: $departmentId, sort: $sort, startAtCriteria: $startAtCriteria, iJoined: $iJoined) {\n    edges {\n      node {\n        id\n        title\n        startsAt\n        endsAt\n        my {\n          id\n        }\n        group {\n          department {\n            name\n            id\n          }\n          id\n        }\n        addressSimple\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "c517cdcb740e0e1dbd773ca84de34003";
+(node as any).hash = "9f0991863b089a841fa4c09d42aa2b80";
 
 export default node;

@@ -40,7 +40,7 @@ const QUERY = graphql`
               name
             }
           }
-          address
+          addressSimple
         }
       }
     }

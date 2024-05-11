@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5e01effd6bb4ca1656e687186a4df234>>
+ * @generated SignedSource<<88e21b8584f5af53216759ac1267b6b0>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,11 +14,11 @@ export type CreateUserGroupProgramInput = {
   message: string;
   type: string;
 };
-export type CreateUserGroupProgramMutation$variables = {
+export type UserGroupProgramFormModalCreateMutation$variables = {
   connections: ReadonlyArray<string>;
   input: CreateUserGroupProgramInput;
 };
-export type CreateUserGroupProgramMutation$data = {
+export type UserGroupProgramFormModalCreateMutation$data = {
   readonly createUserGroupProgram: {
     readonly groupProgram?: {
       readonly id: string;
@@ -28,15 +28,16 @@ export type CreateUserGroupProgramMutation$data = {
     };
     readonly id?: string;
     readonly message?: string;
+    readonly type?: string;
     readonly user?: {
       readonly id: string;
       readonly nickname: string;
     };
   };
 };
-export type CreateUserGroupProgramMutation = {
-  response: CreateUserGroupProgramMutation$data;
-  variables: CreateUserGroupProgramMutation$variables;
+export type UserGroupProgramFormModalCreateMutation = {
+  response: UserGroupProgramFormModalCreateMutation$data;
+  variables: UserGroupProgramFormModalCreateMutation$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -97,6 +98,13 @@ v6 = {
       ],
       "storageKey": null
     },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "type",
+      "storageKey": null
+    },
     (v4/*: any*/),
     {
       "alias": null,
@@ -147,7 +155,7 @@ return {
     ],
     "kind": "Fragment",
     "metadata": null,
-    "name": "CreateUserGroupProgramMutation",
+    "name": "UserGroupProgramFormModalCreateMutation",
     "selections": [
       {
         "alias": null,
@@ -174,7 +182,7 @@ return {
       (v0/*: any*/)
     ],
     "kind": "Operation",
-    "name": "CreateUserGroupProgramMutation",
+    "name": "UserGroupProgramFormModalCreateMutation",
     "selections": [
       {
         "alias": null,
@@ -227,16 +235,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "cb52a67a06ec337c8ce7f6b83b56b6da",
+    "cacheID": "9eabce13bc2160780521353d03b812cf",
     "id": null,
     "metadata": {},
-    "name": "CreateUserGroupProgramMutation",
+    "name": "UserGroupProgramFormModalCreateMutation",
     "operationKind": "mutation",
-    "text": "mutation CreateUserGroupProgramMutation(\n  $input: CreateUserGroupProgramInput!\n) {\n  createUserGroupProgram(input: $input) {\n    __typename\n    ... on UserGroupProgram {\n      id\n      user {\n        id\n        nickname\n      }\n      message\n      groupProgram {\n        id\n        my {\n          id\n        }\n      }\n    }\n    ... on AlreadyExistsError {\n      message\n    }\n    ... on NotFoundError {\n      message\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
+    "text": "mutation UserGroupProgramFormModalCreateMutation(\n  $input: CreateUserGroupProgramInput!\n) {\n  createUserGroupProgram(input: $input) {\n    __typename\n    ... on UserGroupProgram {\n      id\n      user {\n        id\n        nickname\n      }\n      type\n      message\n      groupProgram {\n        id\n        my {\n          id\n        }\n      }\n    }\n    ... on AlreadyExistsError {\n      message\n    }\n    ... on NotFoundError {\n      message\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "9c4cb7267770137e73f78b32449a27a1";
+(node as any).hash = "f72a8834ae11706b963d48f12ec1cf0a";
 
 export default node;
