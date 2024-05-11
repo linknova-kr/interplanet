@@ -1,3 +1,5 @@
+import { formatDate } from 'src/util/date'
+
 import { GroupProgramPageQuery$data } from '../__generated__/GroupProgramPageQuery.graphql'
 import GroupProgramHeader from '../GroupProgramHeader/GroupProgramHeader'
 
@@ -11,7 +13,8 @@ const GroupProgramDetail = ({ groupProgram }: Props) => {
       <GroupProgramHeader groupProgram={groupProgram} />
       <p>{groupProgram.description}</p>
       <p>
-        모임시간 {groupProgram.startsAt} - {groupProgram.endsAt}
+        모임시간 {formatDate(groupProgram.startsAt)} -{' '}
+        {formatDate(groupProgram.endsAt)}
       </p>
       참여멤버
       <div>

@@ -4,11 +4,13 @@ import { useMutation } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { Season, SeasonGroup as TSeasonGroup } from 'types/graphql'
 
+import { formatDate } from 'src/util/date'
+
 import { SeasonGroupMutation } from '../__generated__/SeasonGroupMutation.graphql'
 
 interface SeasonGroupProps {
-  startsAt: Season['startsAt']
-  endsAt: Season['endsAt']
+  startsAt: any
+  endsAt: any
   name: Season['name']
   seasonGroups: Array<{
     node: {
@@ -60,7 +62,7 @@ const SeasonGroup = (props: SeasonGroupProps) => {
             <Badge backgroundColor="#8f97f7">
               {node.group.department.name}
             </Badge>
-            {props.startsAt} ~ {props.endsAt}
+            {formatDate(props.startsAt)} ~ {formatDate(props.endsAt)}
           </Row>
           <Row>
             <Heading as="h4" size="sm">

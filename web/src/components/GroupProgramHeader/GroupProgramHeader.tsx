@@ -6,6 +6,8 @@ import { graphql } from 'relay-runtime'
 
 import { back } from '@redwoodjs/router'
 
+import { formatDate } from 'src/util/date'
+
 import { GroupProgramHeaderFragment$key } from '../__generated__/GroupProgramHeaderFragment.graphql'
 
 const GroupProgramHeaderFragment = graphql`
@@ -36,6 +38,7 @@ const Info = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 30px;
+  text-align: left;
 `
 
 const Row = styled.div`
@@ -60,7 +63,7 @@ const GroupProgramHeader = ({ groupProgram }: Props) => {
       <Info>
         <Row>
           <Badge>{fragment.group.department.name}</Badge>
-          <span>{fragment.startsAt}</span>
+          <span>{formatDate(fragment.startsAt)}</span>
           <span>{fragment.address}</span>
         </Row>
         <Heading as="h4" size="sm">

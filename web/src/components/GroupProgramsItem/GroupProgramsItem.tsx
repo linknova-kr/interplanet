@@ -3,6 +3,8 @@ import styled from '@emotion/styled'
 
 import { Link, routes } from '@redwoodjs/router'
 
+import { formatDate } from 'src/util/date'
+
 import { GroupProgramsQuery$data } from '../__generated__/GroupProgramsQuery.graphql'
 
 const Row = styled.div`
@@ -41,7 +43,7 @@ const GroupProgramsItem = ({ groupProgram }: Props) => {
           {node.title}
         </Heading>
         <Row>
-          <p>{node.startsAt}</p>
+          <p>{formatDate(node.startsAt)}</p>
           <p>{node.address}</p>
         </Row>
       </div>
