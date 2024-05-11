@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<53888d0cc60720895836c1fffc0e0dc4>>
+ * @generated SignedSource<<e52e924a388ac17e0e5d145db873d3e6>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,6 +13,7 @@ export type GroupProgramSort = "STARTS_AT_ASC" | "STARTS_AT_DESC" | "%future add
 export type GroupProgramStartAtCriteria = "FUTURE" | "PAST" | "%future added value";
 export type GroupProgramsQuery$variables = {
   departmentId?: string | null | undefined;
+  iJoined?: boolean | null | undefined;
   sort?: GroupProgramSort | null | undefined;
   startAtCriteria?: GroupProgramStartAtCriteria | null | undefined;
 };
@@ -52,6 +53,11 @@ var v0 = [
   {
     "defaultValue": null,
     "kind": "LocalArgument",
+    "name": "iJoined"
+  },
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
     "name": "sort"
   },
   {
@@ -65,6 +71,11 @@ v1 = [
     "kind": "Variable",
     "name": "departmentId",
     "variableName": "departmentId"
+  },
+  {
+    "kind": "Variable",
+    "name": "iJoined",
+    "variableName": "iJoined"
   },
   {
     "kind": "Variable",
@@ -277,16 +288,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "78fbb5bd98e6effb9b922b7933eb4c2a",
+    "cacheID": "2acd37349d36509572a4f3661d3c6e9c",
     "id": null,
     "metadata": {},
     "name": "GroupProgramsQuery",
     "operationKind": "query",
-    "text": "query GroupProgramsQuery(\n  $departmentId: ID\n  $sort: GroupProgramSort\n  $startAtCriteria: GroupProgramStartAtCriteria\n) {\n  groupPrograms(departmentId: $departmentId, sort: $sort, startAtCriteria: $startAtCriteria) {\n    edges {\n      node {\n        id\n        title\n        startsAt\n        endsAt\n        my {\n          id\n        }\n        group {\n          department {\n            name\n            id\n          }\n          id\n        }\n        address\n      }\n    }\n  }\n}\n"
+    "text": "query GroupProgramsQuery(\n  $departmentId: ID\n  $iJoined: Boolean\n  $sort: GroupProgramSort\n  $startAtCriteria: GroupProgramStartAtCriteria\n) {\n  groupPrograms(departmentId: $departmentId, sort: $sort, startAtCriteria: $startAtCriteria, iJoined: $iJoined) {\n    edges {\n      node {\n        id\n        title\n        startsAt\n        endsAt\n        my {\n          id\n        }\n        group {\n          department {\n            name\n            id\n          }\n          id\n        }\n        address\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "598420a01307c0ed65d6a7f669f1c3a5";
+(node as any).hash = "c517cdcb740e0e1dbd773ca84de34003";
 
 export default node;

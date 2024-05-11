@@ -24,7 +24,7 @@ const DepartmentChips = ({ onClick }: Props) => {
   const data = useLazyLoadQuery<DepartmentChipsQuery>(QUERY, {})
   return (
     <>
-      <button onClick={() => onClick(null)}>ALL</button>
+      <button onClick={() => onClick(null)}>참여 가능한 모임</button>
       {data.departments.edges.map(({ node }) => {
         return (
           <button onClick={() => onClick(node.id)} key={node.id}>

@@ -15,9 +15,10 @@ import { userGroupProgramsConnection } from '../userGroupPrograms/userGroupProgr
 
 export const groupPrograms: ConnectionResolver<
   Omit<TGroupProgram, 'userGroupPrograms' | 'group' | 'hostUser' | 'iJoined'>
-> = (args: QuerygroupProgramsArgs) => {
-  const { sort, startAtCriteria, departmentId } = args
-  const where = {
+> = async (args: QuerygroupProgramsArgs) => {
+  const { sort, startAtCriteria, departmentId, iJoined } = args
+
+  let where: Prisma.GroupProgramWhereInput = {
     ...(departmentId && { group: { departmentId } }),
     startsAt:
       startAtCriteria === 'PAST'
@@ -26,6 +27,37 @@ export const groupPrograms: ConnectionResolver<
         ? { gte: new Date() }
         : undefined,
   }
+
+  if (iJoined || iJoined == false) {
+    const userId = context.currentUser?.id
+    if (userId) {
+      const userGroupPrograms = await db.userGroupProgram.findMany({
+        where: {
+          userId,
+          cancelledAt: null,
+        },
+        select: {
+          groupProgramId: true,
+        },
+      })
+      if (iJoined) {
+        where = {
+          ...where,
+          id: {
+            in: userGroupPrograms.map((ugp) => ugp.groupProgramId),
+          },
+        }
+      } else if (iJoined == false) {
+        where = {
+          ...where,
+          id: {
+            notIn: userGroupPrograms.map((ugp) => ugp.groupProgramId),
+          },
+        }
+      }
+    }
+  }
+  console.log('WHERE!!', where)
   const orderBy =
     sort === 'STARTS_AT_ASC'
       ? { startsAt: Prisma.SortOrder.asc }

@@ -56,6 +56,7 @@ export const schema = gql`
       sort: GroupProgramSort
       startAtCriteria: GroupProgramStartAtCriteria
       departmentId: ID
+      iJoined: Boolean
     ): GroupProgramConnection! @skipAuth
 
     groupProgram(id: ID!): GroupProgramDetailResult! @skipAuth

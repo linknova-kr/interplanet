@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
 import { graphql, useLazyLoadQuery } from 'react-relay'
 
@@ -13,6 +13,7 @@ import {
 const QUERY = graphql`
   query GroupProgramsQuery(
     $departmentId: ID
+    $iJoined: Boolean
     $sort: GroupProgramSort
     $startAtCriteria: GroupProgramStartAtCriteria
   ) {
@@ -20,6 +21,7 @@ const QUERY = graphql`
       departmentId: $departmentId
       sort: $sort
       startAtCriteria: $startAtCriteria
+      iJoined: $iJoined
     ) {
       edges {
         node {
@@ -50,10 +52,17 @@ const GroupPrograms = ({ departmentId }: Props) => {
   const [sort, setSort] = useState<GroupProgramSort>('STARTS_AT_ASC')
   const [startAtCriteria, setStartAtCriteria] =
     useState<GroupProgramStartAtCriteria>('FUTURE')
+  const iJoined = useMemo(() => {
+    if (departmentId === null) {
+      return false
+    }
+    return null
+  }, [departmentId])
   const data = useLazyLoadQuery<GroupProgramsQuery>(QUERY, {
     departmentId,
     sort,
     startAtCriteria,
+    iJoined,
   })
   return (
     <>
