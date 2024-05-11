@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3282c171ac6e392d31747f4e27bb20cf>>
+ * @generated SignedSource<<3a1459a514eb12241412b46ada495a00>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,6 +19,9 @@ export type ActiveSeasonQuery$data = {
       readonly edges: ReadonlyArray<{
         readonly node: {
           readonly group: {
+            readonly department: {
+              readonly name: string;
+            };
             readonly name: string;
           };
           readonly iJoined: boolean;
@@ -124,6 +127,18 @@ return {
                             "name": "group",
                             "plural": false,
                             "selections": [
+                              {
+                                "alias": null,
+                                "args": null,
+                                "concreteType": "Department",
+                                "kind": "LinkedField",
+                                "name": "department",
+                                "plural": false,
+                                "selections": [
+                                  (v1/*: any*/)
+                                ],
+                                "storageKey": null
+                              },
                               (v1/*: any*/)
                             ],
                             "storageKey": null
@@ -210,6 +225,19 @@ return {
                             "name": "group",
                             "plural": false,
                             "selections": [
+                              {
+                                "alias": null,
+                                "args": null,
+                                "concreteType": "Department",
+                                "kind": "LinkedField",
+                                "name": "department",
+                                "plural": false,
+                                "selections": [
+                                  (v1/*: any*/),
+                                  (v0/*: any*/)
+                                ],
+                                "storageKey": null
+                              },
                               (v1/*: any*/),
                               (v0/*: any*/)
                             ],
@@ -244,16 +272,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "7b36c915976196a1f150386e34a14cf5",
+    "cacheID": "58da007c644e4cead4769f5dd86fb899",
     "id": null,
     "metadata": {},
     "name": "ActiveSeasonQuery",
     "operationKind": "query",
-    "text": "query ActiveSeasonQuery {\n  activeSeason {\n    __typename\n    ... on Season {\n      id\n      name\n      startsAt\n      endsAt\n      seasonGroups {\n        edges {\n          node {\n            group {\n              name\n              id\n            }\n            id\n            iJoined\n          }\n        }\n      }\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
+    "text": "query ActiveSeasonQuery {\n  activeSeason {\n    __typename\n    ... on Season {\n      id\n      name\n      startsAt\n      endsAt\n      seasonGroups {\n        edges {\n          node {\n            group {\n              department {\n                name\n                id\n              }\n              name\n              id\n            }\n            id\n            iJoined\n          }\n        }\n      }\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "9fa72f1fcf5675f20b848b42e2f50064";
+(node as any).hash = "94a52c9f913e848a35f29d7f2fe9cdbc";
 
 export default node;

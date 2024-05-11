@@ -23,6 +23,7 @@ const Routes = () => {
       <PrivateSet unauthenticated="login">
         <Set wrap={AuthenticatedLayout}>
           <Route path="/" page={HomePage} name="home" />
+          <Route path="/my" page={MyPage} name="my" />
         </Set>
         <Set wrap={DefaultLayout}>
           <Route path="/group-programs/{id}" page={GroupProgramPage} name="groupProgram" />

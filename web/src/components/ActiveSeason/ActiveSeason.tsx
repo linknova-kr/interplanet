@@ -1,3 +1,4 @@
+import styled from '@emotion/styled'
 import { useLazyLoadQuery } from 'react-relay'
 import { graphql } from 'relay-runtime'
 
@@ -17,6 +18,9 @@ export const QUERY = graphql`
           edges {
             node {
               group {
+                department {
+                  name
+                }
                 name
               }
               id
@@ -27,6 +31,16 @@ export const QUERY = graphql`
       }
     }
   }
+`
+
+const Title = styled.div`
+  width: 80%;
+  border-radius: 10px;
+  background-color: #8f97f7;
+  padding: 10px;
+  margin: 10px;
+  color: white;
+  font-weight: 600;
 `
 
 const ActiveSeason = () => {
@@ -44,7 +58,7 @@ const ActiveSeason = () => {
 
   return (
     <>
-      <div>참여중인 시즌</div>
+      <Title>참여중인 시즌</Title>
       <div>
         {joinedSeasonGroups.length > 0 ? (
           <SeasonGroup
@@ -54,11 +68,13 @@ const ActiveSeason = () => {
             seasonGroups={joinedSeasonGroups}
           />
         ) : (
-          '참여중인 시즌이 없습니다.'
+          <>
+            현재 참석 중인 시즌이 없습니다.
+            <br /> 시즌을 신청해주세요.
+          </>
         )}
       </div>
-      <hr />
-      <div>참여가능한 시즌</div>
+      <Title>참여가능한 시즌</Title>
       <div>
         {notJoinedSeasonGroups.length > 0 ? (
           <SeasonGroup

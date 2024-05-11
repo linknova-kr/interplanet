@@ -34,7 +34,7 @@ const AuthenticatedLayout = ({ children }: AuthenticatedLayoutProps) => {
         <BottomNav>
           <NavItem to={routes.home()}>모임</NavItem>
           <NavItem to={routes.home()}>게시판</NavItem>
-          <NavItem to={routes.home()}>MY</NavItem>
+          <NavItem to={routes.my()}>MY</NavItem>
         </BottomNav>
       }
     >
