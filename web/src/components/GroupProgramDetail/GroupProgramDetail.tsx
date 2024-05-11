@@ -4,7 +4,7 @@ interface Props {
   groupProgram: GroupProgramPageQuery$data['groupProgram']
 }
 
-const GroupProgram = ({ groupProgram }: Props) => {
+const GroupProgramDetail = ({ groupProgram }: Props) => {
   return (
     <div>
       <p>{groupProgram.group.department.name}</p>
@@ -30,4 +30,4 @@ const GroupProgram = ({ groupProgram }: Props) => {
   )
 }
 
-export default GroupProgram
+export default GroupProgramDetail

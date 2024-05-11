@@ -22,6 +22,8 @@ const Routes = () => {
       <PrivateSet unauthenticated="login">
         <Set wrap={AuthenticatedLayout}>
           <Route path="/" page={HomePage} name="home" />
+          <Route path="/group-programs/{id}" page={GroupProgramPage} name="groupProgram" />
+          <Route path="/group-programs/{id}/new-user-group-program" page={UserGroupProgramCreatePage} name="userGroupProgramCreate" />
         </Set>
       </PrivateSet>
       <Route notfound page={NotFoundPage} />

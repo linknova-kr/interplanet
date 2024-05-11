@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import GroupProgram from './GroupProgram'
+import GroupProgramPage from './GroupProgramPage'
 
 //   Improve this test with help from the Redwood Testing Doc:
-//    https://redwoodjs.com/docs/testing#testing-components
+//   https://redwoodjs.com/docs/testing#testing-pages-layouts
 
-describe('GroupProgram', () => {
+describe('GroupProgramPage', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<GroupProgram />)
+      render(<GroupProgramPage />)
     }).not.toThrow()
   })
 })
