@@ -14,10 +14,14 @@
     "relay": "relay-compiler"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
     "@redwoodjs/auth-dbauth-web": "7.4.3",
     "@redwoodjs/forms": "7.4.3",
     "@redwoodjs/router": "7.4.3",
     "@redwoodjs/web": "7.4.3",
+    "framer-motion": "^9",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-relay": "^16.2.0",
