@@ -1,25 +1,49 @@
+import { Button } from '@chakra-ui/react'
+import styled from '@emotion/styled'
+
 import { HomePageDepartmentsQuery$data } from '../__generated__/HomePageDepartmentsQuery.graphql'
 
 interface Props {
   departments: HomePageDepartmentsQuery$data['departments']
-  onClick: (departmentId: string | null) => void
+  departmentId: string | null
+  setDepartmentId: (departmentId: string | null) => void
   showAll: boolean
 }
 
-const DepartmentChips = ({ onClick, showAll, departments }: Props) => {
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+`
+
+const DepartmentChips = ({
+  departmentId,
+  setDepartmentId,
+  showAll,
+  departments,
+}: Props) => {
   return (
-    <>
+    <Container>
       {showAll && (
-        <button onClick={() => onClick(null)}>참여 가능한 모임</button>
+        <Button
+          onClick={() => setDepartmentId(null)}
+          isActive={departmentId == null}
+        >
+          참여 가능한 모임
+        </Button>
       )}
       {departments.edges.map(({ node }) => {
         return (
-          <button onClick={() => onClick(node.id)} key={node.id}>
+          <Button
+            onClick={() => setDepartmentId(node.id)}
+            key={node.id}
+            isActive={departmentId == node.id}
+          >
             {node.name}
-          </button>
+          </Button>
         )
       })}
-    </>
+    </Container>
   )
 }
 

@@ -1,11 +1,15 @@
 import { useMemo } from 'react'
 
+import { Button } from '@chakra-ui/react'
+import styled from '@emotion/styled'
 import { useMutation } from 'react-relay'
 import { ConnectionHandler, graphql } from 'relay-runtime'
 
 import { Form, Label, RadioField, Submit, TextField } from '@redwoodjs/forms'
 import { navigate, routes } from '@redwoodjs/router'
 import { Toaster, toast } from '@redwoodjs/web/toast'
+
+import ActionLayout from 'src/layouts/ActionLayout/ActionLayout'
 
 import { CreateUserGroupProgramMutation } from '../__generated__/CreateUserGroupProgramMutation.graphql'
 import { UserGroupProgramCreatePageQuery$data } from '../__generated__/UserGroupProgramCreatePageQuery.graphql'
@@ -44,10 +48,13 @@ const JOIN = graphql`
     }
   }
 `
-
 interface Props {
   groupProgram: UserGroupProgramCreatePageQuery$data['groupProgram']
 }
+
+const Container = styled.div`
+  width: 100%;
+`
 
 const CreateUserGroupProgram = ({ groupProgram }: Props) => {
   const [createUserGroupProgram] =
@@ -75,10 +82,6 @@ const CreateUserGroupProgram = ({ groupProgram }: Props) => {
   }, [groupProgram.type])
 
   const onSubmit = async (data) => {
-    if (!data.message) {
-      toast.error('메시지를 입력해주세요')
-      return
-    }
     if (!data.option) {
       toast.error('옵션을 선택해주세요')
       return
@@ -104,31 +107,38 @@ const CreateUserGroupProgram = ({ groupProgram }: Props) => {
         } else {
           toast.success('신청이 완료되었습니다')
 
-          navigate(routes.groupProgram({ id: groupProgram.id }))
+          navigate(routes.groupProgram({ id: groupProgram.id }), {
+            replace: true,
+          })
         }
       },
     })
   }
 
   return (
-    <>
+    <Container>
       <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
-      <GroupProgramHeader groupProgram={groupProgram} />
       <Form onSubmit={onSubmit}>
-        <div>
-          <TextField name="message" />
-        </div>
+        <ActionLayout actions={<Button type="submit">신청하기</Button>}>
+          <>
+            <div>
+              <Label htmlFor="message" name="message">
+                한 마디 작성(선택)
+              </Label>
+              <TextField name="message" />
+            </div>
 
-        <Label name="option">{optionGuide}</Label>
-        {options.map((option) => (
-          <div key={option}>
-            <RadioField name="option" value={option} />
-            {option}
-          </div>
-        ))}
-        <Submit>참여 신청하기</Submit>
+            <Label name="option">{optionGuide}</Label>
+            {options.map((option) => (
+              <div key={option}>
+                <RadioField name="option" value={option} />
+                {option}
+              </div>
+            ))}
+          </>
+        </ActionLayout>
       </Form>
-    </>
+    </Container>
   )
 }
 

@@ -1,3 +1,5 @@
+import { Button } from '@chakra-ui/react'
+import styled from '@emotion/styled'
 import { useMutation } from 'react-relay'
 import { ConnectionHandler, graphql } from 'relay-runtime'
 
@@ -60,16 +62,18 @@ const GroupProgramPageButton = ({ groupProgram }: Props) => {
       <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
       {groupProgram.my ? (
         <>
-          <button onClick={onCancel}>취소하기</button>
-          <button>
+          <Button onClick={onCancel}>취소하기</Button>
+          <Button>
             수정하기
             {/* todo */}
-          </button>
+          </Button>
         </>
       ) : (
-        <Link to={routes.userGroupProgramCreate({ id: groupProgram.id })}>
-          참가신청
-        </Link>
+        <Button>
+          <Link to={routes.userGroupProgramCreate({ id: groupProgram.id })}>
+            참가신청
+          </Link>
+        </Button>
       )}
     </>
   )

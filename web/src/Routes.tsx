@@ -11,6 +11,7 @@ import { PrivateSet, Route, Router, Set } from '@redwoodjs/router'
 
 import { useAuth } from './auth'
 import AuthenticatedLayout from './layouts/AuthenticatedLayout/AuthenticatedLayout'
+import DefaultLayout from './layouts/DefaultLayout/DefaultLayout'
 
 const Routes = () => {
   return (
@@ -22,6 +23,8 @@ const Routes = () => {
       <PrivateSet unauthenticated="login">
         <Set wrap={AuthenticatedLayout}>
           <Route path="/" page={HomePage} name="home" />
+        </Set>
+        <Set wrap={DefaultLayout}>
           <Route path="/group-programs/{id}" page={GroupProgramPage} name="groupProgram" />
           <Route path="/group-programs/{id}/new-user-group-program" page={UserGroupProgramCreatePage} name="userGroupProgramCreate" />
         </Set>

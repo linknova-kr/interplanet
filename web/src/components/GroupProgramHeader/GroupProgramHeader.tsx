@@ -1,5 +1,10 @@
+import { ChevronLeftIcon } from '@chakra-ui/icons'
+import { Badge, Heading } from '@chakra-ui/react'
+import styled from '@emotion/styled'
 import { useFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
+
+import { back } from '@redwoodjs/router'
 
 import { GroupProgramHeaderFragment$key } from '../__generated__/GroupProgramHeaderFragment.graphql'
 
@@ -17,6 +22,29 @@ const GroupProgramHeaderFragment = graphql`
   }
 `
 
+const Container = styled.div`
+  background-color: #8f97f7;
+  color: #fff;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+`
+
+const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+`
+
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5px;
+  gap: 5px;
+`
+
 interface Props {
   groupProgram: GroupProgramHeaderFragment$key
 }
@@ -27,13 +55,19 @@ const GroupProgramHeader = ({ groupProgram }: Props) => {
     groupProgram
   )
   return (
-    <div>
-      <h1>{fragment.title}</h1>
-      <p>
-        {fragment.group.department.name} - {fragment.address}
-      </p>
-      <p>{fragment.startsAt}</p>
-    </div>
+    <Container>
+      <ChevronLeftIcon boxSize={10} onClick={() => back()} />
+      <Info>
+        <Row>
+          <Badge>{fragment.group.department.name}</Badge>
+          <span>{fragment.startsAt}</span>
+          <span>{fragment.address}</span>
+        </Row>
+        <Heading as="h4" size="sm">
+          {fragment.title}
+        </Heading>
+      </Info>
+    </Container>
   )
 }
 

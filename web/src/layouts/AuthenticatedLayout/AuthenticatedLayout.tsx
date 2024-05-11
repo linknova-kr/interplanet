@@ -1,35 +1,45 @@
+import styled from '@emotion/styled'
+
 import { Link, routes } from '@redwoodjs/router'
 
-import { useAuth } from 'src/auth'
+import DefaultLayout from '../DefaultLayout/DefaultLayout'
 
 type AuthenticatedLayoutProps = {
   children?: React.ReactNode
 }
 
-const AuthenticatedLayout = ({ children }: AuthenticatedLayoutProps) => {
-  const { currentUser, logOut } = useAuth()
+const BottomNav = styled.nav`
+  background-color: #fff;
+  position: sticky;
+  width: 100%;
+  bottom: 0;
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`
 
+const NavItem = styled(Link)`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const AuthenticatedLayout = ({ children }: AuthenticatedLayoutProps) => {
   return (
-    <>
-      <header>
-        {currentUser && (
-          <div>
-            <span>Logged in as {currentUser.nickname}</span>{' '}
-            <button type="button" onClick={logOut}>
-              Logout
-            </button>
-          </div>
-        )}
-      </header>
-      <main>{children}</main>
-      <nav>
-        <ul>
-          <li>
-            <Link to={routes.home()}>Home</Link>
-          </li>
-        </ul>
-      </nav>
-    </>
+    <DefaultLayout
+      nav={
+        <BottomNav>
+          <NavItem to={routes.home()}>모임</NavItem>
+          <NavItem to={routes.home()}>게시판</NavItem>
+          <NavItem to={routes.home()}>MY</NavItem>
+        </BottomNav>
+      }
+    >
+      {children}
+    </DefaultLayout>
   )
 }
 

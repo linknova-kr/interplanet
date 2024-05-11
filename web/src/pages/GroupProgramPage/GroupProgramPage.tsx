@@ -5,8 +5,9 @@ import { Redirect } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 
 import { GroupProgramPageQuery } from 'src/components/__generated__/GroupProgramPageQuery.graphql'
-import GroupProgram from 'src/components/GroupProgramDetail/GroupProgramDetail'
+import GroupProgramDetail from 'src/components/GroupProgramDetail/GroupProgramDetail'
 import GroupProgramPageButton from 'src/components/GroupProgramPageButton/GroupProgramPageButton'
+import ActionLayout from 'src/layouts/ActionLayout/ActionLayout'
 
 const QUERY = graphql`
   query GroupProgramPageQuery($id: ID!) {
@@ -53,9 +54,11 @@ const GroupProgramPage = ({ id }: Props) => {
   return (
     <>
       <Metadata title="GroupProgram" description="GroupProgram page" />
-      <GroupProgram groupProgram={data.groupProgram} />
-
-      <GroupProgramPageButton groupProgram={data.groupProgram} />
+      <ActionLayout
+        actions={<GroupProgramPageButton groupProgram={data.groupProgram} />}
+      >
+        <GroupProgramDetail groupProgram={data.groupProgram} />
+      </ActionLayout>
     </>
   )
 }

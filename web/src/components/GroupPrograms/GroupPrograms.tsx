@@ -1,5 +1,7 @@
 import { Dispatch, SetStateAction, useMemo, useState } from 'react'
 
+import { Badge, Button, Heading, Select, SelectField } from '@chakra-ui/react'
+import styled from '@emotion/styled'
 import { graphql, useLazyLoadQuery } from 'react-relay'
 
 import { Link, routes } from '@redwoodjs/router'
@@ -9,6 +11,7 @@ import {
   GroupProgramStartAtCriteria,
   GroupProgramsQuery,
 } from '../__generated__/GroupProgramsQuery.graphql'
+import GroupProgramsItem from '../GroupProgramsItem/GroupProgramsItem'
 
 const QUERY = graphql`
   query GroupProgramsQuery(
@@ -44,6 +47,13 @@ const QUERY = graphql`
   }
 `
 
+const Actions = styled.div`
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+`
+
 interface Props {
   departmentId: string | null
   startAtCriteria: GroupProgramStartAtCriteria
@@ -70,38 +80,27 @@ const GroupPrograms = ({
   })
   return (
     <>
-      <div>
-        <select
+      <Actions>
+        <Select
           onChange={(v) => setSort(v.currentTarget.value as GroupProgramSort)}
           value={sort}
+          width={'200px'}
         >
           <option value={'STARTS_AT_ASC'}>최신순</option>
           <option value={'STARTS_AT_DESC'}>오래된순</option>
-        </select>
+        </Select>
 
-        <select
-          onChange={(v) =>
-            setStartAtCriteria(
-              v.currentTarget.value as GroupProgramStartAtCriteria
-            )
-          }
-          value={startAtCriteria}
-        >
-          <option value={'FUTURE'}>예정된 모임</option>
-          <option value={'PAST'}>지난 모임</option>
-        </select>
-      </div>
+        {startAtCriteria === 'FUTURE' ? (
+          <Button onClick={() => setStartAtCriteria('PAST')}>지난 모임</Button>
+        ) : (
+          <Button onClick={() => setStartAtCriteria('FUTURE')}>
+            예정된 모임
+          </Button>
+        )}
+      </Actions>
 
       {data.groupPrograms.edges.map(({ node }) => {
-        return (
-          <Link key={node.id} to={routes.groupProgram({ id: node.id })}>
-            <h3>{node.title}</h3>
-            <p>{node.group.department.name}</p>
-            <p>{node.startsAt}</p>
-            <p>{node.endsAt}</p>
-            <p>{node.address}</p>
-          </Link>
-        )
+        return <GroupProgramsItem key={node.id} groupProgram={{ node }} />
       })}
     </>
   )

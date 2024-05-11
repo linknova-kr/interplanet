@@ -1,3 +1,4 @@
+import styled from '@emotion/styled'
 import { useLazyLoadQuery } from 'react-relay'
 import { graphql } from 'relay-runtime'
 
@@ -6,6 +7,7 @@ import { Metadata } from '@redwoodjs/web'
 
 import { UserGroupProgramCreatePageQuery } from 'src/components/__generated__/UserGroupProgramCreatePageQuery.graphql'
 import CreateUserGroupProgram from 'src/components/CreateUserGroupProgram/CreateUserGroupProgram'
+import GroupProgramHeader from 'src/components/GroupProgramHeader/GroupProgramHeader'
 
 const QUERY = graphql`
   query UserGroupProgramCreatePageQuery($id: ID!) {
@@ -37,9 +39,10 @@ const UserGroupProgramCreatePage = ({ id }: Props) => {
   return (
     <>
       <Metadata
-        title="GroupProgramApply"
-        description="GroupProgramApply page"
+        title="UserGroupProgramCreate"
+        description="UserGroupProgramCreate page"
       />
+      <GroupProgramHeader groupProgram={data.groupProgram} />
       <CreateUserGroupProgram groupProgram={data.groupProgram} />
     </>
   )

@@ -43,7 +43,8 @@ const HomePage = () => {
       <Metadata title="Home" description="Home page" />
       <DepartmentChips
         departments={data.departments}
-        onClick={(p) => setDepartmentId(p)}
+        departmentId={departmentId}
+        setDepartmentId={(p) => setDepartmentId(p)}
         showAll={showAll}
       />
       <GroupPrograms
