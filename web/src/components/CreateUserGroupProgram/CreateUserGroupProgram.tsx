@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 
 import { useMutation } from 'react-relay'
-import { graphql } from 'relay-runtime'
+import { ConnectionHandler, graphql } from 'relay-runtime'
 
 import { Form, Label, RadioField, Submit, TextField } from '@redwoodjs/forms'
 import { navigate, routes } from '@redwoodjs/router'
@@ -14,10 +14,26 @@ import GroupProgramHeader from '../GroupProgramHeader/GroupProgramHeader'
 const JOIN = graphql`
   mutation CreateUserGroupProgramMutation(
     $input: CreateUserGroupProgramInput!
+    $connections: [ID!]!
   ) {
-    createUserGroupProgram(input: $input) {
+    createUserGroupProgram(input: $input)
+      @appendNode(
+        connections: $connections
+        edgeTypeName: "UserGroupProgramEdge"
+      ) {
       ... on UserGroupProgram {
         id
+        user {
+          id
+          nickname
+        }
+        message
+        groupProgram {
+          id
+          my {
+            id
+          }
+        }
       }
       ... on AlreadyExistsError {
         message
@@ -67,6 +83,11 @@ const CreateUserGroupProgram = ({ groupProgram }: Props) => {
       toast.error('옵션을 선택해주세요')
       return
     }
+    const connectionID = ConnectionHandler.getConnectionID(
+      groupProgram.id,
+      'GroupProgram_userGroupPrograms'
+    )
+
     createUserGroupProgram({
       variables: {
         input: {
@@ -74,14 +95,15 @@ const CreateUserGroupProgram = ({ groupProgram }: Props) => {
           message: data.message,
           type: data.option,
         },
+        connections: [connectionID],
       },
       onCompleted: ({ createUserGroupProgram }) => {
-        if ('message' in createUserGroupProgram) {
+        // if (createUserGroupProgram)
+        if (createUserGroupProgram.id == null) {
           toast.error(createUserGroupProgram.message)
         } else {
           toast.success('신청이 완료되었습니다')
 
-          // todo: 쿼리 재호출
           navigate(routes.groupProgram({ id: groupProgram.id }))
         }
       },

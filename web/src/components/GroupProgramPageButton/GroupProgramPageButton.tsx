@@ -1,5 +1,5 @@
 import { useMutation } from 'react-relay'
-import { graphql } from 'relay-runtime'
+import { ConnectionHandler, graphql } from 'relay-runtime'
 
 import { Link, routes } from '@redwoodjs/router'
 import { Toaster, toast } from '@redwoodjs/web/toast'
@@ -18,6 +18,12 @@ const CANCEL = graphql`
     cancelUserGroupProgram(input: $input) {
       ... on UserGroupProgram {
         id
+        groupProgram {
+          id
+          my {
+            id
+          }
+        }
       }
       ... on NotFoundError {
         message
@@ -28,28 +34,33 @@ const CANCEL = graphql`
 
 const GroupProgramPageButton = ({ groupProgram }: Props) => {
   const [cancel] = useMutation<GroupProgramPageButtonCancelMutation>(CANCEL)
+
+  const onCancel = () => {
+    cancel({
+      variables: {
+        input: {
+          id: groupProgram.my.id,
+        },
+      },
+      updater: (store, data) => {
+        toast.success('취소되었습니다.')
+        if (data.cancelUserGroupProgram.id != null) {
+          const connected = store.get(groupProgram.id)
+          const connectionID = ConnectionHandler.getConnection(
+            connected,
+            'GroupProgram_userGroupPrograms'
+          )
+          ConnectionHandler.deleteNode(connectionID, groupProgram.my.id)
+        }
+      },
+    })
+  }
   return (
     <>
       <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
       {groupProgram.my ? (
         <>
-          <button
-            onClick={async () => {
-              cancel({
-                variables: {
-                  input: {
-                    id: groupProgram.my.id,
-                  },
-                },
-                onCompleted: () => {
-                  toast.success('취소되었습니다.')
-                  // TODO: refresh
-                },
-              })
-            }}
-          >
-            취소하기
-          </button>
+          <button onClick={onCancel}>취소하기</button>
           <button>
             수정하기
             {/* todo */}

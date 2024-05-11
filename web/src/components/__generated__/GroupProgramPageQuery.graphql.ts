@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<00bb453f03696ed99570d8e16c353814>>
+ * @generated SignedSource<<a3411781dddd4f72d5294e92f003d6bf>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -26,6 +26,7 @@ export type GroupProgramPageQuery$data = {
     readonly userGroupPrograms?: {
       readonly edges: ReadonlyArray<{
         readonly node: {
+          readonly id: string;
           readonly message: string;
           readonly user: {
             readonly id: string;
@@ -101,37 +102,110 @@ v7 = {
 v8 = {
   "alias": null,
   "args": null,
-  "concreteType": "User",
-  "kind": "LinkedField",
-  "name": "user",
-  "plural": false,
-  "selections": [
-    (v2/*: any*/),
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "nickname",
-      "storageKey": null
-    }
-  ],
+  "kind": "ScalarField",
+  "name": "message",
   "storageKey": null
 },
 v9 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "message",
+  "name": "__typename",
   "storageKey": null
 },
-v10 = {
+v10 = [
+  {
+    "alias": null,
+    "args": null,
+    "concreteType": "UserGroupProgramEdge",
+    "kind": "LinkedField",
+    "name": "edges",
+    "plural": true,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "UserGroupProgram",
+        "kind": "LinkedField",
+        "name": "node",
+        "plural": false,
+        "selections": [
+          (v2/*: any*/),
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "User",
+            "kind": "LinkedField",
+            "name": "user",
+            "plural": false,
+            "selections": [
+              (v2/*: any*/),
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "nickname",
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          },
+          (v8/*: any*/),
+          (v9/*: any*/)
+        ],
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "cursor",
+        "storageKey": null
+      }
+    ],
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "concreteType": "PageInfo",
+    "kind": "LinkedField",
+    "name": "pageInfo",
+    "plural": false,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "endCursor",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "hasNextPage",
+        "storageKey": null
+      }
+    ],
+    "storageKey": null
+  }
+],
+v11 = {
   "kind": "InlineFragment",
   "selections": [
-    (v9/*: any*/)
+    (v8/*: any*/)
   ],
   "type": "NotFoundError",
   "abstractKey": null
-};
+},
+v12 = [
+  {
+    "kind": "Literal",
+    "name": "first",
+    "value": 30
+  }
+];
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
@@ -156,38 +230,13 @@ return {
               (v6/*: any*/),
               (v7/*: any*/),
               {
-                "alias": null,
+                "alias": "userGroupPrograms",
                 "args": null,
                 "concreteType": "UserGroupProgramConnection",
                 "kind": "LinkedField",
-                "name": "userGroupPrograms",
+                "name": "__GroupProgram_userGroupPrograms_connection",
                 "plural": false,
-                "selections": [
-                  {
-                    "alias": null,
-                    "args": null,
-                    "concreteType": "UserGroupProgramEdge",
-                    "kind": "LinkedField",
-                    "name": "edges",
-                    "plural": true,
-                    "selections": [
-                      {
-                        "alias": null,
-                        "args": null,
-                        "concreteType": "UserGroupProgram",
-                        "kind": "LinkedField",
-                        "name": "node",
-                        "plural": false,
-                        "selections": [
-                          (v8/*: any*/),
-                          (v9/*: any*/)
-                        ],
-                        "storageKey": null
-                      }
-                    ],
-                    "storageKey": null
-                  }
-                ],
+                "selections": (v10/*: any*/),
                 "storageKey": null
               },
               {
@@ -199,7 +248,7 @@ return {
             "type": "GroupProgram",
             "abstractKey": null
           },
-          (v10/*: any*/)
+          (v11/*: any*/)
         ],
         "storageKey": null
       }
@@ -221,13 +270,7 @@ return {
         "name": "groupProgram",
         "plural": false,
         "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "__typename",
-            "storageKey": null
-          },
+          (v9/*: any*/),
           {
             "kind": "InlineFragment",
             "selections": [
@@ -238,39 +281,22 @@ return {
               (v7/*: any*/),
               {
                 "alias": null,
-                "args": null,
+                "args": (v12/*: any*/),
                 "concreteType": "UserGroupProgramConnection",
                 "kind": "LinkedField",
                 "name": "userGroupPrograms",
                 "plural": false,
-                "selections": [
-                  {
-                    "alias": null,
-                    "args": null,
-                    "concreteType": "UserGroupProgramEdge",
-                    "kind": "LinkedField",
-                    "name": "edges",
-                    "plural": true,
-                    "selections": [
-                      {
-                        "alias": null,
-                        "args": null,
-                        "concreteType": "UserGroupProgram",
-                        "kind": "LinkedField",
-                        "name": "node",
-                        "plural": false,
-                        "selections": [
-                          (v8/*: any*/),
-                          (v9/*: any*/),
-                          (v2/*: any*/)
-                        ],
-                        "storageKey": null
-                      }
-                    ],
-                    "storageKey": null
-                  }
-                ],
-                "storageKey": null
+                "selections": (v10/*: any*/),
+                "storageKey": "userGroupPrograms(first:30)"
+              },
+              {
+                "alias": null,
+                "args": (v12/*: any*/),
+                "filters": null,
+                "handle": "connection",
+                "key": "GroupProgram_userGroupPrograms",
+                "kind": "LinkedHandle",
+                "name": "userGroupPrograms"
               },
               {
                 "alias": null,
@@ -321,7 +347,7 @@ return {
             "type": "GroupProgram",
             "abstractKey": null
           },
-          (v10/*: any*/),
+          (v11/*: any*/),
           {
             "kind": "InlineFragment",
             "selections": (v5/*: any*/),
@@ -334,16 +360,28 @@ return {
     ]
   },
   "params": {
-    "cacheID": "42c4603e35b1ed4b53eb3bf29506bbda",
+    "cacheID": "988d1e6b50e697c2cdab70e947883fd1",
     "id": null,
-    "metadata": {},
+    "metadata": {
+      "connection": [
+        {
+          "count": null,
+          "cursor": null,
+          "direction": "forward",
+          "path": [
+            "groupProgram",
+            "userGroupPrograms"
+          ]
+        }
+      ]
+    },
     "name": "GroupProgramPageQuery",
     "operationKind": "query",
-    "text": "query GroupProgramPageQuery(\n  $id: ID!\n) {\n  groupProgram(id: $id) {\n    __typename\n    ... on GroupProgram {\n      id\n      startsAt\n      endsAt\n      my {\n        id\n      }\n      description\n      userGroupPrograms {\n        edges {\n          node {\n            user {\n              id\n              nickname\n            }\n            message\n            id\n          }\n        }\n      }\n      ...GroupProgramHeaderFragment\n    }\n    ... on NotFoundError {\n      message\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n\nfragment GroupProgramHeaderFragment on GroupProgram {\n  id\n  title\n  startsAt\n  address\n  group {\n    department {\n      name\n      id\n    }\n    id\n  }\n}\n"
+    "text": "query GroupProgramPageQuery(\n  $id: ID!\n) {\n  groupProgram(id: $id) {\n    __typename\n    ... on GroupProgram {\n      id\n      startsAt\n      endsAt\n      my {\n        id\n      }\n      description\n      userGroupPrograms(first: 30) {\n        edges {\n          node {\n            id\n            user {\n              id\n              nickname\n            }\n            message\n            __typename\n          }\n          cursor\n        }\n        pageInfo {\n          endCursor\n          hasNextPage\n        }\n      }\n      ...GroupProgramHeaderFragment\n    }\n    ... on NotFoundError {\n      message\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n\nfragment GroupProgramHeaderFragment on GroupProgram {\n  id\n  title\n  startsAt\n  address\n  group {\n    department {\n      name\n      id\n    }\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "da8dd4c7d9482ddad688df2f924a344c";
+(node as any).hash = "90daf5c194c3c354133011e46c53003b";
 
 export default node;

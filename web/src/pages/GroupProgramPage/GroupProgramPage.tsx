@@ -19,9 +19,11 @@ const QUERY = graphql`
           id
         }
         description
-        userGroupPrograms {
+        userGroupPrograms(first: 30)
+          @connection(key: "GroupProgram_userGroupPrograms") {
           edges {
             node {
+              id
               user {
                 id
                 nickname

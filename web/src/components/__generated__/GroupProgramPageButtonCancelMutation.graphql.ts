@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5dbea524798581f257dcf2366b2e30ad>>
+ * @generated SignedSource<<538c5eb3464258fb2fb8a260308b1ef5>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,6 +17,12 @@ export type GroupProgramPageButtonCancelMutation$variables = {
 };
 export type GroupProgramPageButtonCancelMutation$data = {
   readonly cancelUserGroupProgram: {
+    readonly groupProgram?: {
+      readonly id: string;
+      readonly my: {
+        readonly id: string;
+      } | null | undefined;
+    };
     readonly id?: string;
     readonly message?: string;
   };
@@ -41,22 +47,47 @@ v1 = [
     "variableName": "input"
   }
 ],
-v2 = [
-  {
-    "alias": null,
-    "args": null,
-    "kind": "ScalarField",
-    "name": "id",
-    "storageKey": null
-  }
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v3 = [
+  (v2/*: any*/)
 ],
-v3 = {
+v4 = {
   "kind": "InlineFragment",
-  "selections": (v2/*: any*/),
+  "selections": [
+    (v2/*: any*/),
+    {
+      "alias": null,
+      "args": null,
+      "concreteType": "GroupProgram",
+      "kind": "LinkedField",
+      "name": "groupProgram",
+      "plural": false,
+      "selections": [
+        (v2/*: any*/),
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "UserGroupProgram",
+          "kind": "LinkedField",
+          "name": "my",
+          "plural": false,
+          "selections": (v3/*: any*/),
+          "storageKey": null
+        }
+      ],
+      "storageKey": null
+    }
+  ],
   "type": "UserGroupProgram",
   "abstractKey": null
 },
-v4 = {
+v5 = {
   "kind": "InlineFragment",
   "selections": [
     {
@@ -85,8 +116,8 @@ return {
         "name": "cancelUserGroupProgram",
         "plural": false,
         "selections": [
-          (v3/*: any*/),
-          (v4/*: any*/)
+          (v4/*: any*/),
+          (v5/*: any*/)
         ],
         "storageKey": null
       }
@@ -115,11 +146,11 @@ return {
             "name": "__typename",
             "storageKey": null
           },
-          (v3/*: any*/),
           (v4/*: any*/),
+          (v5/*: any*/),
           {
             "kind": "InlineFragment",
-            "selections": (v2/*: any*/),
+            "selections": (v3/*: any*/),
             "type": "Node",
             "abstractKey": "__isNode"
           }
@@ -129,16 +160,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "344090142cef9ddabaaf4fc41432b44d",
+    "cacheID": "c9a2e2e9b284ba14ca3361dc40b268af",
     "id": null,
     "metadata": {},
     "name": "GroupProgramPageButtonCancelMutation",
     "operationKind": "mutation",
-    "text": "mutation GroupProgramPageButtonCancelMutation(\n  $input: CancelUserGroupProgramInput!\n) {\n  cancelUserGroupProgram(input: $input) {\n    __typename\n    ... on UserGroupProgram {\n      id\n    }\n    ... on NotFoundError {\n      message\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
+    "text": "mutation GroupProgramPageButtonCancelMutation(\n  $input: CancelUserGroupProgramInput!\n) {\n  cancelUserGroupProgram(input: $input) {\n    __typename\n    ... on UserGroupProgram {\n      id\n      groupProgram {\n        id\n        my {\n          id\n        }\n      }\n    }\n    ... on NotFoundError {\n      message\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "04d6599237a842ff936989236783da76";
+(node as any).hash = "cc45d33e15165e801e0231132464b637";
 
 export default node;
