@@ -11,9 +11,8 @@ const QUERY = graphql`
   query UserGroupProgramCreatePageQuery($id: ID!) {
     groupProgram(id: $id) {
       ... on GroupProgram {
+        ...GroupProgramHeaderFragment
         id
-        title
-        startsAt
         type
         my {
           id

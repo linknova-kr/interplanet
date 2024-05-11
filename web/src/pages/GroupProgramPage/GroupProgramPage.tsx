@@ -13,19 +13,12 @@ const QUERY = graphql`
     groupProgram(id: $id) {
       ... on GroupProgram {
         id
-        title
         startsAt
         endsAt
         my {
           id
         }
         description
-        group {
-          department {
-            name
-          }
-        }
-        address
         userGroupPrograms {
           edges {
             node {
@@ -37,6 +30,7 @@ const QUERY = graphql`
             }
           }
         }
+        ...GroupProgramHeaderFragment
       }
       ... on NotFoundError {
         message

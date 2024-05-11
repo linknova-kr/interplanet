@@ -9,6 +9,7 @@ import { Toaster, toast } from '@redwoodjs/web/toast'
 
 import { CreateUserGroupProgramMutation } from '../__generated__/CreateUserGroupProgramMutation.graphql'
 import { UserGroupProgramCreatePageQuery$data } from '../__generated__/UserGroupProgramCreatePageQuery.graphql'
+import GroupProgramHeader from '../GroupProgramHeader/GroupProgramHeader'
 
 const JOIN = graphql`
   mutation CreateUserGroupProgramMutation(
@@ -90,6 +91,7 @@ const CreateUserGroupProgram = ({ groupProgram }: Props) => {
   return (
     <>
       <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
+      <GroupProgramHeader groupProgram={groupProgram} />
       <Form onSubmit={onSubmit}>
         <div>
           <TextField name="message" />

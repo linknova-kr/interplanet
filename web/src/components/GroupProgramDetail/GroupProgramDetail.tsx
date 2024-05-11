@@ -1,4 +1,5 @@
 import { GroupProgramPageQuery$data } from '../__generated__/GroupProgramPageQuery.graphql'
+import GroupProgramHeader from '../GroupProgramHeader/GroupProgramHeader'
 
 interface Props {
   groupProgram: GroupProgramPageQuery$data['groupProgram']
@@ -7,13 +8,11 @@ interface Props {
 const GroupProgramDetail = ({ groupProgram }: Props) => {
   return (
     <div>
-      <p>{groupProgram.group.department.name}</p>
-      <h1>{groupProgram.title}</h1>
+      <GroupProgramHeader groupProgram={groupProgram} />
       <p>{groupProgram.description}</p>
       <p>
         모임시간 {groupProgram.startsAt} - {groupProgram.endsAt}
       </p>
-      <p>모임장소 {groupProgram.address}</p>
       참여멤버
       <div>
         {groupProgram.userGroupPrograms.edges.map(({ node }) => {

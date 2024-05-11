@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e083651e4fa7292bc7799a247719c851>>
+ * @generated SignedSource<<00bb453f03696ed99570d8e16c353814>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,26 +9,20 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Query } from 'relay-runtime';
+import { FragmentRefs } from "relay-runtime";
 export type GroupProgramPageQuery$variables = {
   id: string;
 };
 export type GroupProgramPageQuery$data = {
   readonly groupProgram: {
-    readonly address?: string;
     readonly description?: string;
     readonly endsAt?: any;
-    readonly group?: {
-      readonly department: {
-        readonly name: string;
-      };
-    };
     readonly id?: string;
     readonly message?: string;
     readonly my?: {
       readonly id: string;
     } | null | undefined;
     readonly startsAt?: any;
-    readonly title?: string;
     readonly userGroupPrograms?: {
       readonly edges: ReadonlyArray<{
         readonly node: {
@@ -40,6 +34,7 @@ export type GroupProgramPageQuery$data = {
         };
       }>;
     };
+    readonly " $fragmentSpreads": FragmentRefs<"GroupProgramHeaderFragment">;
   };
 };
 export type GroupProgramPageQuery = {
@@ -73,58 +68,37 @@ v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "title",
+  "name": "startsAt",
   "storageKey": null
 },
 v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "startsAt",
-  "storageKey": null
-},
-v5 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
   "name": "endsAt",
   "storageKey": null
 },
-v6 = [
+v5 = [
   (v2/*: any*/)
 ],
-v7 = {
+v6 = {
   "alias": null,
   "args": null,
   "concreteType": "UserGroupProgram",
   "kind": "LinkedField",
   "name": "my",
   "plural": false,
-  "selections": (v6/*: any*/),
+  "selections": (v5/*: any*/),
   "storageKey": null
 },
-v8 = {
+v7 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "description",
   "storageKey": null
 },
-v9 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "name",
-  "storageKey": null
-},
-v10 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "address",
-  "storageKey": null
-},
-v11 = {
+v8 = {
   "alias": null,
   "args": null,
   "concreteType": "User",
@@ -143,17 +117,17 @@ v11 = {
   ],
   "storageKey": null
 },
-v12 = {
+v9 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "message",
   "storageKey": null
 },
-v13 = {
+v10 = {
   "kind": "InlineFragment",
   "selections": [
-    (v12/*: any*/)
+    (v9/*: any*/)
   ],
   "type": "NotFoundError",
   "abstractKey": null
@@ -179,33 +153,8 @@ return {
               (v2/*: any*/),
               (v3/*: any*/),
               (v4/*: any*/),
-              (v5/*: any*/),
+              (v6/*: any*/),
               (v7/*: any*/),
-              (v8/*: any*/),
-              {
-                "alias": null,
-                "args": null,
-                "concreteType": "Group",
-                "kind": "LinkedField",
-                "name": "group",
-                "plural": false,
-                "selections": [
-                  {
-                    "alias": null,
-                    "args": null,
-                    "concreteType": "Department",
-                    "kind": "LinkedField",
-                    "name": "department",
-                    "plural": false,
-                    "selections": [
-                      (v9/*: any*/)
-                    ],
-                    "storageKey": null
-                  }
-                ],
-                "storageKey": null
-              },
-              (v10/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -230,8 +179,8 @@ return {
                         "name": "node",
                         "plural": false,
                         "selections": [
-                          (v11/*: any*/),
-                          (v12/*: any*/)
+                          (v8/*: any*/),
+                          (v9/*: any*/)
                         ],
                         "storageKey": null
                       }
@@ -240,12 +189,17 @@ return {
                   }
                 ],
                 "storageKey": null
+              },
+              {
+                "args": null,
+                "kind": "FragmentSpread",
+                "name": "GroupProgramHeaderFragment"
               }
             ],
             "type": "GroupProgram",
             "abstractKey": null
           },
-          (v13/*: any*/)
+          (v10/*: any*/)
         ],
         "storageKey": null
       }
@@ -280,35 +234,8 @@ return {
               (v2/*: any*/),
               (v3/*: any*/),
               (v4/*: any*/),
-              (v5/*: any*/),
+              (v6/*: any*/),
               (v7/*: any*/),
-              (v8/*: any*/),
-              {
-                "alias": null,
-                "args": null,
-                "concreteType": "Group",
-                "kind": "LinkedField",
-                "name": "group",
-                "plural": false,
-                "selections": [
-                  {
-                    "alias": null,
-                    "args": null,
-                    "concreteType": "Department",
-                    "kind": "LinkedField",
-                    "name": "department",
-                    "plural": false,
-                    "selections": [
-                      (v9/*: any*/),
-                      (v2/*: any*/)
-                    ],
-                    "storageKey": null
-                  },
-                  (v2/*: any*/)
-                ],
-                "storageKey": null
-              },
-              (v10/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -333,8 +260,8 @@ return {
                         "name": "node",
                         "plural": false,
                         "selections": [
-                          (v11/*: any*/),
-                          (v12/*: any*/),
+                          (v8/*: any*/),
+                          (v9/*: any*/),
                           (v2/*: any*/)
                         ],
                         "storageKey": null
@@ -344,15 +271,60 @@ return {
                   }
                 ],
                 "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "title",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "address",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Group",
+                "kind": "LinkedField",
+                "name": "group",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "Department",
+                    "kind": "LinkedField",
+                    "name": "department",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "name",
+                        "storageKey": null
+                      },
+                      (v2/*: any*/)
+                    ],
+                    "storageKey": null
+                  },
+                  (v2/*: any*/)
+                ],
+                "storageKey": null
               }
             ],
             "type": "GroupProgram",
             "abstractKey": null
           },
-          (v13/*: any*/),
+          (v10/*: any*/),
           {
             "kind": "InlineFragment",
-            "selections": (v6/*: any*/),
+            "selections": (v5/*: any*/),
             "type": "Node",
             "abstractKey": "__isNode"
           }
@@ -362,16 +334,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "11c1d7ec89e2b71fe61251ff3aaa6170",
+    "cacheID": "42c4603e35b1ed4b53eb3bf29506bbda",
     "id": null,
     "metadata": {},
     "name": "GroupProgramPageQuery",
     "operationKind": "query",
-    "text": "query GroupProgramPageQuery(\n  $id: ID!\n) {\n  groupProgram(id: $id) {\n    __typename\n    ... on GroupProgram {\n      id\n      title\n      startsAt\n      endsAt\n      my {\n        id\n      }\n      description\n      group {\n        department {\n          name\n          id\n        }\n        id\n      }\n      address\n      userGroupPrograms {\n        edges {\n          node {\n            user {\n              id\n              nickname\n            }\n            message\n            id\n          }\n        }\n      }\n    }\n    ... on NotFoundError {\n      message\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
+    "text": "query GroupProgramPageQuery(\n  $id: ID!\n) {\n  groupProgram(id: $id) {\n    __typename\n    ... on GroupProgram {\n      id\n      startsAt\n      endsAt\n      my {\n        id\n      }\n      description\n      userGroupPrograms {\n        edges {\n          node {\n            user {\n              id\n              nickname\n            }\n            message\n            id\n          }\n        }\n      }\n      ...GroupProgramHeaderFragment\n    }\n    ... on NotFoundError {\n      message\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n\nfragment GroupProgramHeaderFragment on GroupProgram {\n  id\n  title\n  startsAt\n  address\n  group {\n    department {\n      name\n      id\n    }\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "cfe21d8d391310d5b139e9d98e9d0979";
+(node as any).hash = "da8dd4c7d9482ddad688df2f924a344c";
 
 export default node;
