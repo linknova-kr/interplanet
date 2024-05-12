@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d6a5a43b318b14c455e9796dcb5765a9>>
+ * @generated SignedSource<<fe010bf6269bd97df07341a653183b4c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -21,6 +21,7 @@ export type SeasonDepartmentPageQuery$data = {
     readonly department: {
       readonly id: string;
       readonly name: string;
+      readonly slug: string;
     };
     readonly id: string;
     readonly season: {
@@ -29,6 +30,12 @@ export type SeasonDepartmentPageQuery$data = {
       readonly name: string;
       readonly startsAt: any;
     };
+    readonly seasonGroups: ReadonlyArray<{
+      readonly group: {
+        readonly name: string;
+      };
+      readonly id: string;
+    }>;
   } | {
     // This will never be '%other', but we need some
     // value in case none of the concrete values match.
@@ -91,52 +98,51 @@ v5 = {
   "storageKey": null
 },
 v6 = {
-  "kind": "InlineFragment",
+  "alias": null,
+  "args": null,
+  "concreteType": "Season",
+  "kind": "LinkedField",
+  "name": "season",
+  "plural": false,
   "selections": [
     (v4/*: any*/),
+    (v5/*: any*/),
     {
       "alias": null,
       "args": null,
-      "concreteType": "Season",
-      "kind": "LinkedField",
-      "name": "season",
-      "plural": false,
-      "selections": [
-        (v4/*: any*/),
-        (v5/*: any*/),
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "startsAt",
-          "storageKey": null
-        },
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "endsAt",
-          "storageKey": null
-        }
-      ],
+      "kind": "ScalarField",
+      "name": "startsAt",
       "storageKey": null
     },
     {
       "alias": null,
       "args": null,
-      "concreteType": "Department",
-      "kind": "LinkedField",
-      "name": "department",
-      "plural": false,
-      "selections": [
-        (v4/*: any*/),
-        (v5/*: any*/)
-      ],
+      "kind": "ScalarField",
+      "name": "endsAt",
       "storageKey": null
     }
   ],
-  "type": "SeasonDepartment",
-  "abstractKey": null
+  "storageKey": null
+},
+v7 = {
+  "alias": null,
+  "args": null,
+  "concreteType": "Department",
+  "kind": "LinkedField",
+  "name": "department",
+  "plural": false,
+  "selections": [
+    (v4/*: any*/),
+    (v5/*: any*/),
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "slug",
+      "storageKey": null
+    }
+  ],
+  "storageKey": null
 };
 return {
   "fragment": {
@@ -155,7 +161,40 @@ return {
         "selections": [
           (v2/*: any*/),
           (v3/*: any*/),
-          (v6/*: any*/)
+          {
+            "kind": "InlineFragment",
+            "selections": [
+              (v4/*: any*/),
+              (v6/*: any*/),
+              (v7/*: any*/),
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "SeasonGroup",
+                "kind": "LinkedField",
+                "name": "seasonGroups",
+                "plural": true,
+                "selections": [
+                  (v4/*: any*/),
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "Group",
+                    "kind": "LinkedField",
+                    "name": "group",
+                    "plural": false,
+                    "selections": [
+                      (v5/*: any*/)
+                    ],
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              }
+            ],
+            "type": "SeasonDepartment",
+            "abstractKey": null
+          }
         ],
         "storageKey": null
       }
@@ -179,7 +218,41 @@ return {
         "selections": [
           (v2/*: any*/),
           (v3/*: any*/),
-          (v6/*: any*/),
+          {
+            "kind": "InlineFragment",
+            "selections": [
+              (v4/*: any*/),
+              (v6/*: any*/),
+              (v7/*: any*/),
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "SeasonGroup",
+                "kind": "LinkedField",
+                "name": "seasonGroups",
+                "plural": true,
+                "selections": [
+                  (v4/*: any*/),
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "Group",
+                    "kind": "LinkedField",
+                    "name": "group",
+                    "plural": false,
+                    "selections": [
+                      (v5/*: any*/),
+                      (v4/*: any*/)
+                    ],
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              }
+            ],
+            "type": "SeasonDepartment",
+            "abstractKey": null
+          },
           {
             "kind": "InlineFragment",
             "selections": [
@@ -194,16 +267,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "e61ea5a961780e3518069873592ea4cd",
+    "cacheID": "5bd8c0e6c465361bdb08f9bda154e5a3",
     "id": null,
     "metadata": {},
     "name": "SeasonDepartmentPageQuery",
     "operationKind": "query",
-    "text": "query SeasonDepartmentPageQuery(\n  $id: ID!\n) {\n  seasonDepartment(id: $id) {\n    __typename\n    ... on NotFoundError {\n      message\n    }\n    ... on SeasonDepartment {\n      id\n      season {\n        id\n        name\n        startsAt\n        endsAt\n      }\n      department {\n        id\n        name\n      }\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
+    "text": "query SeasonDepartmentPageQuery(\n  $id: ID!\n) {\n  seasonDepartment(id: $id) {\n    __typename\n    ... on NotFoundError {\n      message\n    }\n    ... on SeasonDepartment {\n      id\n      season {\n        id\n        name\n        startsAt\n        endsAt\n      }\n      department {\n        id\n        name\n        slug\n      }\n      seasonGroups {\n        id\n        group {\n          name\n          id\n        }\n      }\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "1709557bf6f5b633c315b664b0aad99b";
+(node as any).hash = "acfdf33485ed701ab8edf6967aa8050b";
 
 export default node;

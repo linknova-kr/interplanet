@@ -8,6 +8,8 @@ import { Metadata } from '@redwoodjs/web'
 import { SeasonDepartmentPageQuery } from 'src/components/__generated__/SeasonDepartmentPageQuery.graphql'
 import DetailHead from 'src/components/DetailHead/DetailHead'
 import PageTitle from 'src/components/PageTitle/PageTitle'
+import SeasonDepartmentPageButton from 'src/components/SeasonDepartmentPageButton/SeasonDepartmentPageButton'
+import ActionLayout from 'src/layouts/ActionLayout/ActionLayout'
 import { formatMDdd } from 'src/util/date'
 
 const QUERY = graphql`
@@ -28,6 +30,13 @@ const QUERY = graphql`
         department {
           id
           name
+          slug
+        }
+        seasonGroups {
+          id
+          group {
+            name
+          }
         }
       }
     }
@@ -57,18 +66,26 @@ const SeasonDepartmentPage = ({ id }: Props) => {
     <Container>
       <Metadata title="SeasonDepartment" description="SeasonDepartment page" />
       <PageTitle title="시즌 신청" />
-      <DetailHead
-        departmentName={department.name}
-        dateLabel={`${formatMDdd(season.startsAt)}~${formatMDdd(
-          season.endsAt
-        )}`}
-        title={season.name}
-      />
-      <Message>
-        입금 후 7일 이내만 환불이 가능합니다.
-        <br />
-        우리은행 xxx-xxx-xxx
-      </Message>
+      <ActionLayout
+        actions={
+          <SeasonDepartmentPageButton
+            seasonDepartment={data.seasonDepartment}
+          />
+        }
+      >
+        <DetailHead
+          departmentName={department.name}
+          dateLabel={`${formatMDdd(season.startsAt)}~${formatMDdd(
+            season.endsAt
+          )}`}
+          title={season.name}
+        />
+        <Message>
+          입금 후 7일 이내만 환불이 가능합니다.
+          <br />
+          우리은행 xxx-xxx-xxx
+        </Message>
+      </ActionLayout>
     </Container>
   )
 }

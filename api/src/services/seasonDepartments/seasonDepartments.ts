@@ -26,4 +26,12 @@ export const SeasonDepartment = {
   season: (_obj, { root }) => {
     return db.seasonDepartment.findUnique({ where: { id: root?.id } }).season()
   },
+  seasonGroups: (_obj, { root }) => {
+    return db.seasonGroup.findMany({
+      where: {
+        group: { departmentId: root?.departmentId },
+        seasonId: root?.seasonId,
+      },
+    })
+  },
 }
