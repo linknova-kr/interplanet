@@ -30,6 +30,8 @@ model User {
   userSeasonGroup     UserSeasonGroup[]
   groupProgram        GroupProgram[]
   userGroupProgram    UserGroupProgram[]
+  post                Post[]
+  comment             Comment[]
 }
 
 model Department {
@@ -119,4 +121,38 @@ model UserGroupProgram {
   createdAt      DateTime               @default(now())
   cancelledAt    DateTime?
   status         UserGroupProgramStatus
+}
+
+model Board {
+  id     String @id @default(cuid())
+  nameEn String @unique
+  nameKr String @unique
+  post   Post[]
+}
+
+model Post {
+  id            String    @id @default(cuid())
+  board         Board     @relation(fields: [boardId], references: [id])
+  boardId       String
+  title         String
+  content       String
+  pinned        Boolean   @default(false)
+  user          User      @relation(fields: [userId], references: [id])
+  userId        Int
+  imageUrl      String    @default("")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @default(now())
+  comment       Comment[]
+  commentsCount Int       @default(0)
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
 }
