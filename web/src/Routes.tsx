@@ -29,6 +29,7 @@ const Routes = () => {
         <Set wrap={DefaultLayout}>
           <Route path="/group-programs/{id}" page={GroupProgramPage} name="groupProgram" />
           <Route path="/posts/{id}" page={PostPage} name="post" />
+          <Route path="/season-department/{id}" page={SeasonDepartmentPage} name="seasonDepartment" />
         </Set>
       </PrivateSet>
       <Route notfound page={NotFoundPage} />

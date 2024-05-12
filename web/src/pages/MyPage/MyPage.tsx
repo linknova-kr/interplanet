@@ -24,8 +24,8 @@ const MyPage = () => {
       </PageTitle>
       <PageTabs
         tabs={[
-          { value: MyPageTab.GROUP_SEASON, label: '본모임' },
-          { value: MyPageTab.GROUP_PROGRAM, label: '모임' },
+          { value: MyPageTab.GROUP_SEASON, label: '시즌' },
+          { value: MyPageTab.GROUP_PROGRAM, label: '본모임' },
         ]}
         selectedTab={tab}
         onSelect={(tab: MyPageTab) => setTab(tab)}

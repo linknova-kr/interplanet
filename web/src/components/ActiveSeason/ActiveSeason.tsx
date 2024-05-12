@@ -1,9 +1,10 @@
+import { Box } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { useLazyLoadQuery } from 'react-relay'
 import { graphql } from 'relay-runtime'
 
 import { ActiveSeasonQuery } from '../__generated__/ActiveSeasonQuery.graphql'
-import SeasonGroup from '../SeasonGroup/SeasonGroup'
+import SeasonDepartment from '../SeasonDepartment/SeasonDepartment'
 
 export const QUERY = graphql`
   query ActiveSeasonQuery {
@@ -14,18 +15,11 @@ export const QUERY = graphql`
         startsAt
         endsAt
 
-        seasonGroups {
-          edges {
-            node {
-              group {
-                department {
-                  name
-                }
-                name
-              }
-              id
-              iJoined
-            }
+        seasonDepartments {
+          id
+          message
+          department {
+            name
           }
         }
       }
@@ -34,11 +28,10 @@ export const QUERY = graphql`
 `
 
 const Title = styled.div`
-  width: 80%;
   border-radius: 10px;
   background-color: #8f97f7;
   padding: 10px;
-  margin: 10px;
+  margin: 10px 0;
   color: white;
   font-weight: 600;
 `
@@ -47,26 +40,25 @@ const ActiveSeason = () => {
   const data = useLazyLoadQuery<ActiveSeasonQuery>(QUERY, {})
   if (!data.activeSeason) return <div>No active season</div>
 
-  const { name, startsAt, endsAt, seasonGroups } = data.activeSeason
+  const { name, startsAt, endsAt, seasonDepartments } = data.activeSeason
 
-  const joinedSeasonGroups = seasonGroups.edges.filter(
-    ({ node }) => node.iJoined
-  )
-  const notJoinedSeasonGroups = seasonGroups.edges.filter(
-    ({ node }) => !node.iJoined
-  )
+  const joinedSeasonDepartments = seasonDepartments.filter(() => true)
+  const notJoinedSeasonDepartments = seasonDepartments.filter(() => true)
 
   return (
-    <>
+    <Box width="100%" padding="30px">
       <Title>참여중인 시즌</Title>
       <div>
-        {joinedSeasonGroups.length > 0 ? (
-          <SeasonGroup
-            name={name}
-            startsAt={startsAt}
-            endsAt={endsAt}
-            seasonGroups={joinedSeasonGroups}
-          />
+        {joinedSeasonDepartments.length > 0 ? (
+          joinedSeasonDepartments.map((seasonDepartment) => (
+            <SeasonDepartment
+              key={seasonDepartment.id}
+              name={name}
+              startsAt={startsAt}
+              endsAt={endsAt}
+              seasonDepartment={seasonDepartment}
+            />
+          ))
         ) : (
           <>
             현재 참석 중인 시즌이 없습니다.
@@ -76,18 +68,19 @@ const ActiveSeason = () => {
       </div>
       <Title>참여가능한 시즌</Title>
       <div>
-        {notJoinedSeasonGroups.length > 0 ? (
-          <SeasonGroup
-            name={name}
-            startsAt={startsAt}
-            endsAt={endsAt}
-            seasonGroups={notJoinedSeasonGroups}
-          />
-        ) : (
-          '참여가능한 시즌이 없습니다.'
-        )}
+        {notJoinedSeasonDepartments.length > 0
+          ? notJoinedSeasonDepartments.map((seasonDepartment) => (
+              <SeasonDepartment
+                key={seasonDepartment.id}
+                name={name}
+                startsAt={startsAt}
+                endsAt={endsAt}
+                seasonDepartment={seasonDepartment}
+              />
+            ))
+          : '참여가능한 시즌이 없습니다.'}
       </div>
-    </>
+    </Box>
   )
 }
 

@@ -12,15 +12,15 @@
 
 import type { Meta, StoryObj } from '@storybook/react'
 
-import SeasonGroup from './SeasonGroup'
+import DetailHead from './DetailHead'
 
-const meta: Meta<typeof SeasonGroup> = {
-  component: SeasonGroup,
+const meta: Meta<typeof DetailHead> = {
+  component: DetailHead,
   tags: ['autodocs'],
 }
 
 export default meta
 
-type Story = StoryObj<typeof SeasonGroup>
+type Story = StoryObj<typeof DetailHead>
 
 export const Primary: Story = {}

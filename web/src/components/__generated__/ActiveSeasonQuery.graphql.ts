@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3a1459a514eb12241412b46ada495a00>>
+ * @generated SignedSource<<ebec64cd850c01499148edcad2adbe1a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,20 +15,13 @@ export type ActiveSeasonQuery$data = {
     readonly endsAt?: any;
     readonly id?: string;
     readonly name?: string;
-    readonly seasonGroups?: {
-      readonly edges: ReadonlyArray<{
-        readonly node: {
-          readonly group: {
-            readonly department: {
-              readonly name: string;
-            };
-            readonly name: string;
-          };
-          readonly iJoined: boolean;
-          readonly id: string;
-        };
-      }>;
-    };
+    readonly seasonDepartments?: ReadonlyArray<{
+      readonly department: {
+        readonly name: string;
+      };
+      readonly id: string;
+      readonly message: string;
+    }>;
     readonly startsAt?: any;
   };
 };
@@ -70,7 +63,7 @@ v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "iJoined",
+  "name": "message",
   "storageKey": null
 };
 return {
@@ -98,56 +91,22 @@ return {
               {
                 "alias": null,
                 "args": null,
-                "concreteType": "SeasonGroupConnection",
+                "concreteType": "SeasonDepartment",
                 "kind": "LinkedField",
-                "name": "seasonGroups",
-                "plural": false,
+                "name": "seasonDepartments",
+                "plural": true,
                 "selections": [
+                  (v0/*: any*/),
+                  (v4/*: any*/),
                   {
                     "alias": null,
                     "args": null,
-                    "concreteType": "SeasonGroupEdge",
+                    "concreteType": "Department",
                     "kind": "LinkedField",
-                    "name": "edges",
-                    "plural": true,
+                    "name": "department",
+                    "plural": false,
                     "selections": [
-                      {
-                        "alias": null,
-                        "args": null,
-                        "concreteType": "SeasonGroup",
-                        "kind": "LinkedField",
-                        "name": "node",
-                        "plural": false,
-                        "selections": [
-                          {
-                            "alias": null,
-                            "args": null,
-                            "concreteType": "Group",
-                            "kind": "LinkedField",
-                            "name": "group",
-                            "plural": false,
-                            "selections": [
-                              {
-                                "alias": null,
-                                "args": null,
-                                "concreteType": "Department",
-                                "kind": "LinkedField",
-                                "name": "department",
-                                "plural": false,
-                                "selections": [
-                                  (v1/*: any*/)
-                                ],
-                                "storageKey": null
-                              },
-                              (v1/*: any*/)
-                            ],
-                            "storageKey": null
-                          },
-                          (v0/*: any*/),
-                          (v4/*: any*/)
-                        ],
-                        "storageKey": null
-                      }
+                      (v1/*: any*/)
                     ],
                     "storageKey": null
                   }
@@ -196,58 +155,23 @@ return {
               {
                 "alias": null,
                 "args": null,
-                "concreteType": "SeasonGroupConnection",
+                "concreteType": "SeasonDepartment",
                 "kind": "LinkedField",
-                "name": "seasonGroups",
-                "plural": false,
+                "name": "seasonDepartments",
+                "plural": true,
                 "selections": [
+                  (v0/*: any*/),
+                  (v4/*: any*/),
                   {
                     "alias": null,
                     "args": null,
-                    "concreteType": "SeasonGroupEdge",
+                    "concreteType": "Department",
                     "kind": "LinkedField",
-                    "name": "edges",
-                    "plural": true,
+                    "name": "department",
+                    "plural": false,
                     "selections": [
-                      {
-                        "alias": null,
-                        "args": null,
-                        "concreteType": "SeasonGroup",
-                        "kind": "LinkedField",
-                        "name": "node",
-                        "plural": false,
-                        "selections": [
-                          {
-                            "alias": null,
-                            "args": null,
-                            "concreteType": "Group",
-                            "kind": "LinkedField",
-                            "name": "group",
-                            "plural": false,
-                            "selections": [
-                              {
-                                "alias": null,
-                                "args": null,
-                                "concreteType": "Department",
-                                "kind": "LinkedField",
-                                "name": "department",
-                                "plural": false,
-                                "selections": [
-                                  (v1/*: any*/),
-                                  (v0/*: any*/)
-                                ],
-                                "storageKey": null
-                              },
-                              (v1/*: any*/),
-                              (v0/*: any*/)
-                            ],
-                            "storageKey": null
-                          },
-                          (v0/*: any*/),
-                          (v4/*: any*/)
-                        ],
-                        "storageKey": null
-                      }
+                      (v1/*: any*/),
+                      (v0/*: any*/)
                     ],
                     "storageKey": null
                   }
@@ -272,16 +196,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "58da007c644e4cead4769f5dd86fb899",
+    "cacheID": "f5ba0aa697f5692b459674c628cde9a3",
     "id": null,
     "metadata": {},
     "name": "ActiveSeasonQuery",
     "operationKind": "query",
-    "text": "query ActiveSeasonQuery {\n  activeSeason {\n    __typename\n    ... on Season {\n      id\n      name\n      startsAt\n      endsAt\n      seasonGroups {\n        edges {\n          node {\n            group {\n              department {\n                name\n                id\n              }\n              name\n              id\n            }\n            id\n            iJoined\n          }\n        }\n      }\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
+    "text": "query ActiveSeasonQuery {\n  activeSeason {\n    __typename\n    ... on Season {\n      id\n      name\n      startsAt\n      endsAt\n      seasonDepartments {\n        id\n        message\n        department {\n          name\n          id\n        }\n      }\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "94a52c9f913e848a35f29d7f2fe9cdbc";
+(node as any).hash = "1b24248ea1e03422c0af1b3d90a4ce2e";
 
 export default node;

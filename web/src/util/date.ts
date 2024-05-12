@@ -6,6 +6,10 @@ export function formatDate(date: Date) {
   return dayjs(date).format('M/D(dd) a h:mm')
 }
 
+export function formatMDdd(date: Date) {
+  return dayjs(date).format('M/D(dd)')
+}
+
 export function formatHMM(date: Date) {
   return dayjs(date).format('H:mm')
 }
