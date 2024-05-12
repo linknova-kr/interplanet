@@ -2,9 +2,9 @@ import { useState } from 'react'
 
 import { Metadata } from '@redwoodjs/web'
 
-import HomePageGroupPrograms from 'src/components/HomePageGroupPrograms/HomePageGroupPrograms'
-import PageTabs from 'src/components/PageTabs/PageTabs'
-import PageTitle from 'src/components/PageTitle/PageTitle'
+import PageTabs from 'src/components/common/PageTabs/PageTabs'
+import PageTitle from 'src/components/common/PageTitle/PageTitle'
+import HomePageGroupPrograms from 'src/components/group-program/HomePageGroupPrograms/HomePageGroupPrograms'
 
 enum HomePageTab {
   GROUP_PROGRAM = 'GROUP_PROGRAM',

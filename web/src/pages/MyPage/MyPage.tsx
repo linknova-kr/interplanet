@@ -2,10 +2,10 @@ import { useState } from 'react'
 
 import { Metadata } from '@redwoodjs/web'
 
-import ActiveSeason from 'src/components/ActiveSeason/ActiveSeason'
-import MyPageSettingIcon from 'src/components/MyPageSettingIcon/MyPageSettingIcon'
-import PageTabs from 'src/components/PageTabs/PageTabs'
-import PageTitle from 'src/components/PageTitle/PageTitle'
+import PageTabs from 'src/components/common/PageTabs/PageTabs'
+import PageTitle from 'src/components/common/PageTitle/PageTitle'
+import MyPageSettingIcon from 'src/components/my-page/MyPageSettingIcon/MyPageSettingIcon'
+import ActiveSeason from 'src/components/season/ActiveSeason/ActiveSeason'
 
 enum MyPageTab {
   GROUP_SEASON = 'GROUP_SEASON',

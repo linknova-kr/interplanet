@@ -5,9 +5,9 @@ import { Redirect } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 
 import { GroupProgramPageQuery } from 'src/components/__generated__/GroupProgramPageQuery.graphql'
-import GroupProgramDetail from 'src/components/GroupProgramDetail/GroupProgramDetail'
-import GroupProgramPageButton from 'src/components/GroupProgramPageButton/GroupProgramPageButton'
-import PageTitle from 'src/components/PageTitle/PageTitle'
+import PageTitle from 'src/components/common/PageTitle/PageTitle'
+import GroupProgramDetail from 'src/components/group-program/GroupProgramDetail/GroupProgramDetail'
+import GroupProgramPageButton from 'src/components/group-program/GroupProgramPageButton/GroupProgramPageButton'
 import ActionLayout from 'src/layouts/ActionLayout/ActionLayout'
 
 const QUERY = graphql`

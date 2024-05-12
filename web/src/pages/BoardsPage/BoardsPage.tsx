@@ -6,10 +6,10 @@ import { graphql } from 'relay-runtime'
 import { Metadata } from '@redwoodjs/web'
 
 import { BoardsPageQuery } from 'src/components/__generated__/BoardsPageQuery.graphql'
-import BoardPosts from 'src/components/BoardPosts/BoardPosts'
-import PageTabs from 'src/components/PageTabs/PageTabs'
-import PageTitle from 'src/components/PageTitle/PageTitle'
-import PinnedPosts from 'src/components/PinnedPosts/PinnedPosts'
+import PageTabs from 'src/components/common/PageTabs/PageTabs'
+import PageTitle from 'src/components/common/PageTitle/PageTitle'
+import BoardPosts from 'src/components/post/BoardPosts/BoardPosts'
+import PinnedPosts from 'src/components/post/PinnedPosts/PinnedPosts'
 
 const QUERY = graphql`
   query BoardsPageQuery {

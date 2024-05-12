@@ -9,8 +9,8 @@ import { toast, Toaster } from '@redwoodjs/web/dist/toast'
 
 import { UserSeasonDepartmentGroupRequestRefundPageQuery } from 'src/components/__generated__/UserSeasonDepartmentGroupRequestRefundPageQuery.graphql'
 import { UserSeasonDepartmentGroupRequestRefundPageRequestRefundMutation } from 'src/components/__generated__/UserSeasonDepartmentGroupRequestRefundPageRequestRefundMutation.graphql'
-import DetailHead from 'src/components/DetailHead/DetailHead'
-import PageTitle from 'src/components/PageTitle/PageTitle'
+import DetailHead from 'src/components/common/DetailHead/DetailHead'
+import PageTitle from 'src/components/common/PageTitle/PageTitle'
 import ActionLayout from 'src/layouts/ActionLayout/ActionLayout'
 import { formatMDdd } from 'src/util/date'
 

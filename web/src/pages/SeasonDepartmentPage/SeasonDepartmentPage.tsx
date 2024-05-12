@@ -6,9 +6,9 @@ import { Redirect } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 
 import { SeasonDepartmentPageQuery } from 'src/components/__generated__/SeasonDepartmentPageQuery.graphql'
-import DetailHead from 'src/components/DetailHead/DetailHead'
-import PageTitle from 'src/components/PageTitle/PageTitle'
-import SeasonDepartmentPageButton from 'src/components/SeasonDepartmentPageButton/SeasonDepartmentPageButton'
+import PageTitle from 'src/components/common/PageTitle/PageTitle'
+import DetailHead from 'src/components/common/DetailHead/DetailHead'
+import SeasonDepartmentPageButton from 'src/components/season-department/SeasonDepartmentPageButton/SeasonDepartmentPageButton'
 import ActionLayout from 'src/layouts/ActionLayout/ActionLayout'
 import { formatMDdd } from 'src/util/date'
 

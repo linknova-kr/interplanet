@@ -5,8 +5,8 @@ import { Redirect } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 
 import { PostPageQuery } from 'src/components/__generated__/PostPageQuery.graphql'
-import DetailHead from 'src/components/DetailHead/DetailHead'
-import PageTitle from 'src/components/PageTitle/PageTitle'
+import PageTitle from 'src/components/common/PageTitle/PageTitle'
+import DetailHead from 'src/components/common/DetailHead/DetailHead'
 import { formatDateYMD } from 'src/util/date'
 
 const QUERY = graphql`
