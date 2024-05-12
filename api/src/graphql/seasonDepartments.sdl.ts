@@ -5,6 +5,7 @@ export const schema = gql`
     season: Season!
     message: String!
     seasonGroups: [SeasonGroup!]!
+    my: UserSeasonDepartmentGroup
   }
 
   union SeasonDepartmentDetailResult = SeasonDepartment | NotFoundError

@@ -15,23 +15,23 @@ generator client {
 }
 
 model User {
-  id                  Int                @id @default(autoincrement())
-  identifier          String             @unique
-  realName            String
-  nickname            String
-  phoneNumber         String
-  birthday            DateTime
-  email               String             @default("")
-  interests           String[]
-  hashedPassword      String
-  salt                String
-  resetToken          String?
-  resetTokenExpiresAt DateTime?
-  userSeasonGroup     UserSeasonGroup[]
-  groupProgram        GroupProgram[]
-  userGroupProgram    UserGroupProgram[]
-  post                Post[]
-  comment             Comment[]
+  id                        Int                         @id @default(autoincrement())
+  identifier                String                      @unique
+  realName                  String
+  nickname                  String
+  phoneNumber               String
+  birthday                  DateTime
+  email                     String                      @default("")
+  interests                 String[]
+  hashedPassword            String
+  salt                      String
+  resetToken                String?
+  resetTokenExpiresAt       DateTime?
+  userSeasonDepartmentGroup UserSeasonDepartmentGroup[]
+  groupProgram              GroupProgram[]
+  userGroupProgram          UserGroupProgram[]
+  post                      Post[]
+  comment                   Comment[]
 }
 
 model Department {
@@ -64,32 +64,44 @@ model Season {
 }
 
 model SeasonDepartment {
-  id           String     @id @default(cuid())
-  department   Department @relation(fields: [departmentId], references: [id])
-  season       Season     @relation(fields: [seasonId], references: [id])
-  departmentId String
-  seasonId     String
-  message      String     @default("")
-  createdAt    DateTime   @default(now())
+  id                        String                      @id @default(cuid())
+  department                Department                  @relation(fields: [departmentId], references: [id])
+  season                    Season                      @relation(fields: [seasonId], references: [id])
+  departmentId              String
+  seasonId                  String
+  message                   String                      @default("")
+  createdAt                 DateTime                    @default(now())
+  userSeasonDepartmentGroup UserSeasonDepartmentGroup[]
 }
 
 model SeasonGroup {
-  id              String            @id @default(cuid())
-  season          Season            @relation(fields: [seasonId], references: [id])
-  group           Group             @relation(fields: [groupId], references: [id])
-  seasonId        String
-  groupId         String
-  createdAt       DateTime          @default(now())
-  userSeasonGroup UserSeasonGroup[]
+  id                        String                      @id @default(cuid())
+  season                    Season                      @relation(fields: [seasonId], references: [id])
+  group                     Group                       @relation(fields: [groupId], references: [id])
+  seasonId                  String
+  groupId                   String
+  createdAt                 DateTime                    @default(now())
+  userSeasonDepartmentGroup UserSeasonDepartmentGroup[]
 }
 
-model UserSeasonGroup {
-  id            String      @id @default(cuid())
-  user          User        @relation(fields: [userId], references: [id])
-  seasonGroup   SeasonGroup @relation(fields: [seasonGroupId], references: [id])
-  userId        Int
-  seasonGroupId String
-  createdAt     DateTime    @default(now())
+enum UserSeasonDepartmentGroupStatus {
+  APPROVAL_PENDING
+  APPROVED
+  REFUND_PENDING
+  REFUNDED
+}
+
+model UserSeasonDepartmentGroup {
+  id                 String                          @id @default(cuid())
+  user               User                            @relation(fields: [userId], references: [id])
+  seasonGroup        SeasonGroup                     @relation(fields: [seasonGroupId], references: [id])
+  seasonDepartment   SeasonDepartment                @relation(fields: [seasonDepartmentId], references: [id])
+  userId             Int
+  seasonGroupId      String
+  seasonDepartmentId String
+  createdAt          DateTime                        @default(now())
+  status             UserSeasonDepartmentGroupStatus
+  refundedAt         DateTime?
 }
 
 enum GroupProgramType {

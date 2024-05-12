@@ -34,4 +34,16 @@ export const SeasonDepartment = {
       },
     })
   },
+  my: (_obj, { root }) => {
+    const userId = context.currentUser.id
+    if (!userId) {
+      return null
+    }
+    return db.userSeasonDepartmentGroup.findFirst({
+      where: {
+        userId,
+        seasonDepartmentId: root?.id,
+      },
+    })
+  },
 }
