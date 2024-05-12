@@ -9,3 +9,7 @@ export function formatDate(date: Date) {
 export function formatHMM(date: Date) {
   return dayjs(date).format('H:mm')
 }
+
+export function formatDateYMD(date: Date) {
+  return dayjs(date).format('YY.MM.DD')
+}

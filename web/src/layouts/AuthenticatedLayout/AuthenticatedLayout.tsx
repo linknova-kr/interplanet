@@ -32,7 +32,7 @@ const AuthenticatedLayout = ({ children }: AuthenticatedLayoutProps) => {
     <DefaultLayout
       nav={
         <BottomNav>
-          <NavItem to={routes.home()}>게시판</NavItem>
+          <NavItem to={routes.boards()}>게시판</NavItem>
           <NavItem to={routes.home()}>모임</NavItem>
 
           <NavItem to={routes.my()}>MY</NavItem>

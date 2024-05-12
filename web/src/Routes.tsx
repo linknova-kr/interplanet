@@ -24,9 +24,11 @@ const Routes = () => {
         <Set wrap={AuthenticatedLayout}>
           <Route path="/" page={HomePage} name="home" />
           <Route path="/my" page={MyPage} name="my" />
+          <Route path="/boards" page={BoardsPage} name="boards" />
         </Set>
         <Set wrap={DefaultLayout}>
           <Route path="/group-programs/{id}" page={GroupProgramPage} name="groupProgram" />
+          <Route path="/posts/{id}" page={PostPage} name="post" />
         </Set>
       </PrivateSet>
       <Route notfound page={NotFoundPage} />
