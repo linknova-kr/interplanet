@@ -8,13 +8,25 @@ import { Link, routes } from '@redwoodjs/router'
 
 import { formatMDdd } from 'src/util/date'
 
-import { ActiveSeasonQuery$data } from '../__generated__/ActiveSeasonQuery.graphql'
+import { UserSeasonDepartmentGroupStatus } from '../__generated__/ActiveSeasonQuery.graphql'
 
 interface SeasonDepartmentProps {
   startsAt: any
   endsAt: any
   name: Season['name']
-  seasonDepartment: ActiveSeasonQuery$data['activeSeason']['seasonDepartments'][0]
+  seasonDepartment: {
+    department: {
+      name: string
+    }
+    id: string
+    message: string
+    my:
+      | {
+          status: UserSeasonDepartmentGroupStatus
+        }
+      | null
+      | undefined
+  }
 }
 
 const Message = styled(Box)`
@@ -29,12 +41,54 @@ const Container = styled(Box)`
   margin: 20px 0;
   cursor: pointer;
 `
-const SeasonDepartment = (props: SeasonDepartmentProps) => {
+const SeasonDepartment = ({
+  seasonDepartment,
+  startsAt,
+  endsAt,
+  name,
+}: SeasonDepartmentProps) => {
   const [showMessage, setShowMessage] = useState(false)
 
   const toggleShowMessage = () => {
-    console.log('123123')
     setShowMessage(!showMessage)
+  }
+  const Buttons = () => {
+    if (seasonDepartment.my) {
+      switch (seasonDepartment.my.status) {
+        case 'APPROVAL_PENDING':
+          return (
+            <Button disabled bg="#8f97f7">
+              승인대기
+            </Button>
+          )
+        case 'APPROVED':
+          return <Button>취소</Button>
+        //  구현 필요
+        case 'REFUND_PENDING':
+          return (
+            <>
+              <Button disabled>환불대기</Button>
+              {/* todo 취소의 취소? */}
+            </>
+          )
+        case 'REFUNDED':
+          return (
+            <>
+              <Button disabled bg="#8f97f7">
+                환불완료
+              </Button>
+              <Link to={routes.seasonDepartment({ id: seasonDepartment.id })}>
+                <Button>재신청</Button>
+              </Link>
+            </>
+          )
+      }
+    }
+    return (
+      <Link to={routes.seasonDepartment({ id: seasonDepartment.id })}>
+        <Button>신청</Button>
+      </Link>
+    )
   }
   return (
     <Container onClick={toggleShowMessage}>
@@ -42,23 +96,23 @@ const SeasonDepartment = (props: SeasonDepartmentProps) => {
         <VStack alignItems="start">
           <HStack justifyContent="start">
             <Badge backgroundColor="#8f97f7">
-              {props.seasonDepartment.department.name}
+              {seasonDepartment.department.name}
             </Badge>
             <div>
-              {formatMDdd(props.startsAt)} ~ {formatMDdd(props.endsAt)}
+              {formatMDdd(startsAt)} ~ {formatMDdd(endsAt)}
             </div>
           </HStack>
           <Heading as="h4" size="sm">
-            {props.name}
+            {name}
           </Heading>
         </VStack>
-        <Link to={routes.seasonDepartment({ id: props.seasonDepartment.id })}>
-          <Button>신청</Button>
-        </Link>
+
+        <Buttons />
 
         {/* todo: 승인대기/취소/신청완료 */}
       </HStack>
-      {showMessage && <Message>{props.seasonDepartment.message}234234</Message>}
+      {showMessage && <Message>{seasonDepartment.message}234234</Message>}
+      {/* todo: 소속 & 출석수 구현 */}
     </Container>
   )
 }

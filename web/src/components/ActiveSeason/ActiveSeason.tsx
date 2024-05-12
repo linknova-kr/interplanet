@@ -22,6 +22,10 @@ export const QUERY = graphql`
           department {
             name
           }
+          my {
+            id
+            status
+          }
         }
       }
       ... on NotFoundError {
@@ -47,8 +51,10 @@ const ActiveSeason = () => {
 
   const { name, startsAt, endsAt, seasonDepartments } = data.activeSeason
 
-  const joinedSeasonDepartments = seasonDepartments.filter(() => true)
-  const notJoinedSeasonDepartments = seasonDepartments.filter(() => true)
+  const joinedSeasonDepartments = seasonDepartments.filter((v) => v.my)
+  const notJoinedSeasonDepartments = seasonDepartments.filter(
+    (v) => v.my === null
+  )
 
   return (
     <Box width="100%" padding="30px">

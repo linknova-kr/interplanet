@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<43c1e1a11e903d386610199d80aa84ea>>
+ * @generated SignedSource<<1c61104970ef993b5f3ba808be9295b7>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,6 +9,7 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Query } from 'relay-runtime';
+export type UserSeasonDepartmentGroupStatus = "APPROVAL_PENDING" | "APPROVED" | "REFUNDED" | "REFUND_PENDING" | "%future added value";
 export type ActiveSeasonQuery$variables = Record<PropertyKey, never>;
 export type ActiveSeasonQuery$data = {
   readonly activeSeason: {
@@ -25,6 +26,10 @@ export type ActiveSeasonQuery$data = {
       };
       readonly id: string;
       readonly message: string;
+      readonly my: {
+        readonly id: string;
+        readonly status: UserSeasonDepartmentGroupStatus;
+      } | null | undefined;
     }>;
     readonly startsAt: any;
   } | {
@@ -82,6 +87,25 @@ v5 = {
   "storageKey": null
 },
 v6 = {
+  "alias": null,
+  "args": null,
+  "concreteType": "UserSeasonDepartmentGroup",
+  "kind": "LinkedField",
+  "name": "my",
+  "plural": false,
+  "selections": [
+    (v1/*: any*/),
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "status",
+      "storageKey": null
+    }
+  ],
+  "storageKey": null
+},
+v7 = {
   "kind": "InlineFragment",
   "selections": [
     (v5/*: any*/)
@@ -133,7 +157,8 @@ return {
                       (v2/*: any*/)
                     ],
                     "storageKey": null
-                  }
+                  },
+                  (v6/*: any*/)
                 ],
                 "storageKey": null
               }
@@ -141,7 +166,7 @@ return {
             "type": "Season",
             "abstractKey": null
           },
-          (v6/*: any*/)
+          (v7/*: any*/)
         ],
         "storageKey": null
       }
@@ -193,7 +218,8 @@ return {
                       (v1/*: any*/)
                     ],
                     "storageKey": null
-                  }
+                  },
+                  (v6/*: any*/)
                 ],
                 "storageKey": null
               }
@@ -201,7 +227,7 @@ return {
             "type": "Season",
             "abstractKey": null
           },
-          (v6/*: any*/),
+          (v7/*: any*/),
           {
             "kind": "InlineFragment",
             "selections": [
@@ -216,16 +242,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "e39e48c3d00127e8f0e25dd43006f27f",
+    "cacheID": "37615043cea57f5ea6c246e0c1bee876",
     "id": null,
     "metadata": {},
     "name": "ActiveSeasonQuery",
     "operationKind": "query",
-    "text": "query ActiveSeasonQuery {\n  activeSeason {\n    __typename\n    ... on Season {\n      id\n      name\n      startsAt\n      endsAt\n      seasonDepartments {\n        id\n        message\n        department {\n          name\n          id\n        }\n      }\n    }\n    ... on NotFoundError {\n      message\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
+    "text": "query ActiveSeasonQuery {\n  activeSeason {\n    __typename\n    ... on Season {\n      id\n      name\n      startsAt\n      endsAt\n      seasonDepartments {\n        id\n        message\n        department {\n          name\n          id\n        }\n        my {\n          id\n          status\n        }\n      }\n    }\n    ... on NotFoundError {\n      message\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "76fc58fdf7b9f45b30c1e3c6df050178";
+(node as any).hash = "773e624c5de1d8df67e333e77870dad3";
 
 export default node;

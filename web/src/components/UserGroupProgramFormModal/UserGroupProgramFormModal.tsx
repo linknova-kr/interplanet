@@ -2,13 +2,9 @@ import { useMemo } from 'react'
 
 import {
   Button,
-  Card,
-  CardBody,
-  CardHeader,
   DrawerBody,
   DrawerContent,
   DrawerFooter,
-  Heading,
   RadioGroup,
   Stack,
 } from '@chakra-ui/react'
@@ -21,6 +17,7 @@ import { toast } from '@redwoodjs/web/toast'
 import { GroupProgramPageQuery$data } from '../__generated__/GroupProgramPageQuery.graphql'
 import { UserGroupProgramFormModalCreateMutation } from '../__generated__/UserGroupProgramFormModalCreateMutation.graphql'
 import { UserGroupProgramFormModalUpdateMutation } from '../__generated__/UserGroupProgramFormModalUpdateMutation.graphql'
+import FormCard from '../FormCard/FormCard'
 
 const CREATE = graphql`
   mutation UserGroupProgramFormModalCreateMutation(
@@ -188,43 +185,35 @@ const UserGroupProgramFormModal = ({ groupProgram, onDone, edit }: Props) => {
     <DrawerContent>
       <Form onSubmit={onSubmit}>
         <DrawerBody h="50vh" minH="50vh" p="30px">
-          <Heading size="sm" as="h4">
-            {messageRequired ? '한 마디 작성(필수)' : '한 마디 작성(선택)'}
-          </Heading>
-          <Card border="1px solid #fafafa" mt={5} mb={5}>
-            <CardHeader>{messageGuide}</CardHeader>
-            <CardBody bgColor="#eee" h="50px" minH="50px">
-              <TextField
-                name="message"
-                defaultValue={edit?.message}
-                style={{
-                  backgroundColor: 'transparent',
-                  height: '30px',
-                  width: '100%',
-                }}
-              />
-            </CardBody>
-          </Card>
+          <FormCard
+            header={
+              messageRequired ? '한 마디 작성(필수)' : '한 마디 작성(선택)'
+            }
+            title={messageGuide}
+          >
+            <TextField
+              name="message"
+              defaultValue={edit?.message}
+              style={{
+                backgroundColor: 'transparent',
+                height: '30px',
+                width: '100%',
+              }}
+            />
+          </FormCard>
 
-          <Heading size="sm" as="h4">
-            옵션선택(필수)
-          </Heading>
-
-          <Card border="1px solid #fafafa" mt={5}>
-            <CardHeader>{typeOptionGuide}</CardHeader>
-            <CardBody bgColor="#eee" h="50px" minH="50px">
-              <RadioGroup name="option" defaultValue={edit?.type}>
-                <Stack direction="column">
-                  {typeOptions.map((option) => (
-                    <div key={option}>
-                      <RadioField key={option} value={option} name="type" />
-                      {` ${option}`}
-                    </div>
-                  ))}
-                </Stack>
-              </RadioGroup>
-            </CardBody>
-          </Card>
+          <FormCard header="옵션선택(필수)" title={typeOptionGuide}>
+            <RadioGroup name="option" defaultValue={edit?.type}>
+              <Stack direction="column">
+                {typeOptions.map((option) => (
+                  <div key={option}>
+                    <RadioField key={option} value={option} name="type" />
+                    {` ${option}`}
+                  </div>
+                ))}
+              </Stack>
+            </RadioGroup>
+          </FormCard>
         </DrawerBody>
         <DrawerFooter>
           <Button w="100%" type="submit">
