@@ -1,9 +1,28 @@
 import {
   MutationResolvers,
   MutationcreateUserSeasonDepartmentGroupArgs,
+  MutationrequestRefundUserSeasonDepartmentGroupArgs,
+  QueryResolvers,
+  QueryuserSeasonDepartmentGroupArgs,
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
+
+export const userSeasonDepartmentGroup: QueryResolvers['userSeasonDepartmentGroup'] =
+  async ({ id }: QueryuserSeasonDepartmentGroupArgs) => {
+    const userId = context.currentUser.id
+    const result = await db.userSeasonDepartmentGroup.findFirst({
+      where: { id, userId },
+    })
+
+    if (!result) {
+      return {
+        __typename: 'NotFoundError',
+        message: 'User season department group not found',
+      }
+    }
+    return result
+  }
 
 export const createUserSeasonDepartmentGroup: Omit<
   MutationResolvers['createUserSeasonDepartmentGroup'],
@@ -31,7 +50,13 @@ export const createUserSeasonDepartmentGroup: Omit<
 
   const userSeasonDepartmentGroupExists =
     await db.userSeasonDepartmentGroup.findFirst({
-      where: { userId, seasonGroupId, seasonDepartmentId, refundedAt: null },
+      where: {
+        userId,
+        seasonGroupId,
+        seasonDepartmentId,
+        refundedAt: null,
+        status: { not: 'REFUNDED' },
+      },
     })
 
   if (userSeasonDepartmentGroupExists) {
@@ -47,6 +72,40 @@ export const createUserSeasonDepartmentGroup: Omit<
     },
   })
 }
+
+export const requestRefundUserSeasonDepartmentGroup: MutationResolvers['requestRefundUserSeasonDepartmentGroup'] =
+  async ({ input }: MutationrequestRefundUserSeasonDepartmentGroupArgs) => {
+    const userId = context.currentUser.id
+    const { id } = input
+    const userSeasonDepartmentGroup =
+      await db.userSeasonDepartmentGroup.findUnique({ where: { id } })
+
+    if (!userSeasonDepartmentGroup) {
+      return {
+        __typename: 'NotFoundError',
+        message: 'User season department group not found',
+      }
+    }
+
+    if (userSeasonDepartmentGroup.userId !== userId) {
+      return {
+        __typename: 'NotFoundError',
+        message: 'User season department group not found',
+      }
+    }
+
+    if (userSeasonDepartmentGroup.status !== 'APPROVED') {
+      return {
+        __typename: 'NotFoundError',
+        message: 'User season department group not found',
+      }
+    }
+
+    return db.userSeasonDepartmentGroup.update({
+      where: { id },
+      data: { status: 'REFUND_PENDING' },
+    })
+  }
 
 export const UserSeasonDepartmentGroup = {
   seasonGroup: (_obj, { root }) => {

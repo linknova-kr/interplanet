@@ -13,10 +13,23 @@ export const schema = gql`
     createdAt: DateTime!
   }
 
+  type Query {
+    userSeasonDepartmentGroup(id: ID!): UserSeasonDepartmentGroupDetailResult!
+      @requireAuth
+  }
+
+  union UserSeasonDepartmentGroupDetailResult =
+      UserSeasonDepartmentGroup
+    | NotFoundError
+
   type Mutation {
     createUserSeasonDepartmentGroup(
       input: CreateUserSeasonDepartmentGroupInput!
     ): CreateUserSeasonDepartmentGroupResult! @requireAuth
+
+    requestRefundUserSeasonDepartmentGroup(
+      input: RequestRefundUserSeasonDepartmentGroupInput!
+    ): RequestRefundUserSeasonDepartmentGroupResult! @requireAuth
   }
 
   input CreateUserSeasonDepartmentGroupInput {
@@ -28,4 +41,12 @@ export const schema = gql`
       UserSeasonDepartmentGroup
     | NotFoundError
     | AlreadyExistsError
+
+  input RequestRefundUserSeasonDepartmentGroupInput {
+    id: ID!
+  }
+
+  union RequestRefundUserSeasonDepartmentGroupResult =
+      UserSeasonDepartmentGroup
+    | NotFoundError
 `

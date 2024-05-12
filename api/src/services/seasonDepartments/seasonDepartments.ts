@@ -44,6 +44,7 @@ export const SeasonDepartment = {
         userId,
         seasonDepartmentId: root?.id,
       },
+      orderBy: { createdAt: 'desc' },
     })
   },
 }

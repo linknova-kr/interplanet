@@ -21,6 +21,10 @@ const QUERY = graphql`
       }
       ... on SeasonDepartment {
         id
+        my {
+          id
+          status
+        }
         season {
           id
           name

@@ -19,6 +19,7 @@ import { Form, RadioField } from '@redwoodjs/forms'
 import { back } from '@redwoodjs/router'
 import { toast, Toaster } from '@redwoodjs/web/toast'
 
+import { SeasonDepartmentPageButtonCreateMutation } from '../__generated__/SeasonDepartmentPageButtonCreateMutation.graphql'
 import { SeasonDepartmentPageQuery$data } from '../__generated__/SeasonDepartmentPageQuery.graphql'
 import FormCard from '../FormCard/FormCard'
 
@@ -64,7 +65,7 @@ enum DepositConfirmValue {
 }
 
 const SeasonDepartmentPageButton = ({ seasonDepartment }: Props) => {
-  const [create] = useMutation(CREATE)
+  const [create] = useMutation<SeasonDepartmentPageButtonCreateMutation>(CREATE)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [step, setStep] = useState(ButtonStep.FORM)
   const [depositConfirm, setDepositConfirm] = useState(DepositConfirmValue.YES)
@@ -84,10 +85,17 @@ const SeasonDepartmentPageButton = ({ seasonDepartment }: Props) => {
             seasonGroupId: data.seasonGroupId,
           },
         },
-        onCompleted: () => {
-          toast.success('시즌 등록 신청이 완료되었습니다.')
-          onClose()
-          back()
+        onCompleted: ({ createUserSeasonDepartmentGroup }) => {
+          if (
+            createUserSeasonDepartmentGroup.__typename ===
+            'UserSeasonDepartmentGroup'
+          ) {
+            toast.success('시즌 등록 신청이 완료되었습니다.')
+            onClose()
+            back()
+          } else {
+            toast.error('시즌 등록 신청이 실패했습니다.')
+          }
         },
       })
     }

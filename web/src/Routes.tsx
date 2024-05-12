@@ -30,6 +30,7 @@ const Routes = () => {
           <Route path="/group-programs/{id}" page={GroupProgramPage} name="groupProgram" />
           <Route path="/posts/{id}" page={PostPage} name="post" />
           <Route path="/season-department/{id}" page={SeasonDepartmentPage} name="seasonDepartment" />
+          <Route path="/user-season-department-group/{id}/request-refund" page={UserSeasonDepartmentGroupRequestRefundPage} name="userSeasonDepartmentGroupRequestRefund" />
         </Set>
       </PrivateSet>
       <Route notfound page={NotFoundPage} />

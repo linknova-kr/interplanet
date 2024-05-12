@@ -51,9 +51,11 @@ const ActiveSeason = () => {
 
   const { name, startsAt, endsAt, seasonDepartments } = data.activeSeason
 
-  const joinedSeasonDepartments = seasonDepartments.filter((v) => v.my)
+  const joinedSeasonDepartments = seasonDepartments.filter(
+    (v) => v.my && v.my.status != 'REFUNDED'
+  )
   const notJoinedSeasonDepartments = seasonDepartments.filter(
-    (v) => v.my === null
+    (v) => v.my === null || v.my.status === 'REFUNDED'
   )
 
   return (

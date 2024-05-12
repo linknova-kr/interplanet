@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<fe010bf6269bd97df07341a653183b4c>>
+ * @generated SignedSource<<3181456b0eeef8fc6035d992f784a39e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,6 +9,7 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Query } from 'relay-runtime';
+export type UserSeasonDepartmentGroupStatus = "APPROVAL_PENDING" | "APPROVED" | "REFUNDED" | "REFUND_PENDING" | "%future added value";
 export type SeasonDepartmentPageQuery$variables = {
   id: string;
 };
@@ -24,6 +25,10 @@ export type SeasonDepartmentPageQuery$data = {
       readonly slug: string;
     };
     readonly id: string;
+    readonly my: {
+      readonly id: string;
+      readonly status: UserSeasonDepartmentGroupStatus;
+    } | null | undefined;
     readonly season: {
       readonly endsAt: any;
       readonly id: string;
@@ -93,11 +98,30 @@ v4 = {
 v5 = {
   "alias": null,
   "args": null,
+  "concreteType": "UserSeasonDepartmentGroup",
+  "kind": "LinkedField",
+  "name": "my",
+  "plural": false,
+  "selections": [
+    (v4/*: any*/),
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "status",
+      "storageKey": null
+    }
+  ],
+  "storageKey": null
+},
+v6 = {
+  "alias": null,
+  "args": null,
   "kind": "ScalarField",
   "name": "name",
   "storageKey": null
 },
-v6 = {
+v7 = {
   "alias": null,
   "args": null,
   "concreteType": "Season",
@@ -106,7 +130,7 @@ v6 = {
   "plural": false,
   "selections": [
     (v4/*: any*/),
-    (v5/*: any*/),
+    (v6/*: any*/),
     {
       "alias": null,
       "args": null,
@@ -124,7 +148,7 @@ v6 = {
   ],
   "storageKey": null
 },
-v7 = {
+v8 = {
   "alias": null,
   "args": null,
   "concreteType": "Department",
@@ -133,7 +157,7 @@ v7 = {
   "plural": false,
   "selections": [
     (v4/*: any*/),
-    (v5/*: any*/),
+    (v6/*: any*/),
     {
       "alias": null,
       "args": null,
@@ -165,8 +189,9 @@ return {
             "kind": "InlineFragment",
             "selections": [
               (v4/*: any*/),
-              (v6/*: any*/),
+              (v5/*: any*/),
               (v7/*: any*/),
+              (v8/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -184,7 +209,7 @@ return {
                     "name": "group",
                     "plural": false,
                     "selections": [
-                      (v5/*: any*/)
+                      (v6/*: any*/)
                     ],
                     "storageKey": null
                   }
@@ -222,8 +247,9 @@ return {
             "kind": "InlineFragment",
             "selections": [
               (v4/*: any*/),
-              (v6/*: any*/),
+              (v5/*: any*/),
               (v7/*: any*/),
+              (v8/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -241,7 +267,7 @@ return {
                     "name": "group",
                     "plural": false,
                     "selections": [
-                      (v5/*: any*/),
+                      (v6/*: any*/),
                       (v4/*: any*/)
                     ],
                     "storageKey": null
@@ -267,16 +293,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "5bd8c0e6c465361bdb08f9bda154e5a3",
+    "cacheID": "50746eb17d93dec67f733838b2298102",
     "id": null,
     "metadata": {},
     "name": "SeasonDepartmentPageQuery",
     "operationKind": "query",
-    "text": "query SeasonDepartmentPageQuery(\n  $id: ID!\n) {\n  seasonDepartment(id: $id) {\n    __typename\n    ... on NotFoundError {\n      message\n    }\n    ... on SeasonDepartment {\n      id\n      season {\n        id\n        name\n        startsAt\n        endsAt\n      }\n      department {\n        id\n        name\n        slug\n      }\n      seasonGroups {\n        id\n        group {\n          name\n          id\n        }\n      }\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
+    "text": "query SeasonDepartmentPageQuery(\n  $id: ID!\n) {\n  seasonDepartment(id: $id) {\n    __typename\n    ... on NotFoundError {\n      message\n    }\n    ... on SeasonDepartment {\n      id\n      my {\n        id\n        status\n      }\n      season {\n        id\n        name\n        startsAt\n        endsAt\n      }\n      department {\n        id\n        name\n        slug\n      }\n      seasonGroups {\n        id\n        group {\n          name\n          id\n        }\n      }\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "acfdf33485ed701ab8edf6967aa8050b";
+(node as any).hash = "ed0d0aad16e682618cd508025b587538";
 
 export default node;

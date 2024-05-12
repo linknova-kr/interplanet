@@ -22,6 +22,7 @@ interface SeasonDepartmentProps {
     message: string
     my:
       | {
+          id: string
           status: UserSeasonDepartmentGroupStatus
         }
       | null
@@ -62,7 +63,15 @@ const SeasonDepartment = ({
             </Button>
           )
         case 'APPROVED':
-          return <Button>취소</Button>
+          return (
+            <Link
+              to={routes.userSeasonDepartmentGroupRequestRefund({
+                id: seasonDepartment.my.id,
+              })}
+            >
+              <Button>취소</Button>
+            </Link>
+          )
         //  구현 필요
         case 'REFUND_PENDING':
           return (
@@ -108,8 +117,6 @@ const SeasonDepartment = ({
         </VStack>
 
         <Buttons />
-
-        {/* todo: 승인대기/취소/신청완료 */}
       </HStack>
       {showMessage && <Message>{seasonDepartment.message}234234</Message>}
       {/* todo: 소속 & 출석수 구현 */}
