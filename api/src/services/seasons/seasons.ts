@@ -2,8 +2,6 @@ import type { QueryResolvers } from 'types/graphql'
 
 import { db } from 'src/lib/db'
 
-import { seasonGroupConnection } from '../seasonGroups/seasonGroups'
-
 export const activeSeason: Omit<
   QueryResolvers['activeSeason'],
   'groupSeason'
@@ -21,7 +19,9 @@ export const activeSeason: Omit<
 }
 
 export const Season = {
-  seasonGroups: (args, { root }) => {
-    return seasonGroupConnection(args, { seasonId: root.id })
+  seasonDepartments: (_obj, { root }) => {
+    return db.seasonDepartment.findMany({
+      where: { seasonId: root.id },
+    })
   },
 }

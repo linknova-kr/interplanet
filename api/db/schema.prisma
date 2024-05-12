@@ -35,11 +35,12 @@ model User {
 }
 
 model Department {
-  id        String   @id @default(cuid())
-  name      String
-  slug      String   @unique
-  createdAt DateTime @default(now())
-  group     Group[]
+  id               String             @id @default(cuid())
+  name             String
+  slug             String             @unique
+  createdAt        DateTime           @default(now())
+  group            Group[]
+  seasonDepartment SeasonDepartment[]
 }
 
 model Group {
@@ -54,11 +55,22 @@ model Group {
 }
 
 model Season {
-  id          String        @id @default(cuid())
-  name        String
-  startsAt    DateTime
-  endsAt      DateTime
-  seasonGroup SeasonGroup[]
+  id               String             @id @default(cuid())
+  name             String
+  startsAt         DateTime
+  endsAt           DateTime
+  seasonGroup      SeasonGroup[]
+  seasonDepartment SeasonDepartment[]
+}
+
+model SeasonDepartment {
+  id           String     @id @default(cuid())
+  department   Department @relation(fields: [departmentId], references: [id])
+  season       Season     @relation(fields: [seasonId], references: [id])
+  departmentId String
+  seasonId     String
+  message      String     @default("")
+  createdAt    DateTime   @default(now())
 }
 
 model SeasonGroup {

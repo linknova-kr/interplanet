@@ -4,12 +4,7 @@ export const schema = gql`
     name: String!
     startsAt: DateTime!
     endsAt: DateTime!
-    seasonGroups(
-      first: Int
-      last: Int
-      before: String
-      after: String
-    ): SeasonGroupConnection!
+    seasonDepartments: [SeasonDepartment!]!
   }
 
   union ActionSeasonResult = Season | NotFoundError
