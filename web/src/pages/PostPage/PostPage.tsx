@@ -1,15 +1,18 @@
 import { useLazyLoadQuery } from 'react-relay'
 import { graphql } from 'relay-runtime'
 
-import { Link, Redirect, routes } from '@redwoodjs/router'
+import { Redirect } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 
 import { PostPageQuery } from 'src/components/__generated__/PostPageQuery.graphql'
+import DetailHead from 'src/components/DetailHead/DetailHead'
 import PageTitle from 'src/components/PageTitle/PageTitle'
+import { formatDateYMD } from 'src/util/date'
 
 const QUERY = graphql`
   query PostPageQuery($id: ID!) {
     post(id: $id) {
+      __typename
       ... on NotFoundError {
         message
       }
@@ -39,13 +42,18 @@ interface Props {
 
 const PostPage = ({ id }: Props) => {
   const data = useLazyLoadQuery<PostPageQuery>(QUERY, { id })
-  if (!data.post.id) {
+  if (data.post.__typename !== 'Post') {
     return <Redirect to="/not-found" />
   }
   return (
     <>
       <Metadata title="Post" description="Post page" />
       <PageTitle title={data.post.board.nameKr} />
+      <DetailHead
+        dateLabel={formatDateYMD(data.post.createdAt)}
+        title={data.post.title}
+        // todo: 작성자, 3dot 추가
+      />
       {/* todo 게시글 상세 & 댓글 기능 */}
     </>
   )

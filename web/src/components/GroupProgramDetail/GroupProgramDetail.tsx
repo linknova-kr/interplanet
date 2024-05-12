@@ -9,7 +9,9 @@ import GroupProgramHeader from '../GroupProgramHeader/GroupProgramHeader'
 import UserMessage from '../UserMessage/UserMessage'
 
 interface Props {
-  groupProgram: GroupProgramPageQuery$data['groupProgram']
+  groupProgram: {
+    __typename: 'GroupProgram'
+  } & GroupProgramPageQuery$data['groupProgram']
 }
 
 const Container = styled.div`

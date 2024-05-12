@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5f4f8466fa8352f671e688980f8d5b19>>
+ * @generated SignedSource<<93ea2e2c1ccc0a24fb65139a968ae83e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,19 +16,19 @@ export type GroupProgramPageQuery$variables = {
 };
 export type GroupProgramPageQuery$data = {
   readonly groupProgram: {
-    readonly address?: string;
-    readonly description?: string;
-    readonly endsAt?: any;
-    readonly id?: string;
-    readonly message?: string;
-    readonly my?: {
+    readonly __typename: "GroupProgram";
+    readonly address: string;
+    readonly description: string;
+    readonly endsAt: any;
+    readonly id: string;
+    readonly my: {
       readonly id: string;
       readonly message: string;
       readonly type: string;
     } | null | undefined;
-    readonly startsAt?: any;
-    readonly type?: GroupProgramType;
-    readonly userGroupPrograms?: {
+    readonly startsAt: any;
+    readonly type: GroupProgramType;
+    readonly userGroupPrograms: {
       readonly edges: ReadonlyArray<{
         readonly node: {
           readonly id: string;
@@ -43,6 +43,13 @@ export type GroupProgramPageQuery$data = {
       }>;
     };
     readonly " $fragmentSpreads": FragmentRefs<"GroupProgramHeaderFragment">;
+  } | {
+    readonly __typename: "NotFoundError";
+    readonly message: string;
+  } | {
+    // This will never be '%other', but we need some
+    // value in case none of the concrete values match.
+    readonly __typename: "%other";
   };
 };
 export type GroupProgramPageQuery = {
@@ -69,38 +76,45 @@ v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "id",
+  "name": "__typename",
   "storageKey": null
 },
 v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "startsAt",
+  "name": "id",
   "storageKey": null
 },
 v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "endsAt",
+  "name": "startsAt",
   "storageKey": null
 },
 v5 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "type",
+  "name": "endsAt",
   "storageKey": null
 },
 v6 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "message",
+  "name": "type",
   "storageKey": null
 },
 v7 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "message",
+  "storageKey": null
+},
+v8 = {
   "alias": null,
   "args": null,
   "concreteType": "UserGroupProgram",
@@ -108,31 +122,24 @@ v7 = {
   "name": "my",
   "plural": false,
   "selections": [
-    (v2/*: any*/),
-    (v5/*: any*/),
-    (v6/*: any*/)
+    (v3/*: any*/),
+    (v6/*: any*/),
+    (v7/*: any*/)
   ],
-  "storageKey": null
-},
-v8 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "address",
   "storageKey": null
 },
 v9 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "description",
+  "name": "address",
   "storageKey": null
 },
 v10 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "__typename",
+  "name": "description",
   "storageKey": null
 },
 v11 = [
@@ -152,8 +159,8 @@ v11 = [
         "name": "node",
         "plural": false,
         "selections": [
-          (v2/*: any*/),
-          (v5/*: any*/),
+          (v3/*: any*/),
+          (v6/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -162,7 +169,7 @@ v11 = [
             "name": "user",
             "plural": false,
             "selections": [
-              (v2/*: any*/),
+              (v3/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -180,8 +187,8 @@ v11 = [
             ],
             "storageKey": null
           },
-          (v6/*: any*/),
-          (v10/*: any*/)
+          (v7/*: any*/),
+          (v2/*: any*/)
         ],
         "storageKey": null
       },
@@ -224,7 +231,7 @@ v11 = [
 v12 = {
   "kind": "InlineFragment",
   "selections": [
-    (v6/*: any*/)
+    (v7/*: any*/)
   ],
   "type": "NotFoundError",
   "abstractKey": null
@@ -251,16 +258,17 @@ return {
         "name": "groupProgram",
         "plural": false,
         "selections": [
+          (v2/*: any*/),
           {
             "kind": "InlineFragment",
             "selections": [
-              (v2/*: any*/),
               (v3/*: any*/),
               (v4/*: any*/),
               (v5/*: any*/),
-              (v7/*: any*/),
+              (v6/*: any*/),
               (v8/*: any*/),
               (v9/*: any*/),
+              (v10/*: any*/),
               {
                 "alias": "userGroupPrograms",
                 "args": null,
@@ -302,17 +310,17 @@ return {
         "name": "groupProgram",
         "plural": false,
         "selections": [
-          (v10/*: any*/),
+          (v2/*: any*/),
           {
             "kind": "InlineFragment",
             "selections": [
-              (v2/*: any*/),
               (v3/*: any*/),
               (v4/*: any*/),
               (v5/*: any*/),
-              (v7/*: any*/),
+              (v6/*: any*/),
               (v8/*: any*/),
               (v9/*: any*/),
+              (v10/*: any*/),
               {
                 "alias": null,
                 "args": (v13/*: any*/),
@@ -369,11 +377,11 @@ return {
                         "name": "name",
                         "storageKey": null
                       },
-                      (v2/*: any*/)
+                      (v3/*: any*/)
                     ],
                     "storageKey": null
                   },
-                  (v2/*: any*/)
+                  (v3/*: any*/)
                 ],
                 "storageKey": null
               }
@@ -385,7 +393,7 @@ return {
           {
             "kind": "InlineFragment",
             "selections": [
-              (v2/*: any*/)
+              (v3/*: any*/)
             ],
             "type": "Node",
             "abstractKey": "__isNode"
@@ -418,6 +426,6 @@ return {
 };
 })();
 
-(node as any).hash = "52a3047768438939d900b1251dc94fd6";
+(node as any).hash = "a32caa5bd94d61fbe4a21eded3efb43a";
 
 export default node;

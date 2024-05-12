@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d644771160724f16e2d30f6b15543af6>>
+ * @generated SignedSource<<58477dd742a422f0fa094b5bb1afe312>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -22,9 +22,17 @@ export type UserGroupProgramFormModalUpdateMutation$variables = {
 };
 export type UserGroupProgramFormModalUpdateMutation$data = {
   readonly updateUserGroupProgram: {
-    readonly id?: string;
-    readonly message?: string;
-    readonly type?: string;
+    readonly __typename: "NotFoundError";
+    readonly message: string;
+  } | {
+    readonly __typename: "UserGroupProgram";
+    readonly id: string;
+    readonly message: string;
+    readonly type: string;
+  } | {
+    // This will never be '%other', but we need some
+    // value in case none of the concrete values match.
+    readonly __typename: "%other";
   };
 };
 export type UserGroupProgramFormModalUpdateMutation = {
@@ -61,21 +69,28 @@ v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "id",
+  "name": "__typename",
   "storageKey": null
 },
 v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "message",
+  "name": "id",
   "storageKey": null
 },
 v4 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "message",
+  "storageKey": null
+},
+v5 = {
   "kind": "InlineFragment",
   "selections": [
-    (v2/*: any*/),
     (v3/*: any*/),
+    (v4/*: any*/),
     {
       "alias": null,
       "args": null,
@@ -87,10 +102,10 @@ v4 = {
   "type": "UserGroupProgram",
   "abstractKey": null
 },
-v5 = {
+v6 = {
   "kind": "InlineFragment",
   "selections": [
-    (v3/*: any*/)
+    (v4/*: any*/)
   ],
   "type": "NotFoundError",
   "abstractKey": null
@@ -110,8 +125,9 @@ return {
         "name": "updateUserGroupProgram",
         "plural": false,
         "selections": [
-          (v4/*: any*/),
-          (v5/*: any*/)
+          (v2/*: any*/),
+          (v5/*: any*/),
+          (v6/*: any*/)
         ],
         "storageKey": null
       }
@@ -133,19 +149,13 @@ return {
         "name": "updateUserGroupProgram",
         "plural": false,
         "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "__typename",
-            "storageKey": null
-          },
-          (v4/*: any*/),
+          (v2/*: any*/),
           (v5/*: any*/),
+          (v6/*: any*/),
           {
             "kind": "InlineFragment",
             "selections": [
-              (v2/*: any*/)
+              (v3/*: any*/)
             ],
             "type": "Node",
             "abstractKey": "__isNode"
@@ -166,6 +176,6 @@ return {
 };
 })();
 
-(node as any).hash = "ed1cf1097ee411b9f3bcbc28f0a7ce22";
+(node as any).hash = "21bc6a0796fad70e9af267bd63bb8de1";
 
 export default node;

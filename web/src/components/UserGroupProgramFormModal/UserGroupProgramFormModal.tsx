@@ -32,10 +32,12 @@ const CREATE = graphql`
         connections: $connections
         edgeTypeName: "UserGroupProgramEdge"
       ) {
+      __typename
       ... on UserGroupProgram {
         id
         user {
           id
+          realName
           nickname
         }
         type
@@ -63,6 +65,7 @@ const UPDATE = graphql`
     $where: UpdateUserGroupProgramWhere!
   ) {
     updateUserGroupProgram(input: $input, where: $where) {
+      __typename
       ... on UserGroupProgram {
         id
         message
@@ -76,9 +79,15 @@ const UPDATE = graphql`
 `
 
 interface Props {
-  groupProgram: GroupProgramPageQuery$data['groupProgram']
+  groupProgram: {
+    __typename: 'GroupProgram'
+  } & GroupProgramPageQuery$data['groupProgram']
   onDone: () => void
-  edit?: GroupProgramPageQuery$data['groupProgram']['my']
+  edit?: {
+    id: string
+    type: string
+    message: string
+  }
 }
 
 const UserGroupProgramFormModal = ({ groupProgram, onDone, edit }: Props) => {
@@ -139,11 +148,11 @@ const UserGroupProgramFormModal = ({ groupProgram, onDone, edit }: Props) => {
           where: { id: edit.id },
         },
         onCompleted: ({ updateUserGroupProgram }) => {
-          if (updateUserGroupProgram.id == null) {
-            toast.error(updateUserGroupProgram.message)
-          } else {
+          if (updateUserGroupProgram.__typename == 'UserGroupProgram') {
             toast.success('수정되었습니다')
             onDone()
+          } else {
+            toast.error('수정에 실패했습니다')
           }
         },
       })
@@ -164,12 +173,11 @@ const UserGroupProgramFormModal = ({ groupProgram, onDone, edit }: Props) => {
         },
         onCompleted: ({ createUserGroupProgram }) => {
           // if (createUserGroupProgram)
-          if (createUserGroupProgram.id == null) {
-            toast.error(createUserGroupProgram.message)
-          } else {
+          if (createUserGroupProgram.__typename == 'UserGroupProgram') {
             toast.success('신청이 완료되었습니다')
-
             onDone()
+          } else {
+            toast.error('신청에 실패했습니다')
           }
         },
       })

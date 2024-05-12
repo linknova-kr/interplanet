@@ -9,6 +9,7 @@ import SeasonDepartment from '../SeasonDepartment/SeasonDepartment'
 export const QUERY = graphql`
   query ActiveSeasonQuery {
     activeSeason {
+      __typename
       ... on Season {
         id
         name
@@ -22,6 +23,9 @@ export const QUERY = graphql`
             name
           }
         }
+      }
+      ... on NotFoundError {
+        message
       }
     }
   }
@@ -38,7 +42,8 @@ const Title = styled.div`
 
 const ActiveSeason = () => {
   const data = useLazyLoadQuery<ActiveSeasonQuery>(QUERY, {})
-  if (!data.activeSeason) return <div>No active season</div>
+  if (data.activeSeason.__typename !== 'Season')
+    return <div>No active season</div>
 
   const { name, startsAt, endsAt, seasonDepartments } = data.activeSeason
 

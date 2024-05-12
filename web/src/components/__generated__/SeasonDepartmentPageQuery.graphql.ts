@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<839660be182eadc3c42dac4ecc9bd348>>
+ * @generated SignedSource<<d6a5a43b318b14c455e9796dcb5765a9>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,18 +14,25 @@ export type SeasonDepartmentPageQuery$variables = {
 };
 export type SeasonDepartmentPageQuery$data = {
   readonly seasonDepartment: {
-    readonly department?: {
+    readonly __typename: "NotFoundError";
+    readonly message: string;
+  } | {
+    readonly __typename: "SeasonDepartment";
+    readonly department: {
       readonly id: string;
       readonly name: string;
     };
-    readonly id?: string;
-    readonly message?: string;
-    readonly season?: {
+    readonly id: string;
+    readonly season: {
       readonly endsAt: any;
       readonly id: string;
       readonly name: string;
       readonly startsAt: any;
     };
+  } | {
+    // This will never be '%other', but we need some
+    // value in case none of the concrete values match.
+    readonly __typename: "%other";
   };
 };
 export type SeasonDepartmentPageQuery = {
@@ -49,6 +56,13 @@ v1 = [
   }
 ],
 v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "__typename",
+  "storageKey": null
+},
+v3 = {
   "kind": "InlineFragment",
   "selections": [
     {
@@ -62,24 +76,24 @@ v2 = {
   "type": "NotFoundError",
   "abstractKey": null
 },
-v3 = {
+v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 },
-v4 = {
+v5 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "name",
   "storageKey": null
 },
-v5 = {
+v6 = {
   "kind": "InlineFragment",
   "selections": [
-    (v3/*: any*/),
+    (v4/*: any*/),
     {
       "alias": null,
       "args": null,
@@ -88,8 +102,8 @@ v5 = {
       "name": "season",
       "plural": false,
       "selections": [
-        (v3/*: any*/),
         (v4/*: any*/),
+        (v5/*: any*/),
         {
           "alias": null,
           "args": null,
@@ -115,8 +129,8 @@ v5 = {
       "name": "department",
       "plural": false,
       "selections": [
-        (v3/*: any*/),
-        (v4/*: any*/)
+        (v4/*: any*/),
+        (v5/*: any*/)
       ],
       "storageKey": null
     }
@@ -140,7 +154,8 @@ return {
         "plural": false,
         "selections": [
           (v2/*: any*/),
-          (v5/*: any*/)
+          (v3/*: any*/),
+          (v6/*: any*/)
         ],
         "storageKey": null
       }
@@ -162,19 +177,13 @@ return {
         "name": "seasonDepartment",
         "plural": false,
         "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "__typename",
-            "storageKey": null
-          },
           (v2/*: any*/),
-          (v5/*: any*/),
+          (v3/*: any*/),
+          (v6/*: any*/),
           {
             "kind": "InlineFragment",
             "selections": [
-              (v3/*: any*/)
+              (v4/*: any*/)
             ],
             "type": "Node",
             "abstractKey": "__isNode"
@@ -195,6 +204,6 @@ return {
 };
 })();
 
-(node as any).hash = "490b3958598b01086c971250de066167";
+(node as any).hash = "1709557bf6f5b633c315b664b0aad99b";
 
 export default node;

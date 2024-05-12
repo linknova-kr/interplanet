@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d186dddeacca2bea5739141bb7270e07>>
+ * @generated SignedSource<<ccf2dee2642400025482c0135e79251c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,21 +14,28 @@ export type PostPageQuery$variables = {
 };
 export type PostPageQuery$data = {
   readonly post: {
-    readonly board?: {
+    readonly __typename: "NotFoundError";
+    readonly message: string;
+  } | {
+    readonly __typename: "Post";
+    readonly board: {
       readonly id: string;
       readonly nameKr: string;
     };
-    readonly commentsCount?: number;
-    readonly content?: string;
-    readonly createdAt?: any;
-    readonly id?: string;
-    readonly isMine?: boolean;
-    readonly message?: string;
-    readonly title?: string;
-    readonly updatedAt?: any;
-    readonly user?: {
+    readonly commentsCount: number;
+    readonly content: string;
+    readonly createdAt: any;
+    readonly id: string;
+    readonly isMine: boolean;
+    readonly title: string;
+    readonly updatedAt: any;
+    readonly user: {
       readonly nickname: string;
     };
+  } | {
+    // This will never be '%other', but we need some
+    // value in case none of the concrete values match.
+    readonly __typename: "%other";
   };
 };
 export type PostPageQuery = {
@@ -52,6 +59,13 @@ v1 = [
   }
 ],
 v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "__typename",
+  "storageKey": null
+},
+v3 = {
   "kind": "InlineFragment",
   "selections": [
     {
@@ -65,63 +79,63 @@ v2 = {
   "type": "NotFoundError",
   "abstractKey": null
 },
-v3 = {
+v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 },
-v4 = {
+v5 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "title",
   "storageKey": null
 },
-v5 = {
+v6 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "content",
   "storageKey": null
 },
-v6 = {
+v7 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "createdAt",
   "storageKey": null
 },
-v7 = {
+v8 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "updatedAt",
   "storageKey": null
 },
-v8 = {
+v9 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "isMine",
   "storageKey": null
 },
-v9 = {
+v10 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "nickname",
   "storageKey": null
 },
-v10 = {
+v11 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "commentsCount",
   "storageKey": null
 },
-v11 = {
+v12 = {
   "alias": null,
   "args": null,
   "concreteType": "Board",
@@ -129,7 +143,7 @@ v11 = {
   "name": "board",
   "plural": false,
   "selections": [
-    (v3/*: any*/),
+    (v4/*: any*/),
     {
       "alias": null,
       "args": null,
@@ -156,15 +170,16 @@ return {
         "plural": false,
         "selections": [
           (v2/*: any*/),
+          (v3/*: any*/),
           {
             "kind": "InlineFragment",
             "selections": [
-              (v3/*: any*/),
               (v4/*: any*/),
               (v5/*: any*/),
               (v6/*: any*/),
               (v7/*: any*/),
               (v8/*: any*/),
+              (v9/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -173,12 +188,12 @@ return {
                 "name": "user",
                 "plural": false,
                 "selections": [
-                  (v9/*: any*/)
+                  (v10/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v10/*: any*/),
-              (v11/*: any*/)
+              (v11/*: any*/),
+              (v12/*: any*/)
             ],
             "type": "Post",
             "abstractKey": null
@@ -204,23 +219,17 @@ return {
         "name": "post",
         "plural": false,
         "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "__typename",
-            "storageKey": null
-          },
           (v2/*: any*/),
+          (v3/*: any*/),
           {
             "kind": "InlineFragment",
             "selections": [
-              (v3/*: any*/),
               (v4/*: any*/),
               (v5/*: any*/),
               (v6/*: any*/),
               (v7/*: any*/),
               (v8/*: any*/),
+              (v9/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -229,13 +238,13 @@ return {
                 "name": "user",
                 "plural": false,
                 "selections": [
-                  (v9/*: any*/),
-                  (v3/*: any*/)
+                  (v10/*: any*/),
+                  (v4/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v10/*: any*/),
-              (v11/*: any*/)
+              (v11/*: any*/),
+              (v12/*: any*/)
             ],
             "type": "Post",
             "abstractKey": null
@@ -243,7 +252,7 @@ return {
           {
             "kind": "InlineFragment",
             "selections": [
-              (v3/*: any*/)
+              (v4/*: any*/)
             ],
             "type": "Node",
             "abstractKey": "__isNode"
@@ -264,6 +273,6 @@ return {
 };
 })();
 
-(node as any).hash = "c610e0e196f3c74ffe4567581145ff98";
+(node as any).hash = "d6ccf240386e47dd5ed4cb5d9c369949";
 
 export default node;

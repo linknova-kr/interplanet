@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<538c5eb3464258fb2fb8a260308b1ef5>>
+ * @generated SignedSource<<37c42b60348411b49d7cad73fb2290b8>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,14 +17,21 @@ export type GroupProgramPageButtonCancelMutation$variables = {
 };
 export type GroupProgramPageButtonCancelMutation$data = {
   readonly cancelUserGroupProgram: {
-    readonly groupProgram?: {
+    readonly __typename: "NotFoundError";
+    readonly message: string;
+  } | {
+    readonly __typename: "UserGroupProgram";
+    readonly groupProgram: {
       readonly id: string;
       readonly my: {
         readonly id: string;
       } | null | undefined;
     };
-    readonly id?: string;
-    readonly message?: string;
+    readonly id: string;
+  } | {
+    // This will never be '%other', but we need some
+    // value in case none of the concrete values match.
+    readonly __typename: "%other";
   };
 };
 export type GroupProgramPageButtonCancelMutation = {
@@ -51,16 +58,23 @@ v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "__typename",
+  "storageKey": null
+},
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 },
-v3 = [
-  (v2/*: any*/)
+v4 = [
+  (v3/*: any*/)
 ],
-v4 = {
+v5 = {
   "kind": "InlineFragment",
   "selections": [
-    (v2/*: any*/),
+    (v3/*: any*/),
     {
       "alias": null,
       "args": null,
@@ -69,7 +83,7 @@ v4 = {
       "name": "groupProgram",
       "plural": false,
       "selections": [
-        (v2/*: any*/),
+        (v3/*: any*/),
         {
           "alias": null,
           "args": null,
@@ -77,7 +91,7 @@ v4 = {
           "kind": "LinkedField",
           "name": "my",
           "plural": false,
-          "selections": (v3/*: any*/),
+          "selections": (v4/*: any*/),
           "storageKey": null
         }
       ],
@@ -87,7 +101,7 @@ v4 = {
   "type": "UserGroupProgram",
   "abstractKey": null
 },
-v5 = {
+v6 = {
   "kind": "InlineFragment",
   "selections": [
     {
@@ -116,8 +130,9 @@ return {
         "name": "cancelUserGroupProgram",
         "plural": false,
         "selections": [
-          (v4/*: any*/),
-          (v5/*: any*/)
+          (v2/*: any*/),
+          (v5/*: any*/),
+          (v6/*: any*/)
         ],
         "storageKey": null
       }
@@ -139,18 +154,12 @@ return {
         "name": "cancelUserGroupProgram",
         "plural": false,
         "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "__typename",
-            "storageKey": null
-          },
-          (v4/*: any*/),
+          (v2/*: any*/),
           (v5/*: any*/),
+          (v6/*: any*/),
           {
             "kind": "InlineFragment",
-            "selections": (v3/*: any*/),
+            "selections": (v4/*: any*/),
             "type": "Node",
             "abstractKey": "__isNode"
           }
@@ -170,6 +179,6 @@ return {
 };
 })();
 
-(node as any).hash = "cc45d33e15165e801e0231132464b637";
+(node as any).hash = "6276467e45bcdf168cb607e83e22541a";
 
 export default node;

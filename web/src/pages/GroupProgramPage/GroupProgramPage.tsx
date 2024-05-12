@@ -13,6 +13,7 @@ import ActionLayout from 'src/layouts/ActionLayout/ActionLayout'
 const QUERY = graphql`
   query GroupProgramPageQuery($id: ID!) {
     groupProgram(id: $id) {
+      __typename
       ... on GroupProgram {
         id
         startsAt
@@ -55,7 +56,7 @@ interface Props {
 
 const GroupProgramPage = ({ id }: Props) => {
   const data = useLazyLoadQuery<GroupProgramPageQuery>(QUERY, { id })
-  if ('message' in data.groupProgram) {
+  if (data.groupProgram.__typename !== 'GroupProgram') {
     return <Redirect to="/not-found" />
   }
   return (

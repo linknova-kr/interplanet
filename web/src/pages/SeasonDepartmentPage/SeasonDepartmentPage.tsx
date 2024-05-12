@@ -13,6 +13,7 @@ import { formatMDdd } from 'src/util/date'
 const QUERY = graphql`
   query SeasonDepartmentPageQuery($id: ID!) {
     seasonDepartment(id: $id) {
+      __typename
       ... on NotFoundError {
         message
       }
@@ -48,7 +49,7 @@ interface Props {
 
 const SeasonDepartmentPage = ({ id }: Props) => {
   const data = useLazyLoadQuery<SeasonDepartmentPageQuery>(QUERY, { id })
-  if ('message' in data.seasonDepartment) {
+  if (data.seasonDepartment.__typename !== 'SeasonDepartment') {
     return <Redirect to="/not-found" />
   }
   const { department, season } = data.seasonDepartment

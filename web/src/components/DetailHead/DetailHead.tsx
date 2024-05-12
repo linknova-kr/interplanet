@@ -29,7 +29,7 @@ const Row = styled.div`
 `
 
 interface Props {
-  departmentName: string
+  departmentName?: string
   dateLabel: string
   address?: string
   title: string
@@ -40,7 +40,7 @@ const DetailHead = ({ departmentName, dateLabel, address, title }: Props) => {
       <ChevronLeftIcon boxSize={10} onClick={() => back()} />
       <Info>
         <Row>
-          <Badge>{departmentName}</Badge>
+          {departmentName && <Badge>{departmentName}</Badge>}
           <span>{dateLabel}</span>
           {address && <span>{address}</span>}
         </Row>

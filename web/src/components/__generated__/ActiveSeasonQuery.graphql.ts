@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ebec64cd850c01499148edcad2adbe1a>>
+ * @generated SignedSource<<43c1e1a11e903d386610199d80aa84ea>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,17 +12,25 @@ import { ConcreteRequest, Query } from 'relay-runtime';
 export type ActiveSeasonQuery$variables = Record<PropertyKey, never>;
 export type ActiveSeasonQuery$data = {
   readonly activeSeason: {
-    readonly endsAt?: any;
-    readonly id?: string;
-    readonly name?: string;
-    readonly seasonDepartments?: ReadonlyArray<{
+    readonly __typename: "NotFoundError";
+    readonly message: string;
+  } | {
+    readonly __typename: "Season";
+    readonly endsAt: any;
+    readonly id: string;
+    readonly name: string;
+    readonly seasonDepartments: ReadonlyArray<{
       readonly department: {
         readonly name: string;
       };
       readonly id: string;
       readonly message: string;
     }>;
-    readonly startsAt?: any;
+    readonly startsAt: any;
+  } | {
+    // This will never be '%other', but we need some
+    // value in case none of the concrete values match.
+    readonly __typename: "%other";
   };
 };
 export type ActiveSeasonQuery = {
@@ -35,36 +43,51 @@ var v0 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "id",
+  "name": "__typename",
   "storageKey": null
 },
 v1 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "name",
+  "name": "id",
   "storageKey": null
 },
 v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "startsAt",
+  "name": "name",
   "storageKey": null
 },
 v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "endsAt",
+  "name": "startsAt",
   "storageKey": null
 },
 v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "endsAt",
+  "storageKey": null
+},
+v5 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "message",
   "storageKey": null
+},
+v6 = {
+  "kind": "InlineFragment",
+  "selections": [
+    (v5/*: any*/)
+  ],
+  "type": "NotFoundError",
+  "abstractKey": null
 };
 return {
   "fragment": {
@@ -81,13 +104,14 @@ return {
         "name": "activeSeason",
         "plural": false,
         "selections": [
+          (v0/*: any*/),
           {
             "kind": "InlineFragment",
             "selections": [
-              (v0/*: any*/),
               (v1/*: any*/),
               (v2/*: any*/),
               (v3/*: any*/),
+              (v4/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -96,8 +120,8 @@ return {
                 "name": "seasonDepartments",
                 "plural": true,
                 "selections": [
-                  (v0/*: any*/),
-                  (v4/*: any*/),
+                  (v1/*: any*/),
+                  (v5/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -106,7 +130,7 @@ return {
                     "name": "department",
                     "plural": false,
                     "selections": [
-                      (v1/*: any*/)
+                      (v2/*: any*/)
                     ],
                     "storageKey": null
                   }
@@ -116,7 +140,8 @@ return {
             ],
             "type": "Season",
             "abstractKey": null
-          }
+          },
+          (v6/*: any*/)
         ],
         "storageKey": null
       }
@@ -138,20 +163,14 @@ return {
         "name": "activeSeason",
         "plural": false,
         "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "__typename",
-            "storageKey": null
-          },
+          (v0/*: any*/),
           {
             "kind": "InlineFragment",
             "selections": [
-              (v0/*: any*/),
               (v1/*: any*/),
               (v2/*: any*/),
               (v3/*: any*/),
+              (v4/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -160,8 +179,8 @@ return {
                 "name": "seasonDepartments",
                 "plural": true,
                 "selections": [
-                  (v0/*: any*/),
-                  (v4/*: any*/),
+                  (v1/*: any*/),
+                  (v5/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -170,8 +189,8 @@ return {
                     "name": "department",
                     "plural": false,
                     "selections": [
-                      (v1/*: any*/),
-                      (v0/*: any*/)
+                      (v2/*: any*/),
+                      (v1/*: any*/)
                     ],
                     "storageKey": null
                   }
@@ -182,10 +201,11 @@ return {
             "type": "Season",
             "abstractKey": null
           },
+          (v6/*: any*/),
           {
             "kind": "InlineFragment",
             "selections": [
-              (v0/*: any*/)
+              (v1/*: any*/)
             ],
             "type": "Node",
             "abstractKey": "__isNode"
@@ -196,16 +216,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "f5ba0aa697f5692b459674c628cde9a3",
+    "cacheID": "e39e48c3d00127e8f0e25dd43006f27f",
     "id": null,
     "metadata": {},
     "name": "ActiveSeasonQuery",
     "operationKind": "query",
-    "text": "query ActiveSeasonQuery {\n  activeSeason {\n    __typename\n    ... on Season {\n      id\n      name\n      startsAt\n      endsAt\n      seasonDepartments {\n        id\n        message\n        department {\n          name\n          id\n        }\n      }\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
+    "text": "query ActiveSeasonQuery {\n  activeSeason {\n    __typename\n    ... on Season {\n      id\n      name\n      startsAt\n      endsAt\n      seasonDepartments {\n        id\n        message\n        department {\n          name\n          id\n        }\n      }\n    }\n    ... on NotFoundError {\n      message\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "1b24248ea1e03422c0af1b3d90a4ce2e";
+(node as any).hash = "76fc58fdf7b9f45b30c1e3c6df050178";
 
 export default node;

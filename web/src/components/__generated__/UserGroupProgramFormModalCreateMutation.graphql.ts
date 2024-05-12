@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<88e21b8584f5af53216759ac1267b6b0>>
+ * @generated SignedSource<<0789eca81519cb2f149ab994c93563a4>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -20,19 +20,31 @@ export type UserGroupProgramFormModalCreateMutation$variables = {
 };
 export type UserGroupProgramFormModalCreateMutation$data = {
   readonly createUserGroupProgram: {
-    readonly groupProgram?: {
+    readonly __typename: "AlreadyExistsError";
+    readonly message: string;
+  } | {
+    readonly __typename: "NotFoundError";
+    readonly message: string;
+  } | {
+    readonly __typename: "UserGroupProgram";
+    readonly groupProgram: {
       readonly id: string;
       readonly my: {
         readonly id: string;
       } | null | undefined;
     };
-    readonly id?: string;
-    readonly message?: string;
-    readonly type?: string;
-    readonly user?: {
+    readonly id: string;
+    readonly message: string;
+    readonly type: string;
+    readonly user: {
       readonly id: string;
       readonly nickname: string;
+      readonly realName: string;
     };
+  } | {
+    // This will never be '%other', but we need some
+    // value in case none of the concrete values match.
+    readonly __typename: "%other";
   };
 };
 export type UserGroupProgramFormModalCreateMutation = {
@@ -62,23 +74,30 @@ v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "id",
+  "name": "__typename",
   "storageKey": null
 },
 v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v5 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "message",
   "storageKey": null
 },
-v5 = [
-  (v3/*: any*/)
+v6 = [
+  (v4/*: any*/)
 ],
-v6 = {
+v7 = {
   "kind": "InlineFragment",
   "selections": [
-    (v3/*: any*/),
+    (v4/*: any*/),
     {
       "alias": null,
       "args": null,
@@ -87,7 +106,14 @@ v6 = {
       "name": "user",
       "plural": false,
       "selections": [
-        (v3/*: any*/),
+        (v4/*: any*/),
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "realName",
+          "storageKey": null
+        },
         {
           "alias": null,
           "args": null,
@@ -105,7 +131,7 @@ v6 = {
       "name": "type",
       "storageKey": null
     },
-    (v4/*: any*/),
+    (v5/*: any*/),
     {
       "alias": null,
       "args": null,
@@ -114,7 +140,7 @@ v6 = {
       "name": "groupProgram",
       "plural": false,
       "selections": [
-        (v3/*: any*/),
+        (v4/*: any*/),
         {
           "alias": null,
           "args": null,
@@ -122,7 +148,7 @@ v6 = {
           "kind": "LinkedField",
           "name": "my",
           "plural": false,
-          "selections": (v5/*: any*/),
+          "selections": (v6/*: any*/),
           "storageKey": null
         }
       ],
@@ -132,18 +158,18 @@ v6 = {
   "type": "UserGroupProgram",
   "abstractKey": null
 },
-v7 = [
-  (v4/*: any*/)
+v8 = [
+  (v5/*: any*/)
 ],
-v8 = {
+v9 = {
   "kind": "InlineFragment",
-  "selections": (v7/*: any*/),
+  "selections": (v8/*: any*/),
   "type": "AlreadyExistsError",
   "abstractKey": null
 },
-v9 = {
+v10 = {
   "kind": "InlineFragment",
-  "selections": (v7/*: any*/),
+  "selections": (v8/*: any*/),
   "type": "NotFoundError",
   "abstractKey": null
 };
@@ -165,9 +191,10 @@ return {
         "name": "createUserGroupProgram",
         "plural": false,
         "selections": [
-          (v6/*: any*/),
-          (v8/*: any*/),
-          (v9/*: any*/)
+          (v3/*: any*/),
+          (v7/*: any*/),
+          (v9/*: any*/),
+          (v10/*: any*/)
         ],
         "storageKey": null
       }
@@ -192,19 +219,13 @@ return {
         "name": "createUserGroupProgram",
         "plural": false,
         "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "__typename",
-            "storageKey": null
-          },
-          (v6/*: any*/),
-          (v8/*: any*/),
+          (v3/*: any*/),
+          (v7/*: any*/),
           (v9/*: any*/),
+          (v10/*: any*/),
           {
             "kind": "InlineFragment",
-            "selections": (v5/*: any*/),
+            "selections": (v6/*: any*/),
             "type": "Node",
             "abstractKey": "__isNode"
           }
@@ -235,16 +256,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "9eabce13bc2160780521353d03b812cf",
+    "cacheID": "1136e481665b309c7f1d9ca9eaa0edf2",
     "id": null,
     "metadata": {},
     "name": "UserGroupProgramFormModalCreateMutation",
     "operationKind": "mutation",
-    "text": "mutation UserGroupProgramFormModalCreateMutation(\n  $input: CreateUserGroupProgramInput!\n) {\n  createUserGroupProgram(input: $input) {\n    __typename\n    ... on UserGroupProgram {\n      id\n      user {\n        id\n        nickname\n      }\n      type\n      message\n      groupProgram {\n        id\n        my {\n          id\n        }\n      }\n    }\n    ... on AlreadyExistsError {\n      message\n    }\n    ... on NotFoundError {\n      message\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
+    "text": "mutation UserGroupProgramFormModalCreateMutation(\n  $input: CreateUserGroupProgramInput!\n) {\n  createUserGroupProgram(input: $input) {\n    __typename\n    ... on UserGroupProgram {\n      id\n      user {\n        id\n        realName\n        nickname\n      }\n      type\n      message\n      groupProgram {\n        id\n        my {\n          id\n        }\n      }\n    }\n    ... on AlreadyExistsError {\n      message\n    }\n    ... on NotFoundError {\n      message\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "f72a8834ae11706b963d48f12ec1cf0a";
+(node as any).hash = "7bf1e8bce8538c42eb5b2c25fbe20f91";
 
 export default node;

@@ -9,7 +9,9 @@ import { GroupProgramPageQuery$data } from '../__generated__/GroupProgramPageQue
 import UserGroupProgramFormModal from '../UserGroupProgramFormModal/UserGroupProgramFormModal'
 
 interface Props {
-  groupProgram: GroupProgramPageQuery$data['groupProgram']
+  groupProgram: {
+    __typename: 'GroupProgram'
+  } & GroupProgramPageQuery$data['groupProgram']
 }
 
 const CANCEL = graphql`
@@ -17,6 +19,7 @@ const CANCEL = graphql`
     $input: CancelUserGroupProgramInput!
   ) {
     cancelUserGroupProgram(input: $input) {
+      __typename
       ... on UserGroupProgram {
         id
         groupProgram {
@@ -45,8 +48,8 @@ const GroupProgramPageButton = ({ groupProgram }: Props) => {
         },
       },
       updater: (store, data) => {
-        toast.success('취소되었습니다.')
-        if (data.cancelUserGroupProgram.id != null) {
+        if (data.cancelUserGroupProgram.__typename === 'UserGroupProgram') {
+          toast.success('취소되었습니다.')
           const connected = store.get(groupProgram.id)
           const connectionID = ConnectionHandler.getConnection(
             connected,
