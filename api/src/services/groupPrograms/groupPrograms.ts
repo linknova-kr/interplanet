@@ -2,6 +2,8 @@ import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection
 import { Prisma } from '@prisma/client'
 import type {
   GroupProgramRelationResolvers,
+  MutationResolvers,
+  MutationcreateGroupProgramArgs,
   QueryResolvers,
   QuerygroupProgramArgs,
   QuerygroupProgramsArgs,
@@ -87,6 +89,42 @@ export const groupProgram: Omit<
     return { message: 'Group program not found' }
   }
   return result
+}
+
+export const createGroupProgram: Omit<
+  MutationResolvers['createGroupProgram'],
+  'userGroupPrograms'
+> = async ({ input }: MutationcreateGroupProgramArgs) => {
+  const userId = context.currentUser.id
+  const {
+    groupId,
+    title,
+    type,
+    startsAt,
+    endsAt,
+    description,
+    address,
+    addressSimple,
+  } = input
+  const group = await db.group.findUnique({
+    where: { id: input.groupId },
+  })
+  if (!group) {
+    return { message: 'Group not found', __typename: 'NotFoundError' }
+  }
+  return db.groupProgram.create({
+    data: {
+      title,
+      type,
+      startsAt,
+      endsAt,
+      description,
+      address,
+      addressSimple,
+      groupId,
+      hostUserId: userId,
+    },
+  })
 }
 
 export const GroupProgram: GroupProgramRelationResolvers = {

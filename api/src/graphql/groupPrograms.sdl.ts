@@ -62,4 +62,23 @@ export const schema = gql`
 
     groupProgram(id: ID!): GroupProgramDetailResult! @skipAuth
   }
+
+  type Mutation {
+    createGroupProgram(
+      input: CreateGroupProgramInput!
+    ): GroupProgramCreateResult! @requireAuth
+  }
+
+  input CreateGroupProgramInput {
+    title: String!
+    type: GroupProgramType!
+    groupId: ID!
+    startsAt: DateTime!
+    endsAt: DateTime!
+    address: String!
+    addressSimple: String!
+    description: String!
+  }
+
+  union GroupProgramCreateResult = GroupProgram | NotFoundError
 `
