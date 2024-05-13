@@ -24,4 +24,12 @@ export const Season = {
       where: { seasonId: root.id },
     })
   },
+  seasonGroups: (args, { root }) => {
+    return db.seasonGroup.findMany({
+      where: {
+        seasonId: root.id,
+        group: { department: { type: args.departmentType } },
+      },
+    })
+  },
 }

@@ -5,6 +5,7 @@ export const schema = gql`
     startsAt: DateTime!
     endsAt: DateTime!
     seasonDepartments: [SeasonDepartment!]!
+    seasonGroups(departmentType: DepartmentType): [SeasonGroup!]!
   }
 
   union ActionSeasonResult = Season | NotFoundError

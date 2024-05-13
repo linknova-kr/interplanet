@@ -4,12 +4,19 @@ export const schema = gql`
     name: String!
     slug: String!
     createdAt: DateTime!
+    type: DepartmentType!
     groups(
       first: Int
       last: Int
       before: String
       after: String
     ): GroupConnection!
+  }
+
+  enum DepartmentType {
+    BOOK
+    ENGLISH
+    FOUNDER
   }
 
   type DepartmentEdge {

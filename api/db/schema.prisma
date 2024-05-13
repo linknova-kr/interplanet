@@ -39,8 +39,15 @@ model Department {
   name             String
   slug             String             @unique
   createdAt        DateTime           @default(now())
+  type             DepartmentType     @default(BOOK)
   group            Group[]
   seasonDepartment SeasonDepartment[]
+}
+
+enum DepartmentType {
+  BOOK
+  ENGLISH
+  FOUNDER
 }
 
 model Group {
