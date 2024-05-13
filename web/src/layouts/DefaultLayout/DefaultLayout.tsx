@@ -15,8 +15,9 @@ const Layout = styled(Container)`
   text-align: center;
 `
 
-const Main = styled.main`
-  min-height: 100vh;
+const Main = styled.main<{ hasNav: boolean }>`
+  ${({ hasNav }) =>
+    hasNav ? 'min-height: calc(100vh - 70px);' : 'min-height: 100vh;'}
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -26,7 +27,7 @@ const Main = styled.main`
 const DefaultLayout = ({ children, nav }: DefaultLayoutProps) => {
   return (
     <Layout>
-      <Main>{children}</Main>
+      <Main hasNav={Boolean(nav)}>{children}</Main>
       {nav}
     </Layout>
   )

@@ -50,7 +50,9 @@ const QUERY = graphql`
 const Actions = styled.div`
   margin-top: 16px;
   display: flex;
-  gap: 8px;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0 30px;
   margin-bottom: 16px;
 `
 

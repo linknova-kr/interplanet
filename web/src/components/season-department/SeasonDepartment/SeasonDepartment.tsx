@@ -116,7 +116,9 @@ const SeasonDepartment = ({
           </Heading>
         </VStack>
 
-        <Buttons />
+        <HStack>
+          <Buttons />
+        </HStack>
       </HStack>
       {showMessage && <Message>{seasonDepartment.message}234234</Message>}
       {/* todo: 소속 & 출석수 구현 */}
