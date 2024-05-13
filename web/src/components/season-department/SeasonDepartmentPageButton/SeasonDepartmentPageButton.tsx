@@ -75,6 +75,12 @@ const SeasonDepartmentPageButton = ({ seasonDepartment }: Props) => {
       toast.error('소속을 선택해주세요.')
       return
     }
+    if (seasonDepartment.department.type === 'ENGLISH') {
+      if (!data.level) {
+        toast.error('영어 레벨을 선택해주세요.')
+        return
+      }
+    }
     if (step === ButtonStep.FORM) {
       setStep(ButtonStep.DEPOSIT_CONFIRM)
     } else {
@@ -83,6 +89,7 @@ const SeasonDepartmentPageButton = ({ seasonDepartment }: Props) => {
           input: {
             seasonDepartmentId: seasonDepartment.id,
             seasonGroupId: data.seasonGroupId,
+            level: data.level,
           },
         },
         onCompleted: ({ createUserSeasonDepartmentGroup }) => {
@@ -127,7 +134,40 @@ const SeasonDepartmentPageButton = ({ seasonDepartment }: Props) => {
                       </Stack>
                     </RadioGroup>
                   </FormCard>
-                  {/* 영어 선택 */}
+                  {seasonDepartment.department.type === 'ENGLISH' && (
+                    <FormCard
+                      header="옵션선택(필수)"
+                      title="본인 현재 레벨(택1)"
+                    >
+                      <RadioGroup name="level">
+                        <Stack direction="column">
+                          {[
+                            {
+                              value: '7',
+                              label: '7 (오픽 IH, 토스7, 토플 스피킹 26 ~~)',
+                            },
+                            {
+                              value: '8',
+                              label: '8 (오픽 IH, 토스7, 토플 스피킹 26 ~~)',
+                            },
+                            {
+                              value: '9',
+                              label: '9 (오픽 IH, 토스7, 토플 스피킹 26 ~~)',
+                            },
+                            {
+                              value: '10',
+                              label: '10 (오픽 IH, 토스7, 토플 스피킹 26 ~~)',
+                            },
+                          ].map((level) => (
+                            <div key={level.value}>
+                              <RadioField value={level.value} name="level" />
+                              {` ${level.label}`}
+                            </div>
+                          ))}
+                        </Stack>
+                      </RadioGroup>
+                    </FormCard>
+                  )}
                 </DrawerBody>
                 <DrawerFooter>
                   <Button w="100%" type="submit">

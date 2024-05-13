@@ -29,7 +29,7 @@ export const createUserSeasonDepartmentGroup: Omit<
   'seasonGroup' | 'seasonDepartment'
 > = async ({ input }: MutationcreateUserSeasonDepartmentGroupArgs) => {
   const userId = context.currentUser.id
-  const { seasonGroupId, seasonDepartmentId } = input
+  const { seasonGroupId, seasonDepartmentId, level } = input
   const seasonGroup = await db.seasonGroup.findUnique({
     where: { id: seasonGroupId },
   })
@@ -68,6 +68,7 @@ export const createUserSeasonDepartmentGroup: Omit<
       userId,
       seasonGroupId,
       seasonDepartmentId,
+      level,
       status: 'APPROVAL_PENDING',
     },
   })

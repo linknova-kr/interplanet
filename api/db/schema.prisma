@@ -108,6 +108,7 @@ model UserSeasonDepartmentGroup {
   seasonDepartmentId String
   createdAt          DateTime                        @default(now())
   status             UserSeasonDepartmentGroupStatus
+  level              String?
   refundedAt         DateTime?
 }
 

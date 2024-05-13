@@ -6,8 +6,8 @@ import { Redirect } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 
 import { SeasonDepartmentPageQuery } from 'src/components/__generated__/SeasonDepartmentPageQuery.graphql'
-import PageTitle from 'src/components/common/PageTitle/PageTitle'
 import DetailHead from 'src/components/common/DetailHead/DetailHead'
+import PageTitle from 'src/components/common/PageTitle/PageTitle'
 import SeasonDepartmentPageButton from 'src/components/season-department/SeasonDepartmentPageButton/SeasonDepartmentPageButton'
 import ActionLayout from 'src/layouts/ActionLayout/ActionLayout'
 import { formatMDdd } from 'src/util/date'
@@ -35,6 +35,7 @@ const QUERY = graphql`
           id
           name
           slug
+          type
         }
         seasonGroups {
           id

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<29cd4240a6ee75a83f00a4ceeb6a4a67>>
+ * @generated SignedSource<<449a1bc21a86f623f2058bbdd82b5803>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,6 +11,7 @@
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type UserSeasonDepartmentGroupStatus = "APPROVAL_PENDING" | "APPROVED" | "REFUNDED" | "REFUND_PENDING" | "%future added value";
 export type CreateUserSeasonDepartmentGroupInput = {
+  level?: string | null | undefined;
   seasonDepartmentId: string;
   seasonGroupId: string;
 };

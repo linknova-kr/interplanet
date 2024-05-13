@@ -10,6 +10,7 @@ export const schema = gql`
     seasonGroup: SeasonGroup!
     seasonDepartment: SeasonDepartment!
     status: UserSeasonDepartmentGroupStatus!
+    level: String
     createdAt: DateTime!
   }
 
@@ -35,6 +36,7 @@ export const schema = gql`
   input CreateUserSeasonDepartmentGroupInput {
     seasonGroupId: String!
     seasonDepartmentId: String!
+    level: String
   }
 
   union CreateUserSeasonDepartmentGroupResult =

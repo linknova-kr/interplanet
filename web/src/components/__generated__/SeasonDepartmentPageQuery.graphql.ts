@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3181456b0eeef8fc6035d992f784a39e>>
+ * @generated SignedSource<<ce6fd8bf63353e506f55d8370983714d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,6 +9,7 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Query } from 'relay-runtime';
+export type DepartmentType = "BOOK" | "ENGLISH" | "FOUNDER" | "%future added value";
 export type UserSeasonDepartmentGroupStatus = "APPROVAL_PENDING" | "APPROVED" | "REFUNDED" | "REFUND_PENDING" | "%future added value";
 export type SeasonDepartmentPageQuery$variables = {
   id: string;
@@ -23,6 +24,7 @@ export type SeasonDepartmentPageQuery$data = {
       readonly id: string;
       readonly name: string;
       readonly slug: string;
+      readonly type: DepartmentType;
     };
     readonly id: string;
     readonly my: {
@@ -164,6 +166,13 @@ v8 = {
       "kind": "ScalarField",
       "name": "slug",
       "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "type",
+      "storageKey": null
     }
   ],
   "storageKey": null
@@ -293,16 +302,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "50746eb17d93dec67f733838b2298102",
+    "cacheID": "bbfc13652591c3ca7c5f545cf89cc1c1",
     "id": null,
     "metadata": {},
     "name": "SeasonDepartmentPageQuery",
     "operationKind": "query",
-    "text": "query SeasonDepartmentPageQuery(\n  $id: ID!\n) {\n  seasonDepartment(id: $id) {\n    __typename\n    ... on NotFoundError {\n      message\n    }\n    ... on SeasonDepartment {\n      id\n      my {\n        id\n        status\n      }\n      season {\n        id\n        name\n        startsAt\n        endsAt\n      }\n      department {\n        id\n        name\n        slug\n      }\n      seasonGroups {\n        id\n        group {\n          name\n          id\n        }\n      }\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
+    "text": "query SeasonDepartmentPageQuery(\n  $id: ID!\n) {\n  seasonDepartment(id: $id) {\n    __typename\n    ... on NotFoundError {\n      message\n    }\n    ... on SeasonDepartment {\n      id\n      my {\n        id\n        status\n      }\n      season {\n        id\n        name\n        startsAt\n        endsAt\n      }\n      department {\n        id\n        name\n        slug\n        type\n      }\n      seasonGroups {\n        id\n        group {\n          name\n          id\n        }\n      }\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "ed0d0aad16e682618cd508025b587538";
+(node as any).hash = "afad4d27322e5b9466355154bcd1d0ec";
 
 export default node;
