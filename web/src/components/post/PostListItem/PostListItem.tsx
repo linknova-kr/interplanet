@@ -46,7 +46,7 @@ const PostListItem = ({ post }: Props) => {
               {fragment.title}
             </Heading>
           </Stack>
-          {fragment.commentsCount >= 0 && (
+          {fragment.commentsCount > 0 && (
             <VStack bg="#f3f5f9" borderRadius="5px" width="60px">
               <div>{fragment.commentsCount}</div>
               <div>댓글</div>

@@ -1,3 +1,4 @@
+import { Container } from '@chakra-ui/react'
 import { useLazyLoadQuery } from 'react-relay'
 import { graphql } from 'relay-runtime'
 
@@ -5,8 +6,9 @@ import { Redirect } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 
 import { PostPageQuery } from 'src/components/__generated__/PostPageQuery.graphql'
-import PageTitle from 'src/components/common/PageTitle/PageTitle'
+import Comments from 'src/components/comment/Comments/Comments'
 import DetailHead from 'src/components/common/DetailHead/DetailHead'
+import PageTitle from 'src/components/common/PageTitle/PageTitle'
 import { formatDateYMD } from 'src/util/date'
 
 const QUERY = graphql`
@@ -33,6 +35,20 @@ const QUERY = graphql`
         }
       }
     }
+    comments(postId: $id) {
+      edges {
+        node {
+          id
+          content
+          createdAt
+          updatedAt
+          isMine
+          user {
+            nickname
+          }
+        }
+      }
+    }
   }
 `
 
@@ -54,7 +70,8 @@ const PostPage = ({ id }: Props) => {
         title={data.post.title}
         // todo: 작성자, 3dot 추가
       />
-      {/* todo 게시글 상세 & 댓글 기능 */}
+
+      <Comments comments={data.comments} />
     </>
   )
 }

@@ -21,7 +21,7 @@ export const schema = gql`
 
   type Query {
     comments(
-      postId: String!
+      postId: ID!
       first: Int
       last: Int
       before: String

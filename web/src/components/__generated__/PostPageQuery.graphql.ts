@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ccf2dee2642400025482c0135e79251c>>
+ * @generated SignedSource<<c9954f486f77030ec3a37859d9f8e194>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,6 +13,20 @@ export type PostPageQuery$variables = {
   id: string;
 };
 export type PostPageQuery$data = {
+  readonly comments: {
+    readonly edges: ReadonlyArray<{
+      readonly node: {
+        readonly content: string;
+        readonly createdAt: any;
+        readonly id: string;
+        readonly isMine: boolean;
+        readonly updatedAt: any;
+        readonly user: {
+          readonly nickname: string;
+        };
+      };
+    }>;
+  };
   readonly post: {
     readonly __typename: "NotFoundError";
     readonly message: string;
@@ -131,11 +145,23 @@ v10 = {
 v11 = {
   "alias": null,
   "args": null,
+  "concreteType": "User",
+  "kind": "LinkedField",
+  "name": "user",
+  "plural": false,
+  "selections": [
+    (v10/*: any*/)
+  ],
+  "storageKey": null
+},
+v12 = {
+  "alias": null,
+  "args": null,
   "kind": "ScalarField",
   "name": "commentsCount",
   "storageKey": null
 },
-v12 = {
+v13 = {
   "alias": null,
   "args": null,
   "concreteType": "Board",
@@ -151,6 +177,26 @@ v12 = {
       "name": "nameKr",
       "storageKey": null
     }
+  ],
+  "storageKey": null
+},
+v14 = [
+  {
+    "kind": "Variable",
+    "name": "postId",
+    "variableName": "id"
+  }
+],
+v15 = {
+  "alias": null,
+  "args": null,
+  "concreteType": "User",
+  "kind": "LinkedField",
+  "name": "user",
+  "plural": false,
+  "selections": [
+    (v10/*: any*/),
+    (v4/*: any*/)
   ],
   "storageKey": null
 };
@@ -180,23 +226,51 @@ return {
               (v7/*: any*/),
               (v8/*: any*/),
               (v9/*: any*/),
-              {
-                "alias": null,
-                "args": null,
-                "concreteType": "User",
-                "kind": "LinkedField",
-                "name": "user",
-                "plural": false,
-                "selections": [
-                  (v10/*: any*/)
-                ],
-                "storageKey": null
-              },
               (v11/*: any*/),
-              (v12/*: any*/)
+              (v12/*: any*/),
+              (v13/*: any*/)
             ],
             "type": "Post",
             "abstractKey": null
+          }
+        ],
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": (v14/*: any*/),
+        "concreteType": "CommentConnection",
+        "kind": "LinkedField",
+        "name": "comments",
+        "plural": false,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "CommentEdge",
+            "kind": "LinkedField",
+            "name": "edges",
+            "plural": true,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Comment",
+                "kind": "LinkedField",
+                "name": "node",
+                "plural": false,
+                "selections": [
+                  (v4/*: any*/),
+                  (v6/*: any*/),
+                  (v7/*: any*/),
+                  (v8/*: any*/),
+                  (v9/*: any*/),
+                  (v11/*: any*/)
+                ],
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
           }
         ],
         "storageKey": null
@@ -230,21 +304,9 @@ return {
               (v7/*: any*/),
               (v8/*: any*/),
               (v9/*: any*/),
-              {
-                "alias": null,
-                "args": null,
-                "concreteType": "User",
-                "kind": "LinkedField",
-                "name": "user",
-                "plural": false,
-                "selections": [
-                  (v10/*: any*/),
-                  (v4/*: any*/)
-                ],
-                "storageKey": null
-              },
-              (v11/*: any*/),
-              (v12/*: any*/)
+              (v15/*: any*/),
+              (v12/*: any*/),
+              (v13/*: any*/)
             ],
             "type": "Post",
             "abstractKey": null
@@ -259,20 +321,59 @@ return {
           }
         ],
         "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": (v14/*: any*/),
+        "concreteType": "CommentConnection",
+        "kind": "LinkedField",
+        "name": "comments",
+        "plural": false,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "CommentEdge",
+            "kind": "LinkedField",
+            "name": "edges",
+            "plural": true,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Comment",
+                "kind": "LinkedField",
+                "name": "node",
+                "plural": false,
+                "selections": [
+                  (v4/*: any*/),
+                  (v6/*: any*/),
+                  (v7/*: any*/),
+                  (v8/*: any*/),
+                  (v9/*: any*/),
+                  (v15/*: any*/)
+                ],
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          }
+        ],
+        "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "ab5365c275d375fd6e7aaa7ce5e5a2ea",
+    "cacheID": "b2dc983ef46682dcd8c2591c4b68662d",
     "id": null,
     "metadata": {},
     "name": "PostPageQuery",
     "operationKind": "query",
-    "text": "query PostPageQuery(\n  $id: ID!\n) {\n  post(id: $id) {\n    __typename\n    ... on NotFoundError {\n      message\n    }\n    ... on Post {\n      id\n      title\n      content\n      createdAt\n      updatedAt\n      isMine\n      user {\n        nickname\n        id\n      }\n      commentsCount\n      board {\n        id\n        nameKr\n      }\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
+    "text": "query PostPageQuery(\n  $id: ID!\n) {\n  post(id: $id) {\n    __typename\n    ... on NotFoundError {\n      message\n    }\n    ... on Post {\n      id\n      title\n      content\n      createdAt\n      updatedAt\n      isMine\n      user {\n        nickname\n        id\n      }\n      commentsCount\n      board {\n        id\n        nameKr\n      }\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n  comments(postId: $id) {\n    edges {\n      node {\n        id\n        content\n        createdAt\n        updatedAt\n        isMine\n        user {\n          nickname\n          id\n        }\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "d6ccf240386e47dd5ed4cb5d9c369949";
+(node as any).hash = "d4b9ab044bf4abae845d039077111aa8";
 
 export default node;

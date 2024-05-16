@@ -17,3 +17,7 @@ export function formatHMM(date: Date) {
 export function formatDateYMD(date: Date) {
   return dayjs(date).format('YY.MM.DD')
 }
+
+export function formatYMDHM(date: Date) {
+  return dayjs(date).format('YY.MM.DD HH:mm')
+}
