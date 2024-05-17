@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<af4ed4becc5f3529f00e5b1cd767202b>>
+ * @generated SignedSource<<8ffc9a60b1d7050131e6bb508090606f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -41,6 +41,7 @@ export type PostPageQuery$data = {
     readonly updatedAt: any;
     readonly user: {
       readonly nickname: string;
+      readonly realName: string;
     };
   } | {
     // This will never be '%other', but we need some
@@ -135,17 +136,24 @@ v10 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "nickname",
+  "name": "realName",
   "storageKey": null
 },
 v11 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "commentsCount",
+  "name": "nickname",
   "storageKey": null
 },
 v12 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "commentsCount",
+  "storageKey": null
+},
+v13 = {
   "alias": null,
   "args": null,
   "concreteType": "Board",
@@ -164,19 +172,19 @@ v12 = {
   ],
   "storageKey": null
 },
-v13 = {
+v14 = {
   "kind": "Variable",
   "name": "postId",
   "variableName": "id"
 },
-v14 = {
+v15 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "cursor",
   "storageKey": null
 },
-v15 = {
+v16 = {
   "alias": null,
   "args": null,
   "concreteType": "PageInfo",
@@ -201,7 +209,7 @@ v15 = {
   ],
   "storageKey": null
 },
-v16 = {
+v17 = {
   "kind": "ClientExtension",
   "selections": [
     {
@@ -213,26 +221,13 @@ v16 = {
     }
   ]
 },
-v17 = {
-  "alias": null,
-  "args": null,
-  "concreteType": "User",
-  "kind": "LinkedField",
-  "name": "user",
-  "plural": false,
-  "selections": [
-    (v10/*: any*/),
-    (v4/*: any*/)
-  ],
-  "storageKey": null
-},
 v18 = [
   {
     "kind": "Literal",
     "name": "first",
     "value": 30
   },
-  (v13/*: any*/)
+  (v14/*: any*/)
 ];
 return {
   "fragment": {
@@ -268,12 +263,13 @@ return {
                 "name": "user",
                 "plural": false,
                 "selections": [
-                  (v10/*: any*/)
+                  (v10/*: any*/),
+                  (v11/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v11/*: any*/),
-              (v12/*: any*/)
+              (v12/*: any*/),
+              (v13/*: any*/)
             ],
             "type": "Post",
             "abstractKey": null
@@ -284,7 +280,7 @@ return {
       {
         "alias": "comments",
         "args": [
-          (v13/*: any*/)
+          (v14/*: any*/)
         ],
         "concreteType": "CommentConnection",
         "kind": "LinkedField",
@@ -317,12 +313,12 @@ return {
                 ],
                 "storageKey": null
               },
-              (v14/*: any*/)
+              (v15/*: any*/)
             ],
             "storageKey": null
           },
-          (v15/*: any*/),
-          (v16/*: any*/)
+          (v16/*: any*/),
+          (v17/*: any*/)
         ],
         "storageKey": null
       }
@@ -355,9 +351,22 @@ return {
               (v7/*: any*/),
               (v8/*: any*/),
               (v9/*: any*/),
-              (v17/*: any*/),
-              (v11/*: any*/),
-              (v12/*: any*/)
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "User",
+                "kind": "LinkedField",
+                "name": "user",
+                "plural": false,
+                "selections": [
+                  (v10/*: any*/),
+                  (v11/*: any*/),
+                  (v4/*: any*/)
+                ],
+                "storageKey": null
+              },
+              (v12/*: any*/),
+              (v13/*: any*/)
             ],
             "type": "Post",
             "abstractKey": null
@@ -402,17 +411,29 @@ return {
                   (v7/*: any*/),
                   (v8/*: any*/),
                   (v9/*: any*/),
-                  (v17/*: any*/),
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "User",
+                    "kind": "LinkedField",
+                    "name": "user",
+                    "plural": false,
+                    "selections": [
+                      (v11/*: any*/),
+                      (v4/*: any*/)
+                    ],
+                    "storageKey": null
+                  },
                   (v2/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v14/*: any*/)
+              (v15/*: any*/)
             ],
             "storageKey": null
           },
-          (v15/*: any*/),
-          (v16/*: any*/)
+          (v16/*: any*/),
+          (v17/*: any*/)
         ],
         "storageKey": null
       },
@@ -430,7 +451,7 @@ return {
     ]
   },
   "params": {
-    "cacheID": "61f3deeb9413b3ef34990f72180dee84",
+    "cacheID": "dd2234adc75580ff5083042403bfc287",
     "id": null,
     "metadata": {
       "connection": [
@@ -446,11 +467,11 @@ return {
     },
     "name": "PostPageQuery",
     "operationKind": "query",
-    "text": "query PostPageQuery(\n  $id: ID!\n) {\n  post(id: $id) {\n    __typename\n    ... on NotFoundError {\n      message\n    }\n    ... on Post {\n      id\n      title\n      content\n      createdAt\n      updatedAt\n      isMine\n      user {\n        nickname\n        id\n      }\n      commentsCount\n      board {\n        id\n        nameKr\n      }\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n  comments(postId: $id, first: 30) {\n    edges {\n      node {\n        id\n        ...CommentItemFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment CommentItemFragment on Comment {\n  id\n  content\n  createdAt\n  updatedAt\n  isMine\n  user {\n    nickname\n    id\n  }\n}\n"
+    "text": "query PostPageQuery(\n  $id: ID!\n) {\n  post(id: $id) {\n    __typename\n    ... on NotFoundError {\n      message\n    }\n    ... on Post {\n      id\n      title\n      content\n      createdAt\n      updatedAt\n      isMine\n      user {\n        realName\n        nickname\n        id\n      }\n      commentsCount\n      board {\n        id\n        nameKr\n      }\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n  comments(postId: $id, first: 30) {\n    edges {\n      node {\n        id\n        ...CommentItemFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment CommentItemFragment on Comment {\n  id\n  content\n  createdAt\n  updatedAt\n  isMine\n  user {\n    nickname\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "23b175ed38a94387e47036ee59b07cf1";
+(node as any).hash = "13358296df72647902700959820a4d0f";
 
 export default node;

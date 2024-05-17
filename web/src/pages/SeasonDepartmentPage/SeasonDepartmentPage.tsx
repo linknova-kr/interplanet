@@ -80,9 +80,7 @@ const SeasonDepartmentPage = ({ id }: Props) => {
       >
         <DetailHead
           departmentName={department.name}
-          dateLabel={`${formatMDdd(season.startsAt)}~${formatMDdd(
-            season.endsAt
-          )}`}
+          label={`${formatMDdd(season.startsAt)}~${formatMDdd(season.endsAt)}`}
           title={season.name}
         />
         <Message>

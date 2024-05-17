@@ -32,8 +32,7 @@ const GroupProgramHeader = ({ groupProgram }: Props) => {
   return (
     <DetailHead
       departmentName={fragment.group.department.name}
-      dateLabel={formatDate(fragment.startsAt)}
-      address={fragment.addressSimple}
+      label={`${formatDate(fragment.startsAt)} ${fragment.addressSimple}`}
       title={fragment.title}
     />
   )

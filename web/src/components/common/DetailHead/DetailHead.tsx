@@ -30,19 +30,18 @@ const Row = styled.div`
 
 interface Props {
   departmentName?: string
-  dateLabel: string
-  address?: string
+
+  label: string
   title: string
 }
-const DetailHead = ({ departmentName, dateLabel, address, title }: Props) => {
+const DetailHead = ({ departmentName, title, label }: Props) => {
   return (
     <Container>
       <ChevronLeftIcon boxSize={10} onClick={() => back()} />
       <Info>
         <Row>
           {departmentName && <Badge>{departmentName}</Badge>}
-          <span>{dateLabel}</span>
-          {address && <span>{address}</span>}
+          <span>{label}</span>
         </Row>
         <Heading as="h5" size="md">
           {title}

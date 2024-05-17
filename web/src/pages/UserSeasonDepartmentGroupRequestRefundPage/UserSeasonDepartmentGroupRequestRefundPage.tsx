@@ -115,9 +115,7 @@ const UserSeasonDepartmentGroupRequestRefundPage = ({ id }: Props) => {
       <ActionLayout actions={<Button onClick={request}>환불 신청하기</Button>}>
         <DetailHead
           departmentName={department.name}
-          dateLabel={`${formatMDdd(season.startsAt)}~${formatMDdd(
-            season.endsAt
-          )}`}
+          label={`${formatMDdd(season.startsAt)}~${formatMDdd(season.endsAt)}`}
           title={season.name}
         />
         <Message>

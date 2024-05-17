@@ -25,6 +25,7 @@ const QUERY = graphql`
         updatedAt
         isMine
         user {
+          realName
           nickname
         }
         commentsCount
@@ -60,7 +61,9 @@ const PostPage = ({ id }: Props) => {
       <Metadata title="Post" description="Post page" />
       <PageTitle title={data.post.board.nameKr} />
       <DetailHead
-        dateLabel={formatDateYMD(data.post.createdAt)}
+        label={`${formatDateYMD(data.post.createdAt)} ${
+          data.post.user.realName
+        }-${data.post.user.nickname}`}
         title={data.post.title}
         // todo: 작성자, 3dot 추가
       />
