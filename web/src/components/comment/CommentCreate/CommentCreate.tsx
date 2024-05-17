@@ -18,14 +18,7 @@ const CREATE = graphql`
       @appendNode(connections: $connections, edgeTypeName: "CommentEdge") {
       __typename
       ... on Comment {
-        id
-        content
-        createdAt
-        updatedAt
-        isMine
-        user {
-          nickname
-        }
+        ...CommentItemFragment
         post {
           commentsCount
         }

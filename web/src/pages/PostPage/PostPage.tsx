@@ -39,13 +39,7 @@ const QUERY = graphql`
       edges {
         node {
           id
-          content
-          createdAt
-          updatedAt
-          isMine
-          user {
-            nickname
-          }
+          ...CommentItemFragment
         }
       }
     }

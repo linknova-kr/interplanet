@@ -1,27 +1,46 @@
 import { HStack, Text, VStack } from '@chakra-ui/react'
+import { useFragment } from 'react-relay'
+import { graphql } from 'relay-runtime'
 
-import { PostPageQuery$data } from 'src/components/__generated__/PostPageQuery.graphql'
+import { CommentItemFragment$key } from 'src/components/__generated__/CommentItemFragment.graphql'
 import { formatYMDHM } from 'src/util/date'
 
 import CommentDeleteButton from '../CommentDeleteButton/CommentDeleteButton'
 import CommentUpdateButton from '../CommentUpdateButton/CommentUpdateButton'
 
+const CommentItemFragment = graphql`
+  fragment CommentItemFragment on Comment {
+    id
+    content
+    createdAt
+    updatedAt
+    isMine
+    user {
+      nickname
+    }
+  }
+`
+
 interface Props {
-  comment: PostPageQuery$data['comments']['edges'][0]['node']
+  comment: CommentItemFragment$key
 }
 
 const Comment = ({ comment }: Props) => {
+  const fragment = useFragment<CommentItemFragment$key>(
+    CommentItemFragment,
+    comment
+  )
   return (
     <HStack justifyContent="space-between" width="100%" padding="5px 0">
       <VStack alignItems="start">
-        <Text fontSize="xs">{comment.user.nickname}</Text>
-        <Text fontSize="xs">{comment.content}</Text>
-        <Text fontSize="xs">{formatYMDHM(comment.createdAt)}</Text>
+        <Text fontSize="xs">{fragment.user.nickname}</Text>
+        <Text fontSize="xs">{fragment.content}</Text>
+        <Text fontSize="xs">{formatYMDHM(fragment.createdAt)}</Text>
       </VStack>
-      {comment.isMine && (
+      {fragment.isMine && (
         <HStack>
-          <CommentUpdateButton comment={comment} />
-          <CommentDeleteButton id={comment.id} />
+          <CommentUpdateButton comment={fragment} />
+          <CommentDeleteButton id={fragment.id} />
         </HStack>
       )}
     </HStack>

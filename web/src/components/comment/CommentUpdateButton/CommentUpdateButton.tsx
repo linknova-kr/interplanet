@@ -13,12 +13,11 @@ import { graphql } from 'relay-runtime'
 import { Form, TextField } from '@redwoodjs/forms'
 import { toast } from '@redwoodjs/web/toast'
 
+import { CommentItemFragment$key } from 'src/components/__generated__/CommentItemFragment.graphql'
 import { CommentUpdateButtonUpdateMutation } from 'src/components/__generated__/CommentUpdateButtonUpdateMutation.graphql'
 
-import { PostPageQuery$data } from '../../__generated__/PostPageQuery.graphql'
-
 interface Props {
-  comment: PostPageQuery$data['comments']['edges'][0]['node']
+  comment: CommentItemFragment$key[' $data']
 }
 
 const UPDATE = graphql`
