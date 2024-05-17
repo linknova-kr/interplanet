@@ -1,17 +1,10 @@
-import { HamburgerIcon } from '@chakra-ui/icons'
-import {
-  HStack,
-  IconButton,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  Text,
-  VStack,
-} from '@chakra-ui/react'
+import { HStack, Text, VStack } from '@chakra-ui/react'
 
 import { PostPageQuery$data } from 'src/components/__generated__/PostPageQuery.graphql'
 import { formatYMDHM } from 'src/util/date'
+
+import CommentDeleteButton from '../CommentDeleteButton/CommentDeleteButton'
+import CommentUpdateButton from '../CommentUpdateButton/CommentUpdateButton'
 
 interface Props {
   comment: PostPageQuery$data['comments']['edges'][0]['node']
@@ -26,13 +19,10 @@ const Comment = ({ comment }: Props) => {
         <Text fontSize="xs">{formatYMDHM(comment.createdAt)}</Text>
       </VStack>
       {comment.isMine && (
-        <Menu>
-          <MenuButton as={IconButton} icon={<HamburgerIcon />} />
-          <MenuList>
-            <MenuItem>수정하기</MenuItem>
-            <MenuItem>삭제하기</MenuItem>
-          </MenuList>
-        </Menu>
+        <HStack>
+          <CommentUpdateButton comment={comment} />
+          <CommentDeleteButton id={comment.id} />
+        </HStack>
       )}
     </HStack>
   )

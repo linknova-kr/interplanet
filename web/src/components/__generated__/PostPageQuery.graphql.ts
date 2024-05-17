@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c9954f486f77030ec3a37859d9f8e194>>
+ * @generated SignedSource<<3b73a594815675f53340999bb853e953>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,6 +14,7 @@ export type PostPageQuery$variables = {
 };
 export type PostPageQuery$data = {
   readonly comments: {
+    readonly __id: string;
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly content: string;
@@ -180,14 +181,56 @@ v13 = {
   ],
   "storageKey": null
 },
-v14 = [
-  {
-    "kind": "Variable",
-    "name": "postId",
-    "variableName": "id"
-  }
-],
+v14 = {
+  "kind": "Variable",
+  "name": "postId",
+  "variableName": "id"
+},
 v15 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "cursor",
+  "storageKey": null
+},
+v16 = {
+  "alias": null,
+  "args": null,
+  "concreteType": "PageInfo",
+  "kind": "LinkedField",
+  "name": "pageInfo",
+  "plural": false,
+  "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "endCursor",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "hasNextPage",
+      "storageKey": null
+    }
+  ],
+  "storageKey": null
+},
+v17 = {
+  "kind": "ClientExtension",
+  "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "__id",
+      "storageKey": null
+    }
+  ]
+},
+v18 = {
   "alias": null,
   "args": null,
   "concreteType": "User",
@@ -199,7 +242,15 @@ v15 = {
     (v4/*: any*/)
   ],
   "storageKey": null
-};
+},
+v19 = [
+  {
+    "kind": "Literal",
+    "name": "first",
+    "value": 30
+  },
+  (v14/*: any*/)
+];
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
@@ -237,11 +288,13 @@ return {
         "storageKey": null
       },
       {
-        "alias": null,
-        "args": (v14/*: any*/),
+        "alias": "comments",
+        "args": [
+          (v14/*: any*/)
+        ],
         "concreteType": "CommentConnection",
         "kind": "LinkedField",
-        "name": "comments",
+        "name": "__PostPage_comments_connection",
         "plural": false,
         "selections": [
           {
@@ -265,13 +318,17 @@ return {
                   (v7/*: any*/),
                   (v8/*: any*/),
                   (v9/*: any*/),
-                  (v11/*: any*/)
+                  (v11/*: any*/),
+                  (v2/*: any*/)
                 ],
                 "storageKey": null
-              }
+              },
+              (v15/*: any*/)
             ],
             "storageKey": null
-          }
+          },
+          (v16/*: any*/),
+          (v17/*: any*/)
         ],
         "storageKey": null
       }
@@ -304,7 +361,7 @@ return {
               (v7/*: any*/),
               (v8/*: any*/),
               (v9/*: any*/),
-              (v15/*: any*/),
+              (v18/*: any*/),
               (v12/*: any*/),
               (v13/*: any*/)
             ],
@@ -324,7 +381,7 @@ return {
       },
       {
         "alias": null,
-        "args": (v14/*: any*/),
+        "args": (v19/*: any*/),
         "concreteType": "CommentConnection",
         "kind": "LinkedField",
         "name": "comments",
@@ -351,29 +408,55 @@ return {
                   (v7/*: any*/),
                   (v8/*: any*/),
                   (v9/*: any*/),
-                  (v15/*: any*/)
+                  (v18/*: any*/),
+                  (v2/*: any*/)
                 ],
                 "storageKey": null
-              }
+              },
+              (v15/*: any*/)
             ],
             "storageKey": null
-          }
+          },
+          (v16/*: any*/),
+          (v17/*: any*/)
         ],
         "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": (v19/*: any*/),
+        "filters": [
+          "postId"
+        ],
+        "handle": "connection",
+        "key": "PostPage_comments",
+        "kind": "LinkedHandle",
+        "name": "comments"
       }
     ]
   },
   "params": {
-    "cacheID": "b2dc983ef46682dcd8c2591c4b68662d",
+    "cacheID": "6b7cb1cf0288400177e3495d1f359c7d",
     "id": null,
-    "metadata": {},
+    "metadata": {
+      "connection": [
+        {
+          "count": null,
+          "cursor": null,
+          "direction": "forward",
+          "path": [
+            "comments"
+          ]
+        }
+      ]
+    },
     "name": "PostPageQuery",
     "operationKind": "query",
-    "text": "query PostPageQuery(\n  $id: ID!\n) {\n  post(id: $id) {\n    __typename\n    ... on NotFoundError {\n      message\n    }\n    ... on Post {\n      id\n      title\n      content\n      createdAt\n      updatedAt\n      isMine\n      user {\n        nickname\n        id\n      }\n      commentsCount\n      board {\n        id\n        nameKr\n      }\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n  comments(postId: $id) {\n    edges {\n      node {\n        id\n        content\n        createdAt\n        updatedAt\n        isMine\n        user {\n          nickname\n          id\n        }\n      }\n    }\n  }\n}\n"
+    "text": "query PostPageQuery(\n  $id: ID!\n) {\n  post(id: $id) {\n    __typename\n    ... on NotFoundError {\n      message\n    }\n    ... on Post {\n      id\n      title\n      content\n      createdAt\n      updatedAt\n      isMine\n      user {\n        nickname\n        id\n      }\n      commentsCount\n      board {\n        id\n        nameKr\n      }\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n  comments(postId: $id, first: 30) {\n    edges {\n      node {\n        id\n        content\n        createdAt\n        updatedAt\n        isMine\n        user {\n          nickname\n          id\n        }\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "d4b9ab044bf4abae845d039077111aa8";
+(node as any).hash = "b3ecec4367920ee56c57cc836f7eca01";
 
 export default node;

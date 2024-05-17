@@ -1,4 +1,4 @@
-import { Button, FormLabel, Radio, RadioGroup, Stack } from '@chakra-ui/react'
+import { Button, RadioGroup, Stack } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { useMutation } from 'react-relay'
 import { graphql } from 'relay-runtime'
@@ -11,7 +11,7 @@ import {
   TextAreaField,
   TextField,
 } from '@redwoodjs/forms'
-import { back, navigate, routes } from '@redwoodjs/router'
+import { navigate, routes } from '@redwoodjs/router'
 import { Toaster, toast } from '@redwoodjs/web/dist/toast'
 
 import { GroupProgramCreateMutation } from 'src/components/__generated__/GroupProgramCreateMutation.graphql'

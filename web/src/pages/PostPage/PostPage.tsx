@@ -1,4 +1,3 @@
-import { Container } from '@chakra-ui/react'
 import { useLazyLoadQuery } from 'react-relay'
 import { graphql } from 'relay-runtime'
 
@@ -35,7 +34,8 @@ const QUERY = graphql`
         }
       }
     }
-    comments(postId: $id) {
+    comments(postId: $id, first: 30) @connection(key: "PostPage_comments") {
+      __id
       edges {
         node {
           id
@@ -71,7 +71,7 @@ const PostPage = ({ id }: Props) => {
         // todo: 작성자, 3dot 추가
       />
 
-      <Comments comments={data.comments} />
+      <Comments comments={data.comments} postId={id} />
     </>
   )
 }

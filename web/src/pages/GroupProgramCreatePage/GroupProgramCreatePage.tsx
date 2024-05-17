@@ -1,7 +1,6 @@
 import { useLazyLoadQuery } from 'react-relay'
 import { graphql } from 'relay-runtime'
 
-import { Link, routes } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 
 import { GroupProgramCreatePageQuery } from 'src/components/__generated__/GroupProgramCreatePageQuery.graphql'
