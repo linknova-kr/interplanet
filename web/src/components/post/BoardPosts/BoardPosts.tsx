@@ -25,9 +25,11 @@ const BoardPosts = ({ boardId }: Props) => {
   const data = useLazyLoadQuery<BoardPostsQuery>(QUERY, { boardId })
   return (
     <>
-      {data.posts.edges.map(({ node }) => {
-        return <PostListItem key={node.id} post={node} />
-      })}
+      {data.posts.edges
+        .filter((b) => b.node)
+        .map(({ node }) => {
+          return <PostListItem key={node.id} post={node} />
+        })}
     </>
   )
 }

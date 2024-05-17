@@ -29,6 +29,8 @@ const Routes = () => {
         <Set wrap={DefaultLayout}>
           <Route path="/group-programs/{id}" page={GroupProgramPage} name="groupProgram" />
           <Route path="/posts/{id}" page={PostPage} name="post" />
+          <Route path="/boards/{id}/posts-new" page={PostNewPage} name="postNew" />
+          <Route path="/posts/{id}/update" page={PostUpdatePage} name="postUpdate" />
           <Route path="/season-department/{id}" page={SeasonDepartmentPage} name="seasonDepartment" />
           <Route path="/user-season-department-group/{id}/request-refund" page={UserSeasonDepartmentGroupRequestRefundPage} name="userSeasonDepartmentGroupRequestRefund" />
           <Route path="/group-program-create" page={GroupProgramCreatePage} name="groupProgramCreate" />

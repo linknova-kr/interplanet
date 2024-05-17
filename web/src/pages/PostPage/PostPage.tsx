@@ -1,3 +1,4 @@
+import styled from '@emotion/styled'
 import { useLazyLoadQuery } from 'react-relay'
 import { graphql } from 'relay-runtime'
 
@@ -8,6 +9,7 @@ import { PostPageQuery } from 'src/components/__generated__/PostPageQuery.graphq
 import Comments from 'src/components/comment/Comments/Comments'
 import DetailHead from 'src/components/common/DetailHead/DetailHead'
 import PageTitle from 'src/components/common/PageTitle/PageTitle'
+import MyPostMoreMenus from 'src/components/post/MyPostMoreMenus/MyPostMoreMenus'
 import { formatDateYMD } from 'src/util/date'
 
 const QUERY = graphql`
@@ -46,6 +48,10 @@ const QUERY = graphql`
     }
   }
 `
+const Content = styled.div`
+  margin-top: 20px;
+  min-height: 40vh;
+`
 
 interface Props {
   id: string
@@ -53,7 +59,7 @@ interface Props {
 
 const PostPage = ({ id }: Props) => {
   const data = useLazyLoadQuery<PostPageQuery>(QUERY, { id })
-  if (data.post.__typename !== 'Post') {
+  if (data.post?.__typename !== 'Post') {
     return <Redirect to="/not-found" />
   }
   return (
@@ -65,8 +71,9 @@ const PostPage = ({ id }: Props) => {
           data.post.user.realName
         }-${data.post.user.nickname}`}
         title={data.post.title}
-        // todo: 작성자, 3dot 추가
+        action={data.post.isMine && <MyPostMoreMenus id={data.post.id} />}
       />
+      <Content>{data.post.content}</Content>
 
       <Comments comments={data.comments} postId={id} />
     </>

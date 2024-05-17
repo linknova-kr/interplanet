@@ -1,5 +1,5 @@
 import { ChevronLeftIcon } from '@chakra-ui/icons'
-import { Badge, Heading } from '@chakra-ui/react'
+import { Badge, HStack, Heading } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 
 import { back } from '@redwoodjs/router'
@@ -11,13 +11,13 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
 `
 
 const Info = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 30px;
   text-align: left;
 `
 
@@ -30,23 +30,26 @@ const Row = styled.div`
 
 interface Props {
   departmentName?: string
-
+  action?: React.ReactNode
   label: string
   title: string
 }
-const DetailHead = ({ departmentName, title, label }: Props) => {
+const DetailHead = ({ departmentName, title, label, action }: Props) => {
   return (
     <Container>
-      <ChevronLeftIcon boxSize={10} onClick={() => back()} />
-      <Info>
-        <Row>
-          {departmentName && <Badge>{departmentName}</Badge>}
-          <span>{label}</span>
-        </Row>
-        <Heading as="h5" size="md">
-          {title}
-        </Heading>
-      </Info>
+      <HStack>
+        <ChevronLeftIcon boxSize={10} onClick={() => back()} />
+        <Info>
+          <Row>
+            {departmentName && <Badge>{departmentName}</Badge>}
+            <span>{label}</span>
+          </Row>
+          <Heading as="h5" size="md">
+            {title}
+          </Heading>
+        </Info>
+      </HStack>
+      {action}
     </Container>
   )
 }
