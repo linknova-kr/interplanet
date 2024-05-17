@@ -43,4 +43,25 @@ export const schema = gql`
     ): PostConnection! @skipAuth
     post(id: ID!): PostDetailResult! @skipAuth
   }
+
+  type Mutation {
+    createPost(input: CreatePostInput!): CreatePostResult! @requireAuth
+    updatePost(id: ID!, input: UpdatePostInput!): UpdatePostResult! @requireAuth
+    deletePost(id: ID!): DeletePostResult! @requireAuth
+  }
+
+  union CreatePostResult = Post | NotFoundError
+  union UpdatePostResult = Post | NotFoundError
+  union DeletePostResult = DeleteSuccess | NotFoundError
+
+  input CreatePostInput {
+    title: String!
+    content: String!
+    boardId: ID!
+  }
+
+  input UpdatePostInput {
+    title: String
+    content: String
+  }
 `
