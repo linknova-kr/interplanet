@@ -38,7 +38,7 @@ const PostListItem = ({ post }: Props) => {
   return (
     <Box width="100%">
       <Link to={routes.post({ id: fragment.id })}>
-        <Row bg={fragment.pinned ? '#8f97f7' : 'transparent'}>
+        <Row bg={fragment.pinned ? '#D3D7FC' : 'transparent'}>
           <div></div>
           <Stack textAlign="left" flex={1}>
             <div>{formatDateYMD(fragment.createdAt)}</div>

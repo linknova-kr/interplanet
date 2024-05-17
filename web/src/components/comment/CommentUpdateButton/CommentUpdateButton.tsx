@@ -58,7 +58,7 @@ const CommentUpdateButton = ({ comment }: Props) => {
   }
   return (
     <>
-      <Button size="sm" backgroundColor="#8f97f7" onClick={onOpen}>
+      <Button size="sm" backgroundColor="#D3D7FC" onClick={onOpen}>
         수정
       </Button>
       <Drawer isOpen={isOpen} placement="bottom" onClose={onClose}>

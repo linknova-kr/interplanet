@@ -58,11 +58,16 @@ const CommentCreate = ({ postId, connectionId }: Props) => {
       <HStack width="100%" justifyContent="flex-end">
         <TextField
           name="content"
-          style={{ border: '1px solid #eee', flex: 1 }}
+          style={{
+            backgroundColor: '#D3D7FC',
+            borderRadius: '15px',
+            flex: 1,
+            height: '30px',
+          }}
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />
-        <Button size="sm" type="submit">
+        <Button size="sm" type="submit" backgroundColor="#8f97f7">
           작성
         </Button>
       </HStack>
