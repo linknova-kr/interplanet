@@ -26,6 +26,6 @@ export const schema = gql`
   }
 
   type DeleteSuccess {
-    success: Boolean!
+    id: ID!
   }
 `

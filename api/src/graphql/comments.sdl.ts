@@ -7,6 +7,7 @@ export const schema = gql`
     isMine: Boolean!
     createdAt: DateTime!
     updatedAt: DateTime!
+    post: Post!
   }
 
   type CommentEdge {
@@ -29,15 +30,28 @@ export const schema = gql`
     ): CommentConnection! @skipAuth
   }
 
+  type Mutation {
+    createComment(input: CreateCommentInput!): CreateCommentResult! @requireAuth
+    updateComment(id: ID!, input: UpdateCommentInput!): UpdateCommentResult!
+      @requireAuth
+    deleteComment(id: ID!): DeleteCommentResult! @requireAuth
+  }
+
+  union CreateCommentResult = Comment | NotFoundError
+  union UpdateCommentResult = Comment | NotFoundError
+  union DeleteCommentResult = CommentDeleteSuccess | NotFoundError
+
+  type CommentDeleteSuccess {
+    id: ID!
+    post: Post!
+  }
+
   input CreateCommentInput {
-    postId: String!
-    userId: Int!
+    postId: ID!
     content: String!
   }
 
   input UpdateCommentInput {
-    postId: String
-    userId: Int
     content: String
   }
 `
