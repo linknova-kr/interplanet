@@ -30,7 +30,7 @@ const ActionLayout = ({ children, actions }: ActionLayoutProps) => {
   return (
     <>
       <Main>{children}</Main>
-      <ActionButtons>{actions}</ActionButtons>
+      {actions && <ActionButtons>{actions}</ActionButtons>}
     </>
   )
 }

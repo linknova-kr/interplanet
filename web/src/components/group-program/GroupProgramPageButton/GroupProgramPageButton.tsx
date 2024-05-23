@@ -72,12 +72,14 @@ const GroupProgramPageButton = ({ groupProgram }: Props) => {
         />
       </Drawer>
       {groupProgram.my ? (
-        <>
-          <Button onClick={onCancel}>취소하기</Button>
-          <Button onClick={() => onOpen()}>수정하기</Button>
-        </>
+        groupProgram.type !== 'BOOK_DESIGNATED' && (
+          <>
+            <Button onClick={onCancel}>신청 취소하기</Button>
+            <Button onClick={() => onOpen()}>신청 옵션 변경</Button>
+          </>
+        )
       ) : (
-        <Button onClick={() => onOpen()}>참가신청</Button>
+        <Button onClick={() => onOpen()}>참가 신청하기</Button>
       )}
     </>
   )

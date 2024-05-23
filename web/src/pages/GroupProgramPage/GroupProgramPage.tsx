@@ -59,12 +59,17 @@ const GroupProgramPage = ({ id }: Props) => {
   if (data.groupProgram.__typename !== 'GroupProgram') {
     return <Redirect to="/not-found" />
   }
+  const isBefore = new Date(data.groupProgram.startsAt) < new Date()
   return (
     <>
       <Metadata title="GroupProgram" description="GroupProgram page" />
       <PageTitle title="본모임 신청" />
       <ActionLayout
-        actions={<GroupProgramPageButton groupProgram={data.groupProgram} />}
+        actions={
+          isBefore ? null : (
+            <GroupProgramPageButton groupProgram={data.groupProgram} />
+          )
+        }
       >
         <GroupProgramDetail groupProgram={data.groupProgram} />
       </ActionLayout>
