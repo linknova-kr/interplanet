@@ -28,6 +28,12 @@ interface SeasonDepartmentProps {
       | {
           id: string
           status: UserSeasonDepartmentGroupStatus
+          seasonGroup: {
+            group: {
+              name: string
+            }
+          }
+          attendanceCount: number
         }
       | null
       | undefined
@@ -49,6 +55,25 @@ const WITHDRAW_REQUEST_REFUND = graphql`
       }
     }
   }
+`
+const MyContainer = styled(VStack)`
+  margin: 5px 0;
+  align-items: start;
+  gap: 1px;
+`
+const MyGroup = styled.span`
+  background-color: #dddddd;
+  text-align: left;
+  padding: 3px;
+  border-radius: 5px;
+  font-size: 12px;
+`
+const MyAttendance = styled.span`
+  background-color: #e0e3fd;
+  text-align: left;
+  padding: 3px;
+  border-radius: 5px;
+  font-size: 12px;
 `
 
 const Message = styled(Box)`
@@ -90,6 +115,9 @@ const SeasonDepartment = ({
   }
 
   const toggleShowMessage = () => {
+    if (seasonDepartment.my) {
+      return
+    }
     setShowMessage(!showMessage)
   }
   const Buttons = () => {
@@ -163,8 +191,15 @@ const SeasonDepartment = ({
           <Buttons />
         </HStack>
       </HStack>
-      {showMessage && <Message>{seasonDepartment.message}234234</Message>}
-      {/* todo: 소속 & 출석수 구현 */}
+      {showMessage && <Message>{seasonDepartment.message}</Message>}
+      {seasonDepartment.my && (
+        <MyContainer>
+          <MyGroup>소속: {seasonDepartment.my.seasonGroup.group.name}</MyGroup>
+          <MyAttendance>
+            출석수: {seasonDepartment.my.attendanceCount}
+          </MyAttendance>
+        </MyContainer>
+      )}
     </Container>
   )
 }

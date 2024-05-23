@@ -25,6 +25,12 @@ export const QUERY = graphql`
           my {
             id
             status
+            seasonGroup {
+              group {
+                name
+              }
+            }
+            attendanceCount
           }
         }
       }

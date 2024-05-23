@@ -12,6 +12,7 @@ export const schema = gql`
     status: UserSeasonDepartmentGroupStatus!
     level: String
     createdAt: DateTime!
+    attendanceCount: Float!
   }
 
   type Query {
