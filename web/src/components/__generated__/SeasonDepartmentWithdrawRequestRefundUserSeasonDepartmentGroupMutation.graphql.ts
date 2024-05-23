@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<17b72de3cfd5fb799a17c22743608fa5>>
+ * @generated SignedSource<<d7429e73eb1e0913ea50d19587617059>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,17 +10,11 @@
 
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type UserSeasonDepartmentGroupStatus = "APPROVAL_PENDING" | "APPROVED" | "REFUNDED" | "REFUND_PENDING" | "%future added value";
-export type RequestRefundUserSeasonDepartmentGroupInput = {
-  bankAccountHolder: string;
-  bankAccountNumber: string;
+export type SeasonDepartmentWithdrawRequestRefundUserSeasonDepartmentGroupMutation$variables = {
   id: string;
-  phoneNumber: string;
 };
-export type UserSeasonDepartmentGroupRequestRefundPageRequestRefundMutation$variables = {
-  input: RequestRefundUserSeasonDepartmentGroupInput;
-};
-export type UserSeasonDepartmentGroupRequestRefundPageRequestRefundMutation$data = {
-  readonly requestRefundUserSeasonDepartmentGroup: {
+export type SeasonDepartmentWithdrawRequestRefundUserSeasonDepartmentGroupMutation$data = {
+  readonly withdrawRequestRefundUserSeasonDepartmentGroup: {
     readonly __typename: "NotFoundError";
     readonly message: string;
   } | {
@@ -33,9 +27,9 @@ export type UserSeasonDepartmentGroupRequestRefundPageRequestRefundMutation$data
     readonly __typename: "%other";
   };
 };
-export type UserSeasonDepartmentGroupRequestRefundPageRequestRefundMutation = {
-  response: UserSeasonDepartmentGroupRequestRefundPageRequestRefundMutation$data;
-  variables: UserSeasonDepartmentGroupRequestRefundPageRequestRefundMutation$variables;
+export type SeasonDepartmentWithdrawRequestRefundUserSeasonDepartmentGroupMutation = {
+  response: SeasonDepartmentWithdrawRequestRefundUserSeasonDepartmentGroupMutation$data;
+  variables: SeasonDepartmentWithdrawRequestRefundUserSeasonDepartmentGroupMutation$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -43,14 +37,14 @@ var v0 = [
   {
     "defaultValue": null,
     "kind": "LocalArgument",
-    "name": "input"
+    "name": "id"
   }
 ],
 v1 = [
   {
     "kind": "Variable",
-    "name": "input",
-    "variableName": "input"
+    "name": "id",
+    "variableName": "id"
   }
 ],
 v2 = {
@@ -101,14 +95,14 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "UserSeasonDepartmentGroupRequestRefundPageRequestRefundMutation",
+    "name": "SeasonDepartmentWithdrawRequestRefundUserSeasonDepartmentGroupMutation",
     "selections": [
       {
         "alias": null,
         "args": (v1/*: any*/),
         "concreteType": null,
         "kind": "LinkedField",
-        "name": "requestRefundUserSeasonDepartmentGroup",
+        "name": "withdrawRequestRefundUserSeasonDepartmentGroup",
         "plural": false,
         "selections": [
           (v2/*: any*/),
@@ -125,14 +119,14 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "UserSeasonDepartmentGroupRequestRefundPageRequestRefundMutation",
+    "name": "SeasonDepartmentWithdrawRequestRefundUserSeasonDepartmentGroupMutation",
     "selections": [
       {
         "alias": null,
         "args": (v1/*: any*/),
         "concreteType": null,
         "kind": "LinkedField",
-        "name": "requestRefundUserSeasonDepartmentGroup",
+        "name": "withdrawRequestRefundUserSeasonDepartmentGroup",
         "plural": false,
         "selections": [
           (v2/*: any*/),
@@ -152,16 +146,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "fb949b7bcf43fe46700e70312eb090a6",
+    "cacheID": "668eed419178ddda1d289093a9ef80c0",
     "id": null,
     "metadata": {},
-    "name": "UserSeasonDepartmentGroupRequestRefundPageRequestRefundMutation",
+    "name": "SeasonDepartmentWithdrawRequestRefundUserSeasonDepartmentGroupMutation",
     "operationKind": "mutation",
-    "text": "mutation UserSeasonDepartmentGroupRequestRefundPageRequestRefundMutation(\n  $input: RequestRefundUserSeasonDepartmentGroupInput!\n) {\n  requestRefundUserSeasonDepartmentGroup(input: $input) {\n    __typename\n    ... on UserSeasonDepartmentGroup {\n      id\n      status\n    }\n    ... on NotFoundError {\n      message\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
+    "text": "mutation SeasonDepartmentWithdrawRequestRefundUserSeasonDepartmentGroupMutation(\n  $id: ID!\n) {\n  withdrawRequestRefundUserSeasonDepartmentGroup(id: $id) {\n    __typename\n    ... on UserSeasonDepartmentGroup {\n      id\n      status\n    }\n    ... on NotFoundError {\n      message\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "3195ffb644eb46b51c796ebbf166cbfa";
+(node as any).hash = "9c7636968928cad859afb90d4133deaa";
 
 export default node;

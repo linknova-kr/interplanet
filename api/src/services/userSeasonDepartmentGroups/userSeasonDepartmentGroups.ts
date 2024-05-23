@@ -2,6 +2,7 @@ import {
   MutationResolvers,
   MutationcreateUserSeasonDepartmentGroupArgs,
   MutationrequestRefundUserSeasonDepartmentGroupArgs,
+  MutationwithdrawRequestRefundUserSeasonDepartmentGroupArgs,
   QueryResolvers,
   QueryuserSeasonDepartmentGroupArgs,
 } from 'types/graphql'
@@ -77,7 +78,7 @@ export const createUserSeasonDepartmentGroup: Omit<
 export const requestRefundUserSeasonDepartmentGroup: MutationResolvers['requestRefundUserSeasonDepartmentGroup'] =
   async ({ input }: MutationrequestRefundUserSeasonDepartmentGroupArgs) => {
     const userId = context.currentUser.id
-    const { id } = input
+    const { id, bankAccountNumber, bankAccountHolder, phoneNumber } = input
     const userSeasonDepartmentGroup =
       await db.userSeasonDepartmentGroup.findUnique({ where: { id } })
 
@@ -102,9 +103,52 @@ export const requestRefundUserSeasonDepartmentGroup: MutationResolvers['requestR
       }
     }
 
+    const refundRequest = await db.refundRequest.create({
+      data: {
+        bankAccountNumber,
+        bankAccountHolder,
+        phoneNumber,
+      },
+    })
+
     return db.userSeasonDepartmentGroup.update({
       where: { id },
-      data: { status: 'REFUND_PENDING' },
+      data: { status: 'REFUND_PENDING', refundRequestId: refundRequest.id },
+    })
+  }
+
+export const withdrawRequestRefundUserSeasonDepartmentGroup: MutationResolvers['withdrawRequestRefundUserSeasonDepartmentGroup'] =
+  async ({
+    id,
+  }: MutationwithdrawRequestRefundUserSeasonDepartmentGroupArgs) => {
+    const userId = context.currentUser.id
+    const userSeasonDepartmentGroup =
+      await db.userSeasonDepartmentGroup.findUnique({ where: { id } })
+
+    if (!userSeasonDepartmentGroup) {
+      return {
+        __typename: 'NotFoundError',
+        message: 'User season department group not found',
+      }
+    }
+
+    if (userSeasonDepartmentGroup.userId !== userId) {
+      return {
+        __typename: 'NotFoundError',
+        message: 'User season department group not found',
+      }
+    }
+
+    if (userSeasonDepartmentGroup.status !== 'REFUND_PENDING') {
+      return {
+        __typename: 'NotFoundError',
+        message: 'User season department group not found',
+      }
+    }
+
+    return db.userSeasonDepartmentGroup.update({
+      where: { id },
+      data: { status: 'APPROVED', refundRequestId: null },
     })
   }
 

@@ -2,10 +2,14 @@ import { useState } from 'react'
 
 import { Badge, Box, Button, HStack, Heading, VStack } from '@chakra-ui/react'
 import styled from '@emotion/styled'
+import { useMutation } from 'react-relay'
+import { graphql } from 'relay-runtime'
 import { Season } from 'types/graphql'
 
 import { Link, routes } from '@redwoodjs/router'
+import { Toaster, toast } from '@redwoodjs/web/dist/toast'
 
+import { SeasonDepartmentWithdrawRequestRefundUserSeasonDepartmentGroupMutation } from 'src/components/__generated__/SeasonDepartmentWithdrawRequestRefundUserSeasonDepartmentGroupMutation.graphql'
 import { formatMDdd } from 'src/util/date'
 
 import { UserSeasonDepartmentGroupStatus } from '../../__generated__/ActiveSeasonQuery.graphql'
@@ -30,6 +34,23 @@ interface SeasonDepartmentProps {
   }
 }
 
+const WITHDRAW_REQUEST_REFUND = graphql`
+  mutation SeasonDepartmentWithdrawRequestRefundUserSeasonDepartmentGroupMutation(
+    $id: ID!
+  ) {
+    withdrawRequestRefundUserSeasonDepartmentGroup(id: $id) {
+      __typename
+      ... on UserSeasonDepartmentGroup {
+        id
+        status
+      }
+      ... on NotFoundError {
+        message
+      }
+    }
+  }
+`
+
 const Message = styled(Box)`
   background-color: #e0e3fd;
   padding: 10px;
@@ -49,6 +70,24 @@ const SeasonDepartment = ({
   name,
 }: SeasonDepartmentProps) => {
   const [showMessage, setShowMessage] = useState(false)
+  const [withdraw] =
+    useMutation<SeasonDepartmentWithdrawRequestRefundUserSeasonDepartmentGroupMutation>(
+      WITHDRAW_REQUEST_REFUND
+    )
+
+  const onWithdraw = (id: string) => {
+    withdraw({
+      variables: { id },
+      onCompleted: (data) => {
+        if (
+          data.withdrawRequestRefundUserSeasonDepartmentGroup.__typename ===
+          'UserSeasonDepartmentGroup'
+        ) {
+          toast.success('환불철회되었습니다.')
+        }
+      },
+    })
+  }
 
   const toggleShowMessage = () => {
     setShowMessage(!showMessage)
@@ -61,6 +100,7 @@ const SeasonDepartment = ({
             <Button disabled bg="#8f97f7">
               승인대기
             </Button>
+            // todo: 환불요청
           )
         case 'APPROVED':
           return (
@@ -69,7 +109,7 @@ const SeasonDepartment = ({
                 id: seasonDepartment.my.id,
               })}
             >
-              <Button>취소</Button>
+              <Button>시즌취소</Button>
             </Link>
           )
         //  구현 필요
@@ -77,7 +117,9 @@ const SeasonDepartment = ({
           return (
             <>
               <Button disabled>환불대기</Button>
-              {/* todo 취소의 취소? */}
+              <Button onClick={() => onWithdraw(seasonDepartment.my.id)}>
+                환불철회
+              </Button>
             </>
           )
         case 'REFUNDED':
@@ -101,6 +143,7 @@ const SeasonDepartment = ({
   }
   return (
     <Container onClick={toggleShowMessage}>
+      <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
       <HStack justifyContent="space-between">
         <VStack alignItems="start">
           <HStack justifyContent="start">

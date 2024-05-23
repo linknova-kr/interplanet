@@ -31,6 +31,10 @@ export const schema = gql`
     requestRefundUserSeasonDepartmentGroup(
       input: RequestRefundUserSeasonDepartmentGroupInput!
     ): RequestRefundUserSeasonDepartmentGroupResult! @requireAuth
+
+    withdrawRequestRefundUserSeasonDepartmentGroup(
+      id: ID!
+    ): WithdrawRequestRefundUserSeasonDepartmentGroupResult! @requireAuth
   }
 
   input CreateUserSeasonDepartmentGroupInput {
@@ -46,9 +50,16 @@ export const schema = gql`
 
   input RequestRefundUserSeasonDepartmentGroupInput {
     id: ID!
+    bankAccountNumber: String!
+    bankAccountHolder: String!
+    phoneNumber: String!
   }
 
   union RequestRefundUserSeasonDepartmentGroupResult =
+      UserSeasonDepartmentGroup
+    | NotFoundError
+
+  union WithdrawRequestRefundUserSeasonDepartmentGroupResult =
       UserSeasonDepartmentGroup
     | NotFoundError
 `

@@ -98,6 +98,15 @@ enum UserSeasonDepartmentGroupStatus {
   REFUNDED
 }
 
+model RefundRequest {
+  id                String @id @default(cuid())
+  bankAccountNumber String
+  bankAccountHolder String
+  phoneNumber       String
+
+  userSeasonDepartmentGroup UserSeasonDepartmentGroup?
+}
+
 model UserSeasonDepartmentGroup {
   id                 String                          @id @default(cuid())
   user               User                            @relation(fields: [userId], references: [id])
@@ -110,6 +119,8 @@ model UserSeasonDepartmentGroup {
   status             UserSeasonDepartmentGroupStatus
   level              String?
   refundedAt         DateTime?
+  refundRequest      RefundRequest?                  @relation(fields: [refundRequestId], references: [id])
+  refundRequestId    String?                         @unique
 }
 
 enum GroupProgramType {

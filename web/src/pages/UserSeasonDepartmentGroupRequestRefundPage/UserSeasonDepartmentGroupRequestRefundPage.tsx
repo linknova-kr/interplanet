@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { useLazyLoadQuery, useMutation } from 'react-relay'
 import { graphql } from 'relay-runtime'
 
+import { Form, Label, TextField } from '@redwoodjs/forms'
 import { back, Redirect } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/dist/toast'
@@ -61,13 +62,25 @@ const Container = styled(Box)`
 `
 
 const Message = styled(Box)`
-  margin: 30px;
+  margin: 30px 0;
   text-align: left;
 `
 
 interface Props {
   id: string
 }
+
+const Inner = styled.div`
+  padding: 0 30px;
+  justify-content: start;
+  text-align: left;
+`
+
+const Title = styled(Label)`
+  margin-top: 16px;
+  font-weight: bold;
+  display: block;
+`
 
 const UserSeasonDepartmentGroupRequestRefundPage = ({ id }: Props) => {
   const data =
@@ -86,10 +99,11 @@ const UserSeasonDepartmentGroupRequestRefundPage = ({ id }: Props) => {
   }
   const { department, season } = data.userSeasonDepartmentGroup.seasonDepartment
 
-  const request = () => {
+  const request = (data) => {
+    const { bankAccountNumber, bankAccountHolder, phoneNumber } = data
     requestRefund({
       variables: {
-        input: { id },
+        input: { id, bankAccountNumber, bankAccountHolder, phoneNumber },
       },
       onCompleted: ({ requestRefundUserSeasonDepartmentGroup }) => {
         if (
@@ -112,20 +126,66 @@ const UserSeasonDepartmentGroupRequestRefundPage = ({ id }: Props) => {
         description="UserSeasonDepartmentGroupRequestRefund page"
       />
       <PageTitle title="시즌 취소" />
-      <ActionLayout actions={<Button onClick={request}>환불 신청하기</Button>}>
-        <DetailHead
-          departmentName={department.name}
-          label={`${formatMDdd(season.startsAt)}~${formatMDdd(season.endsAt)}`}
-          title={season.name}
-        />
-        <Message>
-          취소를 원하는 경우 <br />
-          하단 환불 신청하기 버튼을 눌러주세요.
-          <br />
-          <br />
-          환불까지 ~일이 소요 될 수 있습니다.
-        </Message>
-      </ActionLayout>
+      <DetailHead
+        departmentName={department.name}
+        label={`${formatMDdd(season.startsAt)}~${formatMDdd(season.endsAt)}`}
+        title={season.name}
+      />
+      <Form onSubmit={request}>
+        <ActionLayout actions={<Button type="submit">환불 신청하기</Button>}>
+          <Inner>
+            <Message>
+              취소를 원하는 경우 <br />
+              하단 환불 신청하기 버튼을 눌러주세요.
+              <br />
+              <br />
+              환불까지 ~일이 소요 될 수 있습니다.
+            </Message>
+            <Title
+              name="bankAccountNumber"
+              htmlFor="bankAccoutNumber"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              환불 받을 계좌
+            </Title>
+            <TextField
+              name="bankAccountNumber"
+              validation={{ required: true }}
+              className="rw-input"
+              errorClassName="rw-input rw-input-error"
+            />
+            <Title
+              name="bankAccountHolder"
+              htmlFor="bankAccountHolder"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              예금주
+            </Title>
+            <TextField
+              name="bankAccountHolder"
+              validation={{ required: true }}
+              className="rw-input"
+              errorClassName="rw-input rw-input-error"
+            />
+            <Title
+              name="phoneNumber"
+              htmlFor="phoneNumber"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              연락처
+            </Title>
+            <TextField
+              name="phoneNumber"
+              validation={{ required: true }}
+              className="rw-input"
+              errorClassName="rw-input rw-input-error"
+            />
+          </Inner>
+        </ActionLayout>
+      </Form>
     </Container>
   )
 }
