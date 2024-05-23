@@ -112,7 +112,7 @@ export const createGroupProgram: Omit<
   if (!group) {
     return { message: 'Group not found', __typename: 'NotFoundError' }
   }
-  return db.groupProgram.create({
+  const result = await db.groupProgram.create({
     data: {
       title,
       type,
@@ -125,6 +125,14 @@ export const createGroupProgram: Omit<
       hostUserId: userId,
     },
   })
+  await db.userGroupProgram.create({
+    data: {
+      userId,
+      groupProgramId: result.id,
+      status: 'NOT_ATTENDED',
+    },
+  })
+  return result
 }
 
 export const GroupProgram: GroupProgramRelationResolvers = {
