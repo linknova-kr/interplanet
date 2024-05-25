@@ -26,7 +26,7 @@ const QUERY = graphql`
         }
         address
         description
-        userGroupPrograms(first: 30)
+        userGroupPrograms(first: 10000)
           @connection(key: "GroupProgram_userGroupPrograms") {
           edges {
             node {
@@ -59,14 +59,14 @@ const GroupProgramPage = ({ id }: Props) => {
   if (data.groupProgram.__typename !== 'GroupProgram') {
     return <Redirect to="/not-found" />
   }
-  const isBefore = new Date(data.groupProgram.startsAt) < new Date()
+  const isAfter = new Date(data.groupProgram.startsAt) < new Date()
   return (
     <>
       <Metadata title="GroupProgram" description="GroupProgram page" />
       <PageTitle title="본모임 신청" />
       <ActionLayout
         actions={
-          isBefore ? null : (
+          isAfter ? null : (
             <GroupProgramPageButton groupProgram={data.groupProgram} />
           )
         }

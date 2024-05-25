@@ -67,7 +67,7 @@ const GroupPrograms = ({
   startAtCriteria,
   setStartAtCriteria,
 }: Props) => {
-  const [sort, setSort] = useState<GroupProgramSort>('STARTS_AT_ASC')
+  const [sort, setSort] = useState<GroupProgramSort>('STARTS_AT_DESC')
   const iJoined = useMemo(() => {
     if (departmentId === null) {
       return false
@@ -88,8 +88,8 @@ const GroupPrograms = ({
           value={sort}
           width={'200px'}
         >
-          <option value={'STARTS_AT_ASC'}>최신순</option>
-          <option value={'STARTS_AT_DESC'}>오래된순</option>
+          <option value={'STARTS_AT_DESC'}>최신순</option>
+          <option value={'STARTS_AT_ASC'}>오래된순</option>
         </Select>
 
         {startAtCriteria === 'FUTURE' ? (

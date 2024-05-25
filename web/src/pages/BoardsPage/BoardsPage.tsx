@@ -1,7 +1,5 @@
 import { useState } from 'react'
 
-import { AddIcon } from '@chakra-ui/icons'
-import { IconButton } from '@chakra-ui/react'
 import { useLazyLoadQuery } from 'react-relay'
 import { graphql } from 'relay-runtime'
 
@@ -9,6 +7,7 @@ import { navigate, routes } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 
 import { BoardsPageQuery } from 'src/components/__generated__/BoardsPageQuery.graphql'
+import FloatingButton from 'src/components/common/FloatingButton/FloatingButton'
 import PageTabs from 'src/components/common/PageTabs/PageTabs'
 import PageTitle from 'src/components/common/PageTitle/PageTitle'
 import BoardPosts from 'src/components/post/BoardPosts/BoardPosts'
@@ -47,18 +46,8 @@ const BoardsPage = () => {
       <PinnedPosts />
       <BoardPosts boardId={boardId} />
       {isNotNotice && (
-        <IconButton
-          position="fixed"
-          bottom="120px"
-          right="40px"
-          borderRadius="100%"
-          backgroundColor="white"
-          icon={
-            <AddIcon
-              onClick={() => navigate(routes.postNew({ id: boardId }))}
-            />
-          }
-          aria-label=""
+        <FloatingButton
+          onClick={() => navigate(routes.postNew({ id: boardId }))}
         />
       )}
     </>

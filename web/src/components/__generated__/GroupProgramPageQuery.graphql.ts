@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<93ea2e2c1ccc0a24fb65139a968ae83e>>
+ * @generated SignedSource<<1d1efdf22d433ddda939118c72d1b60c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -240,7 +240,7 @@ v13 = [
   {
     "kind": "Literal",
     "name": "first",
-    "value": 30
+    "value": 10000
   }
 ];
 return {
@@ -329,7 +329,7 @@ return {
                 "name": "userGroupPrograms",
                 "plural": false,
                 "selections": (v11/*: any*/),
-                "storageKey": "userGroupPrograms(first:30)"
+                "storageKey": "userGroupPrograms(first:10000)"
               },
               {
                 "alias": null,
@@ -404,7 +404,7 @@ return {
     ]
   },
   "params": {
-    "cacheID": "d86252b437a75210ed0231dea09112e4",
+    "cacheID": "74ed02c7e0be0cf1a5d2555783fe1b8e",
     "id": null,
     "metadata": {
       "connection": [
@@ -421,11 +421,11 @@ return {
     },
     "name": "GroupProgramPageQuery",
     "operationKind": "query",
-    "text": "query GroupProgramPageQuery(\n  $id: ID!\n) {\n  groupProgram(id: $id) {\n    __typename\n    ... on GroupProgram {\n      id\n      startsAt\n      endsAt\n      type\n      my {\n        id\n        type\n        message\n      }\n      address\n      description\n      userGroupPrograms(first: 30) {\n        edges {\n          node {\n            id\n            type\n            user {\n              id\n              realName\n              nickname\n            }\n            message\n            __typename\n          }\n          cursor\n        }\n        pageInfo {\n          endCursor\n          hasNextPage\n        }\n      }\n      ...GroupProgramHeaderFragment\n    }\n    ... on NotFoundError {\n      message\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n\nfragment GroupProgramHeaderFragment on GroupProgram {\n  id\n  title\n  startsAt\n  addressSimple\n  group {\n    department {\n      name\n      id\n    }\n    id\n  }\n}\n"
+    "text": "query GroupProgramPageQuery(\n  $id: ID!\n) {\n  groupProgram(id: $id) {\n    __typename\n    ... on GroupProgram {\n      id\n      startsAt\n      endsAt\n      type\n      my {\n        id\n        type\n        message\n      }\n      address\n      description\n      userGroupPrograms(first: 10000) {\n        edges {\n          node {\n            id\n            type\n            user {\n              id\n              realName\n              nickname\n            }\n            message\n            __typename\n          }\n          cursor\n        }\n        pageInfo {\n          endCursor\n          hasNextPage\n        }\n      }\n      ...GroupProgramHeaderFragment\n    }\n    ... on NotFoundError {\n      message\n    }\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n\nfragment GroupProgramHeaderFragment on GroupProgram {\n  id\n  title\n  startsAt\n  addressSimple\n  group {\n    department {\n      name\n      id\n    }\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "a32caa5bd94d61fbe4a21eded3efb43a";
+(node as any).hash = "0bd16c5c35e19ac423b4050433c304ce";
 
 export default node;

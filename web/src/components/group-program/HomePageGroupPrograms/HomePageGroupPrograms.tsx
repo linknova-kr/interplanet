@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
 
-import { AddIcon } from '@chakra-ui/icons'
-import { IconButton } from '@chakra-ui/react'
 import { graphql, useLazyLoadQuery } from 'react-relay'
 import { GroupProgramStartAtCriteria } from 'types/graphql'
 
 import { navigate, routes } from '@redwoodjs/router'
 
+import FloatingButton from 'src/components/common/FloatingButton/FloatingButton'
 import DepartmentChips from 'src/components/department/DepartmentChips/DepartmentChips'
 import GroupPrograms from 'src/components/group-program/GroupPrograms/GroupPrograms'
 
@@ -57,15 +56,7 @@ const HomePageGroupPrograms = () => {
         startAtCriteria={startAtCriteria}
         setStartAtCriteria={setStartAtCriteria}
       />
-      <IconButton
-        position="fixed"
-        bottom="120px"
-        right="40px"
-        borderRadius="100%"
-        backgroundColor="white"
-        icon={<AddIcon onClick={() => navigate(routes.groupProgramCreate())} />}
-        aria-label=""
-      />
+      <FloatingButton onClick={() => navigate(routes.groupProgramCreate())} />
     </>
   )
 }

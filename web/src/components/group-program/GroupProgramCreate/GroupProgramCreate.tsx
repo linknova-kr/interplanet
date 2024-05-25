@@ -89,7 +89,7 @@ const GroupProgramCreate = ({ seasonGroups }: Props) => {
       onCompleted: ({ createGroupProgram }) => {
         if (createGroupProgram.__typename === 'GroupProgram') {
           toast.success('모임이 개설되었습니다.')
-          navigate(routes.home(), { replace: true })
+          navigate(routes.index(), { replace: true })
         } else {
           toast.error('모임 개설이 실패했습니다.')
         }

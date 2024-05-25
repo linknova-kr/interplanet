@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import * as _ from 'lodash'
 
-import { formatHMM } from 'src/util/date'
+import CommonEventDetail from 'src/components/CommonEventDetail/CommonEventDetail'
 
 import { GroupProgramPageQuery$data } from '../../__generated__/GroupProgramPageQuery.graphql'
 import UserMessage from '../../user/UserMessage/UserMessage'
@@ -14,16 +14,6 @@ interface Props {
   } & GroupProgramPageQuery$data['groupProgram']
 }
 
-const Container = styled.div`
-  text-align: left;
-  padding: 30px;
-`
-
-const Label = styled.span`
-  color: #8f97f7;
-  margin-right: 5px;
-`
-
 const GroupProgramDetail = ({ groupProgram }: Props) => {
   const grouped = _.groupBy(
     groupProgram.userGroupPrograms.edges,
@@ -33,40 +23,34 @@ const GroupProgramDetail = ({ groupProgram }: Props) => {
   return (
     <>
       <GroupProgramHeader groupProgram={groupProgram} />
-      <Container>
-        <p>{groupProgram.description}</p>
-        <div>
-          <Label>모임시간</Label>
-          {formatHMM(groupProgram.startsAt)} ~{formatHMM(groupProgram.endsAt)}
-        </div>
-        <div>
-          <Label>모임장소</Label>
-          {groupProgram.address}
-        </div>
-        <br />
-        <Label>참여멤버</Label>
-
-        <div>
-          {Object.entries(grouped).map(([type, userGroupPrograms]) => {
-            return (
-              <div key={type}>
-                <h2>{type}</h2>
-                <Flex direction="row" gap={8}>
-                  {userGroupPrograms.map((userGroupProgram) => {
-                    return (
-                      <UserMessage
-                        user={userGroupProgram.node.user}
-                        message={userGroupProgram.node.message}
-                        key={userGroupProgram.node.id}
-                      />
-                    )
-                  })}
-                </Flex>
-              </div>
-            )
-          })}
-        </div>
-      </Container>
+      <CommonEventDetail
+        description={groupProgram.description}
+        startsAt={groupProgram.startsAt}
+        endsAt={groupProgram.endsAt}
+        address={groupProgram.address}
+        usersDOM={
+          <div>
+            {Object.entries(grouped).map(([type, userGroupPrograms]) => {
+              return (
+                <div key={type}>
+                  <h2>{type}</h2>
+                  <Flex direction="row" gap={8}>
+                    {userGroupPrograms.map((userGroupProgram) => {
+                      return (
+                        <UserMessage
+                          user={userGroupProgram.node.user}
+                          message={userGroupProgram.node.message}
+                          key={userGroupProgram.node.id}
+                        />
+                      )
+                    })}
+                  </Flex>
+                </div>
+              )
+            })}
+          </div>
+        }
+      />
     </>
   )
 }

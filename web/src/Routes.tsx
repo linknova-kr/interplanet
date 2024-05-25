@@ -22,7 +22,8 @@ const Routes = () => {
       <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
       <PrivateSet unauthenticated="login">
         <Set wrap={AuthenticatedLayout}>
-          <Route path="/" page={HomePage} name="home" />
+          <Route path="/" page={HomePage} name="index" />
+          <Route path="/home/{tab}" page={HomePage} name="home" />
           <Route path="/my" page={MyPage} name="my" />
           <Route path="/boards" page={BoardsPage} name="boards" />
         </Set>
