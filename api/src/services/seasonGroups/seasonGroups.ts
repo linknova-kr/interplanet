@@ -35,7 +35,7 @@ export const SeasonGroup = {
     if (!userId) return false
     const id = root.id
 
-    const userSeasonGroup = await db.userSeasonGroup.findFirst({
+    const userSeasonGroup = await db.userSeasonDepartmentGroup.findFirst({
       where: {
         userId,
         seasonGroupId: id,

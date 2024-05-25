@@ -77,6 +77,34 @@ export const createUserSeasonDepartmentGroup: Omit<
   })
 }
 
+export const myActiveDepartmentIds = async (userId): Promise<string[]> => {
+  const activeSeason = await db.season.findFirst({
+    where: {
+      startsAt: { lte: new Date() },
+      endsAt: { gte: new Date() },
+    },
+  })
+  if (!activeSeason) {
+    return []
+  }
+  const userSeasonDepartmentGroups =
+    await db.userSeasonDepartmentGroup.findMany({
+      where: {
+        userId,
+        seasonGroup: { seasonId: activeSeason.id },
+        status: 'APPROVED',
+      },
+      select: {
+        seasonDepartment: {
+          select: {
+            departmentId: true,
+          },
+        },
+      },
+    })
+  return userSeasonDepartmentGroups.map((v) => v.seasonDepartment.departmentId)
+}
+
 export const requestRefundUserSeasonDepartmentGroup: Omit<
   MutationResolvers['requestRefundUserSeasonDepartmentGroup'],
   'attendanceCount'

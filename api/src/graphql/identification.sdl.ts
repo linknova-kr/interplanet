@@ -25,6 +25,10 @@ export const schema = gql`
     message: String!
   }
 
+  type NotAllowedError implements Error {
+    message: String!
+  }
+
   type DeleteSuccess {
     id: ID!
   }
