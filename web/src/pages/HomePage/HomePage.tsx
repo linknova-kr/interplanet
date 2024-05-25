@@ -6,6 +6,7 @@ import { Metadata } from '@redwoodjs/web'
 import PageTabs from 'src/components/common/PageTabs/PageTabs'
 import PageTitle from 'src/components/common/PageTitle/PageTitle'
 import HomePageGroupPrograms from 'src/components/group-program/HomePageGroupPrograms/HomePageGroupPrograms'
+import HomePageSpotEvents from 'src/components/spot-event/HomePageSpotEvents/HomePageSpotEvents'
 
 enum HomePageTab {
   GROUP_PROGRAM = 'group-program',
@@ -51,6 +52,7 @@ const HomePage = (props: Props) => {
         onSelect={(tab: HomePageTab) => navigate(routes.home({ tab }))}
       />
       {tab === HomePageTab.GROUP_PROGRAM && <HomePageGroupPrograms />}
+      {tab === HomePageTab.SPOT_EVENT && <HomePageSpotEvents />}
     </>
   )
 }
