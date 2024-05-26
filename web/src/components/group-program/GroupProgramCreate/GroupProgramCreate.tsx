@@ -3,18 +3,12 @@ import styled from '@emotion/styled'
 import { useMutation } from 'react-relay'
 import { graphql } from 'relay-runtime'
 
-import {
-  DatetimeLocalField,
-  Form,
-  Label,
-  RadioField,
-  TextAreaField,
-  TextField,
-} from '@redwoodjs/forms'
+import { Form, Label, RadioField, TextField } from '@redwoodjs/forms'
 import { navigate, routes } from '@redwoodjs/router'
-import { Toaster, toast } from '@redwoodjs/web/dist/toast'
+import { toast, Toaster } from '@redwoodjs/web/dist/toast'
 
 import { GroupProgramCreateMutation } from 'src/components/__generated__/GroupProgramCreateMutation.graphql'
+import CommonEventForm from 'src/components/CommonEventForm/CommonEventForm'
 import ActionLayout from 'src/layouts/ActionLayout/ActionLayout'
 
 interface Props {
@@ -40,7 +34,9 @@ const CRAETE = graphql`
   }
 `
 
-const Guide = styled.div``
+const Guide = styled.div`
+  margin-top: 20px;
+`
 
 const Container = styled.div`
   width: 100%;
@@ -142,74 +138,7 @@ const GroupProgramCreate = ({ seasonGroups }: Props) => {
               errorClassName="rw-input rw-input-error"
             />
 
-            <Title
-              name="startsAt"
-              htmlFor="startsAt"
-              className="rw-label"
-              errorClassName="rw-label rw-label-error"
-            >
-              시작일시
-            </Title>
-            <DatetimeLocalField
-              validation={{ required: true }}
-              name="startsAt"
-              className="rw-input"
-              errorClassName="rw-input rw-input-error"
-            />
-
-            <Title
-              name="endsAt"
-              htmlFor="endsAt"
-              className="rw-label"
-              errorClassName="rw-label rw-label-error"
-            >
-              종료일시
-            </Title>
-            <DatetimeLocalField
-              validation={{ required: true }}
-              name="endsAt"
-              className="rw-input"
-              errorClassName="rw-input rw-input-error"
-            />
-
-            <Title
-              name="address"
-              htmlFor="address"
-              className="rw-label"
-              errorClassName="rw-label rw-label-error"
-            >
-              장소
-            </Title>
-            <TextField
-              validation={{ required: true }}
-              name="addressSimple"
-              placeholder="대표주소"
-              style={{ marginBottom: 5 }}
-              className="rw-input"
-              errorClassName="rw-input rw-input-error"
-            />
-            <TextField
-              validation={{ required: true }}
-              name="address"
-              placeholder="상세주소"
-              className="rw-input"
-              errorClassName="rw-input rw-input-error"
-            />
-
-            <Title
-              name="description"
-              htmlFor="description"
-              className="rw-label"
-              errorClassName="rw-label rw-label-error"
-            >
-              모임 설명
-            </Title>
-            <TextAreaField
-              validation={{ required: true }}
-              name="description"
-              className="rw-input"
-              errorClassName="rw-input rw-input-error"
-            />
+            <CommonEventForm />
           </Inner>
         </ActionLayout>
       </Form>

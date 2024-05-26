@@ -13,8 +13,8 @@ import type {
 
 import { db } from 'src/lib/db'
 
+import { myActiveDepartments } from '../departments/departments'
 import { ConnectionResolver } from '../types'
-import { myActiveDepartmentIds } from '../userSeasonDepartmentGroups/userSeasonDepartmentGroups'
 import { userSpotEventsConnection } from '../userSpotEvents/userSpotEvents'
 
 export const spotEvents: ConnectionResolver<
@@ -31,9 +31,9 @@ export const spotEvents: ConnectionResolver<
     deregisteredAt: null,
   }
   if (activeSeasonOnly) {
-    const departmentIds = await myActiveDepartmentIds(context.currentUser.id)
+    const departments = await myActiveDepartments()
     where.departmentId = {
-      in: departmentIds,
+      in: departments.map((d) => d.id),
     }
   }
   const orderBy =

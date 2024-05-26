@@ -5,11 +5,14 @@ import styled from '@emotion/styled'
 import { useLazyLoadQuery } from 'react-relay'
 import { graphql } from 'relay-runtime'
 
+import { navigate, routes } from '@redwoodjs/router'
+
 import {
   HomePageSpotEventsQuery,
   SpotEventSort,
   SpotEventStartAtCriteria,
 } from 'src/components/__generated__/HomePageSpotEventsQuery.graphql'
+import FloatingButton from 'src/components/common/FloatingButton/FloatingButton'
 
 import SpotEventListItem from '../SpotEventListItem/SpotEventListItem'
 
@@ -85,6 +88,7 @@ const HomePageSpotEvents = () => {
       {data.spotEvents.edges.map(({ node }) => (
         <SpotEventListItem key={node.id} spotEvent={node} />
       ))}
+      <FloatingButton onClick={() => navigate(routes.spotEventCreate())} />
     </>
   )
 }

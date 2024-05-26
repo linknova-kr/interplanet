@@ -21,3 +21,7 @@ export function formatDateYMD(date: Date) {
 export function formatYMDHM(date: Date) {
   return dayjs(date).format('YY.MM.DD HH:mm')
 }
+
+export function formatT(date: Date) {
+  return dayjs(date).format('YYYY-MM-DDTHH:mm')
+}

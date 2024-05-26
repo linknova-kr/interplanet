@@ -72,6 +72,7 @@ export const schema = gql`
   input CreateSpotEventInput {
     departmentId: String!
     title: String!
+    imageUrl: String!
     address: String!
     addressSimple: String!
     startsAt: DateTime!
@@ -82,6 +83,7 @@ export const schema = gql`
   input UpdateSpotEventInput {
     departmentId: String
     title: String
+    imageUrl: String
     address: String
     addressSimple: String
     startsAt: DateTime

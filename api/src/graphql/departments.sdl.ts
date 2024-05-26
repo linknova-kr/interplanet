@@ -40,5 +40,7 @@ export const schema = gql`
     ): DepartmentConnection! @skipAuth
 
     department(slug: String!): DepartmentDetailResult! @skipAuth
+
+    myActiveDepartments: [Department!]! @skipAuth
   }
 `

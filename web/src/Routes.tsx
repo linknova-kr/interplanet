@@ -36,6 +36,8 @@ const Routes = () => {
           <Route path="/user-season-department-group/{id}/request-refund" page={UserSeasonDepartmentGroupRequestRefundPage} name="userSeasonDepartmentGroupRequestRefund" />
           <Route path="/group-program-create" page={GroupProgramCreatePage} name="groupProgramCreate" />
           <Route path="/spot-events/{id}" page={SpotEventPage} name="spotEvent" />
+          <Route path="/spot-event-create" page={SpotEventCreatePage} name="spotEventCreate" />
+          <Route path="/spot-events/{id}/update" page={SpotEventUpdatePage} name="spotEventUpdate" />
         </Set>
       </PrivateSet>
       <Route notfound page={NotFoundPage} />

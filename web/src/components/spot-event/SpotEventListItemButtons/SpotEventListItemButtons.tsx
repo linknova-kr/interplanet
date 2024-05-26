@@ -2,6 +2,7 @@ import { Button } from '@chakra-ui/react'
 import { useMutation } from 'react-relay'
 import { ConnectionHandler, graphql } from 'relay-runtime'
 
+import { navigate, routes } from '@redwoodjs/router'
 import { toast } from '@redwoodjs/web/dist/toast'
 
 import { SpotEventListItemButtonsCancelMutation } from 'src/components/__generated__/SpotEventListItemButtonsCancelMutation.graphql'
@@ -101,7 +102,7 @@ const SpotEventListItemButtons = ({ spotEvent, connectionId }: Props) => {
             onClick={(e) => {
               e.preventDefault()
               e.stopPropagation()
-              console.log('UY')
+              navigate(routes.spotEventUpdate({ id: spotEvent.id }))
             }}
           >
             수정
