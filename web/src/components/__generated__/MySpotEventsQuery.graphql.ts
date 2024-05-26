@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f5c34db8a6d8e59b077e20faba1f8d10>>
+ * @generated SignedSource<<3d43172f269b2718dba9c98e1b570384>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,77 +10,118 @@
 
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type SpotEventSort = "STARTS_AT_ASC" | "STARTS_AT_DESC" | "%future added value";
-export type SpotEventStartAtCriteria = "FUTURE" | "PAST" | "%future added value";
-export type HomePageSpotEventsQuery$variables = {
-  sort?: SpotEventSort | null | undefined;
-  startAtCriteria?: SpotEventStartAtCriteria | null | undefined;
-};
-export type HomePageSpotEventsQuery$data = {
+export type MySpotEventsQuery$variables = Record<PropertyKey, never>;
+export type MySpotEventsQuery$data = {
   readonly spotEvents: {
+    readonly __id: string;
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly id: string;
+        readonly startsAt: any;
         readonly " $fragmentSpreads": FragmentRefs<"SpotEventListItemFragment">;
       };
     }>;
   };
 };
-export type HomePageSpotEventsQuery = {
-  response: HomePageSpotEventsQuery$data;
-  variables: HomePageSpotEventsQuery$variables;
+export type MySpotEventsQuery = {
+  response: MySpotEventsQuery$data;
+  variables: MySpotEventsQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
-var v0 = [
-  {
-    "defaultValue": null,
-    "kind": "LocalArgument",
-    "name": "sort"
-  },
-  {
-    "defaultValue": null,
-    "kind": "LocalArgument",
-    "name": "startAtCriteria"
-  }
-],
-v1 = [
-  {
-    "kind": "Literal",
-    "name": "activeSeasonOnly",
-    "value": true
-  },
-  {
-    "kind": "Variable",
-    "name": "sort",
-    "variableName": "sort"
-  },
-  {
-    "kind": "Variable",
-    "name": "startAtCriteria",
-    "variableName": "startAtCriteria"
-  }
-],
-v2 = {
+var v0 = {
+  "kind": "Literal",
+  "name": "iJoined",
+  "value": true
+},
+v1 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
-};
+},
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "startsAt",
+  "storageKey": null
+},
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "__typename",
+  "storageKey": null
+},
+v4 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "cursor",
+  "storageKey": null
+},
+v5 = {
+  "alias": null,
+  "args": null,
+  "concreteType": "PageInfo",
+  "kind": "LinkedField",
+  "name": "pageInfo",
+  "plural": false,
+  "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "endCursor",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "hasNextPage",
+      "storageKey": null
+    }
+  ],
+  "storageKey": null
+},
+v6 = {
+  "kind": "ClientExtension",
+  "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "__id",
+      "storageKey": null
+    }
+  ]
+},
+v7 = [
+  {
+    "kind": "Literal",
+    "name": "first",
+    "value": 10000
+  },
+  (v0/*: any*/)
+];
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "HomePageSpotEventsQuery",
+    "name": "MySpotEventsQuery",
     "selections": [
       {
-        "alias": null,
-        "args": (v1/*: any*/),
+        "alias": "spotEvents",
+        "args": [
+          (v0/*: any*/)
+        ],
         "concreteType": "SpotEventConnection",
         "kind": "LinkedField",
-        "name": "spotEvents",
+        "name": "__MySpotEvents_spotEvents_connection",
         "plural": false,
         "selections": [
           {
@@ -99,20 +140,25 @@ return {
                 "name": "node",
                 "plural": false,
                 "selections": [
+                  (v1/*: any*/),
                   (v2/*: any*/),
                   {
                     "args": null,
                     "kind": "FragmentSpread",
                     "name": "SpotEventListItemFragment"
-                  }
+                  },
+                  (v3/*: any*/)
                 ],
                 "storageKey": null
-              }
+              },
+              (v4/*: any*/)
             ],
             "storageKey": null
-          }
+          },
+          (v5/*: any*/),
+          (v6/*: any*/)
         ],
-        "storageKey": null
+        "storageKey": "__MySpotEvents_spotEvents_connection(iJoined:true)"
       }
     ],
     "type": "Query",
@@ -120,13 +166,13 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [],
     "kind": "Operation",
-    "name": "HomePageSpotEventsQuery",
+    "name": "MySpotEventsQuery",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v7/*: any*/),
         "concreteType": "SpotEventConnection",
         "kind": "LinkedField",
         "name": "spotEvents",
@@ -148,6 +194,7 @@ return {
                 "name": "node",
                 "plural": false,
                 "selections": [
+                  (v1/*: any*/),
                   (v2/*: any*/),
                   {
                     "alias": null,
@@ -174,13 +221,6 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "startsAt",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
                     "name": "iMade",
                     "storageKey": null
                   },
@@ -192,32 +232,58 @@ return {
                     "name": "my",
                     "plural": false,
                     "selections": [
-                      (v2/*: any*/)
+                      (v1/*: any*/)
                     ],
                     "storageKey": null
-                  }
+                  },
+                  (v3/*: any*/)
                 ],
                 "storageKey": null
-              }
+              },
+              (v4/*: any*/)
             ],
             "storageKey": null
-          }
+          },
+          (v5/*: any*/),
+          (v6/*: any*/)
         ],
-        "storageKey": null
+        "storageKey": "spotEvents(first:10000,iJoined:true)"
+      },
+      {
+        "alias": null,
+        "args": (v7/*: any*/),
+        "filters": [
+          "iJoined"
+        ],
+        "handle": "connection",
+        "key": "MySpotEvents_spotEvents",
+        "kind": "LinkedHandle",
+        "name": "spotEvents"
       }
     ]
   },
   "params": {
-    "cacheID": "88bf267ef8b1ea4ab643bc4b8b8b7b2c",
+    "cacheID": "55b4492d544f66556d3a0a1601775f92",
     "id": null,
-    "metadata": {},
-    "name": "HomePageSpotEventsQuery",
+    "metadata": {
+      "connection": [
+        {
+          "count": null,
+          "cursor": null,
+          "direction": "forward",
+          "path": [
+            "spotEvents"
+          ]
+        }
+      ]
+    },
+    "name": "MySpotEventsQuery",
     "operationKind": "query",
-    "text": "query HomePageSpotEventsQuery(\n  $sort: SpotEventSort\n  $startAtCriteria: SpotEventStartAtCriteria\n) {\n  spotEvents(sort: $sort, startAtCriteria: $startAtCriteria, activeSeasonOnly: true) {\n    edges {\n      node {\n        id\n        ...SpotEventListItemFragment\n      }\n    }\n  }\n}\n\nfragment SpotEventListItemFragment on SpotEvent {\n  id\n  title\n  imageUrl\n  addressSimple\n  startsAt\n  iMade\n  my {\n    id\n  }\n}\n"
+    "text": "query MySpotEventsQuery {\n  spotEvents(iJoined: true, first: 10000) {\n    edges {\n      node {\n        id\n        startsAt\n        ...SpotEventListItemFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment SpotEventListItemFragment on SpotEvent {\n  id\n  title\n  imageUrl\n  addressSimple\n  startsAt\n  iMade\n  my {\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "7ed477eb26e461770a3730efd2790759";
+(node as any).hash = "3ab50e795687be58616b676f9300dd2c";
 
 export default node;

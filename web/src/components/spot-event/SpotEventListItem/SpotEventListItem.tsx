@@ -6,6 +6,8 @@ import { routes } from '@redwoodjs/router'
 import { SpotEventListItemFragment$key } from 'src/components/__generated__/SpotEventListItemFragment.graphql'
 import CommonListItem from 'src/components/common/CommonListItem/CommonListItem'
 
+import SpotEventListItemButtons from '../SpotEventListItemButtons/SpotEventListItemButtons'
+
 const SpotEventListItemFragment = graphql`
   fragment SpotEventListItemFragment on SpotEvent {
     id
@@ -13,14 +15,21 @@ const SpotEventListItemFragment = graphql`
     imageUrl
     addressSimple
     startsAt
+    iMade
+    my {
+      id
+    }
   }
 `
 
 interface Props {
   spotEvent: SpotEventListItemFragment$key
+  buttonEnabled?: {
+    connectionId: string
+  }
 }
 
-const SpotEventListItem = ({ spotEvent }: Props) => {
+const SpotEventListItem = ({ spotEvent, buttonEnabled }: Props) => {
   const fragment = useFragment<SpotEventListItemFragment$key>(
     SpotEventListItemFragment,
     spotEvent
@@ -33,6 +42,14 @@ const SpotEventListItem = ({ spotEvent }: Props) => {
       addressSimple={fragment.addressSimple}
       startsAt={fragment.startsAt}
       routeTo={routes.spotEvent({ id: fragment.id })}
+      buttons={
+        buttonEnabled && (
+          <SpotEventListItemButtons
+            spotEvent={fragment}
+            connectionId={buttonEnabled.connectionId}
+          />
+        )
+      }
     />
   )
 }

@@ -14,6 +14,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   gap: 8px;
+  font-size: 12px;
 `
 
 const DepartmentChips = ({
@@ -28,6 +29,8 @@ const DepartmentChips = ({
         <Button
           onClick={() => setDepartmentId(null)}
           isActive={departmentId == null}
+          fontSize={14}
+          padding={2}
         >
           참여 가능한 모임
         </Button>
@@ -38,6 +41,8 @@ const DepartmentChips = ({
             onClick={() => setDepartmentId(node.id)}
             key={node.id}
             isActive={departmentId == node.id}
+            fontSize={14}
+            padding={2}
           >
             {node.name}
           </Button>

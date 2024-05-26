@@ -85,7 +85,7 @@ const Message = styled(Box)`
 
 const Container = styled(Box)`
   align-items: start;
-  margin: 20px 0;
+  margin: 20px 20px;
   cursor: pointer;
 `
 const SeasonDepartment = ({

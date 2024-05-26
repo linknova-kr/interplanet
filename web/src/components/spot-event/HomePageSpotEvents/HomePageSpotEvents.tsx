@@ -65,9 +65,19 @@ const HomePageSpotEvents = () => {
         </Select>
 
         {startAtCriteria === 'FUTURE' ? (
-          <Button onClick={() => setStartAtCriteria('PAST')}>지난 모임</Button>
+          <Button
+            fontSize={14}
+            padding={2}
+            onClick={() => setStartAtCriteria('PAST')}
+          >
+            지난 모임
+          </Button>
         ) : (
-          <Button onClick={() => setStartAtCriteria('FUTURE')}>
+          <Button
+            fontSize={14}
+            padding={2}
+            onClick={() => setStartAtCriteria('FUTURE')}
+          >
             예정된 모임
           </Button>
         )}

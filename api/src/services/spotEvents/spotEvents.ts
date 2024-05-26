@@ -28,6 +28,7 @@ export const spotEvents: ConnectionResolver<
         : startAtCriteria === 'FUTURE'
         ? { gte: new Date() }
         : undefined,
+    deregisteredAt: null,
   }
   if (activeSeasonOnly) {
     const departmentIds = await myActiveDepartmentIds(context.currentUser.id)
@@ -54,6 +55,7 @@ export const spotEvents: ConnectionResolver<
           spotEventId: true,
         },
       })
+      console.log('userSpotEvents', userSpotEvents)
       if (iJoined) {
         where.id = {
           in: userSpotEvents.map((use) => use.spotEventId),
@@ -170,7 +172,8 @@ export const SpotEvent = {
     if (!userId) {
       return false
     }
-    return root.userId === userId
+    console.log('root.userId', root, userId)
+    return root.hostUserId === userId
   },
   my: async (_obj, { root }) => {
     const userId = context.currentUser?.id

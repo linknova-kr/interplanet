@@ -1,4 +1,4 @@
-import { Badge, Heading } from '@chakra-ui/react'
+import { Badge, HStack, Heading, VStack } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 
 import { Link } from '@redwoodjs/router'
@@ -13,28 +13,33 @@ interface Props {
   addressSimple: string
   startsAt: any
   routeTo: string
+  buttons?: React.ReactNode
 }
 
 const Row = styled.div`
   display: flex;
   gap: 8px;
   flex-direction: row;
+  font-size: 14px;
 `
 
 const Container = styled(Link)`
   width: 100%;
-  margin-left: 30px;
+  padding: 0 20px;
   margin-bottom: 5px;
-  height: 100px;
+  height: 60px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `
 
 const Image = styled.div`
-  width: 100px;
+  width: 60px;
   border-radius: 10px;
   background-color: #eee;
   margin-right: 10px;
+  height: 60px;
 `
 
 const CommonListItem = ({
@@ -45,20 +50,24 @@ const CommonListItem = ({
   addressSimple,
   startsAt,
   routeTo,
+  buttons,
 }: Props) => {
   return (
     <Container key={id} to={routeTo}>
-      <Image></Image>
-      <div>
-        {badge && <Badge>{badge}</Badge>}
-        <Heading as="h4" size="md">
-          {title}
-        </Heading>
-        <Row>
-          <p>{formatDate(startsAt)}</p>
-          <p>{addressSimple}</p>
-        </Row>
-      </div>
+      <HStack justifyContent="start">
+        <Image></Image>
+        <VStack textAlign="left" alignItems="start">
+          {badge && <Badge>{badge}</Badge>}
+          <Heading as="h6" size="sm">
+            {title}
+          </Heading>
+          <Row>
+            <p>{formatDate(startsAt)}</p>
+            <p>{addressSimple}</p>
+          </Row>
+        </VStack>
+      </HStack>
+      {buttons && <HStack>{buttons}</HStack>}
     </Container>
   )
 }

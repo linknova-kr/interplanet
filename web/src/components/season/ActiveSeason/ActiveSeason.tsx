@@ -1,7 +1,8 @@
 import { Box } from '@chakra-ui/react'
-import styled from '@emotion/styled'
 import { useLazyLoadQuery } from 'react-relay'
 import { graphql } from 'relay-runtime'
+
+import SectionTitle from 'src/components/common/SectionTitle/SectionTitle'
 
 import { ActiveSeasonQuery } from '../../__generated__/ActiveSeasonQuery.graphql'
 import SeasonDepartment from '../../season-department/SeasonDepartment/SeasonDepartment'
@@ -41,15 +42,6 @@ export const QUERY = graphql`
   }
 `
 
-const Title = styled.div`
-  border-radius: 10px;
-  background-color: #8f97f7;
-  padding: 10px;
-  margin: 10px 0;
-  color: white;
-  font-weight: 600;
-`
-
 const ActiveSeason = () => {
   const data = useLazyLoadQuery<ActiveSeasonQuery>(QUERY, {})
   if (data.activeSeason.__typename !== 'Season')
@@ -65,8 +57,8 @@ const ActiveSeason = () => {
   )
 
   return (
-    <Box width="100%" padding="30px">
-      <Title>참여중인 시즌</Title>
+    <Box width="100%">
+      <SectionTitle title="참여중인 시즌" />
       <div>
         {joinedSeasonDepartments.length > 0 ? (
           joinedSeasonDepartments.map((seasonDepartment) => (
@@ -85,7 +77,7 @@ const ActiveSeason = () => {
           </>
         )}
       </div>
-      <Title>참여가능한 시즌</Title>
+      <SectionTitle title="참여가능한 시즌" />
       <div>
         {notJoinedSeasonDepartments.length > 0
           ? notJoinedSeasonDepartments.map((seasonDepartment) => (
